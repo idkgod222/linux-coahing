@@ -138,7 +138,7 @@
         }
 
         .nav-links {
-            display: none; /* Hidden by default, shown in mobile menu */
+            display: none;
             gap: 2rem; align-items: center;
         }
         
@@ -184,7 +184,7 @@
                 transition: right 0.3s ease;
                 border-left: 1px solid var(--border);
                 z-index: 1000;
-                display: flex; /* Show when active */
+                display: flex;
             }
             
             .nav-links.active {
@@ -600,6 +600,320 @@
         .dropdown-item.selected .check-indicator {
             opacity: 1;
         }
+
+        /* Booking Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .booking-modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+        
+        @keyframes modalSlide {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+        
+        .form-input {
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(88,166,255,0.1);
+        }
+        
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .plan-summary {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .plan-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .plan-summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-green);
+        }
+        
+        .cash-app-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            width: 100%;
+            background: #00d632;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .cash-app-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,214,50,0.3);
+        }
+        
+        .cash-app-btn i {
+            font-size: 1.3rem;
+        }
+        
+        .cash-app-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.8rem;
+        }
+        
+        .date-picker {
+            position: relative;
+        }
+        
+        .date-picker i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* Professional About Section */
+        .about-section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-left {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-header i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .about-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(88,166,255,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+        }
+        
+        .about-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--accent-green);
+            transform: translateX(8px);
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .feature-icon i {
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .feature-content h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        
+        .feature-content p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -663,14 +977,13 @@
         </div>
     </section>
 
-    <!-- Distros Section - Now with many more distros -->
+    <!-- Distros Section -->
     <section class="distros" id="distros">
         <div class="section-header reveal">
             <h2>Popular Linux Distros</h2>
             <p>Click on any distro to visit its official website. We've added even more options for different use cases.</p>
         </div>
         <div class="distro-list">
-            <!-- Original distros -->
             <div class="distro-item reveal" onclick="window.open('https://ubuntu.com/', '_blank')">
                 <div class="distro-header">
                     <div class="distro-name"><i class="fab fa-ubuntu distro-icon"></i> Ubuntu</div>
@@ -751,8 +1064,6 @@
                     <ul><li>Windows Users</li><li>Simplicity</li><li>Stability</li></ul>
                 </div>
             </div>
-
-            <!-- Newly Added Distros -->
             <div class="distro-item reveal" onclick="window.open('https://getfedora.org/', '_blank')">
                 <div class="distro-header">
                     <div class="distro-name"><i class="fab fa-fedora distro-icon"></i> Fedora</div>
@@ -833,8 +1144,6 @@
                     <ul><li>Minimalism</li><li>Runit Init</li><li>Advanced Users</li></ul>
                 </div>
             </div>
-
-            <!-- Cybersecurity Distros (kept) -->
             <div class="distro-item reveal" onclick="window.open('https://www.kali.org/', '_blank')">
                 <div class="distro-tag">Cybersecurity</div>
                 <div class="distro-header">
@@ -867,7 +1176,6 @@
             <p>Server plans are more affordable. Cybersecurity plans are intensive and career-focused.</p>
         </div>
         <div class="pricing-grid">
-            <!-- Server Plans -->
             <div class="plan-card reveal">
                 <div class="plan-name">Server Starter</div>
                 <div class="plan-price">$149<small>/month</small></div>
@@ -898,7 +1206,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#contact" class="plan-cta">Buy Server Starter</a>
+                <a href="#" class="plan-cta" onclick="openBookingModal('Server Starter', '$149/month', '4 sessions/month', 149); return false;">Buy Server Starter</a>
             </div>
 
             <div class="plan-card popular reveal">
@@ -931,10 +1239,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="#contact" class="plan-cta">Buy Server Pro</a>
+                <a href="#" class="plan-cta" onclick="openBookingModal('Server Pro', '$279/month', '8 sessions/month', 279); return false;">Buy Server Pro</a>
             </div>
 
-            <!-- Cybersecurity Plans -->
             <div class="plan-card reveal">
                 <div class="plan-name">Cyber Starter</div>
                 <div class="plan-price">$199<small>/month</small></div>
@@ -960,7 +1267,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#contact" class="plan-cta">Buy Cyber Starter</a>
+                <a href="#" class="plan-cta" onclick="openBookingModal('Cyber Starter', '$199/month', '6 sessions/month', 199); return false;">Buy Cyber Starter</a>
             </div>
 
             <div class="plan-card popular reveal">
@@ -989,7 +1296,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#contact" class="plan-cta">Buy Pro Security</a>
+                <a href="#" class="plan-cta" onclick="openBookingModal('Pro Linux + Security', '$399/month', '12 sessions/month', 399); return false;">Buy Pro Security</a>
             </div>
 
             <div class="plan-card reveal">
@@ -1020,18 +1327,135 @@
                         </div>
                     </div>
                 </div>
-                <a href="#contact" class="plan-cta">Buy Elite Pentester</a>
+                <a href="#" class="plan-cta" onclick="openBookingModal('Elite Pentester', '$699/month', 'Unlimited sessions', 699); return false;">Buy Elite Pentester</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section (directly under plans) -->
-    <section class="about" id="about">
-        <div class="about-content reveal">
-            <h2>About LinuxMaster</h2>
-            <p>We provide professional one-on-one coaching for Linux, servers, and cybersecurity. Our goal is to make open source accessible, powerful, and fun for everyone.</p>
+    <!-- Professional About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container reveal">
+            <div class="about-left">
+                <div class="about-header">
+                    <i class="fas fa-terminal"></i>
+                    <h2 class="about-title">About LinuxMaster</h2>
+                </div>
+                <p class="about-description">
+                    We provide professional one-on-one coaching for Linux, servers, and cybersecurity. 
+                    Our mission is to make open source accessible, powerful, and fun for everyone — 
+                    from complete beginners to elite pentesters. With personalized sessions, 
+                    hands-on labs, and real-world projects, you'll master the command line faster than ever.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Students Trained</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Linux Distros Covered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-right">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Expert Instructors</h3>
+                        <p>Learn from certified professionals with 10+ years of industry experience in Linux administration and cybersecurity.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Hands-On Labs</h3>
+                        <p>Practice on real servers and security labs. No simulations — just actual command line work with real tools.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Flexible Scheduling</h3>
+                        <p>Book sessions that fit your schedule. Morning, evening, or weekend — we adapt to your timezone and availability.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Certification Ready</h3>
+                        <p>Prepare for RHCSA, CompTIA Security+, CEH, OSCP and more with targeted exam preparation and practice tests.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="booking-modal">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            <h2 class="modal-title">Book Your Session</h2>
+            <p class="modal-subtitle">Fill in your details and we'll send you a Cash App payment link</p>
+            
+            <div class="plan-summary" id="planSummary">
+                <div class="plan-summary-row">
+                    <span>Selected Plan:</span>
+                    <span id="summaryPlanName">Server Starter</span>
+                </div>
+                <div class="plan-summary-row">
+                    <span>Sessions:</span>
+                    <span id="summarySessions">4 sessions/month</span>
+                </div>
+                <div class="plan-summary-total">
+                    <span>Total:</span>
+                    <span id="summaryPrice">$149/month</span>
+                </div>
+            </div>
+            
+            <form id="bookingForm" onsubmit="handleBooking(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="bookingName" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="bookingEmail" placeholder="john@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Preferred Start Date</label>
+                    <div class="date-picker">
+                        <input type="date" class="form-input" id="bookingDate" required>
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Selected Topics (from dropdown)</label>
+                    <input type="text" class="form-input" id="bookingTopics" placeholder="e.g., LAMP Stack, Docker Basics" readonly>
+                </div>
+                
+                <a href="#" class="cash-app-btn" id="cashAppLink" target="_blank" onclick="return validateAndPay()">
+                    <i class="fas fa-dollar-sign"></i>
+                    Pay with Cash App
+                </a>
+                <p class="cash-app-note">You'll be redirected to Cash App to complete the payment</p>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer id="contact">
@@ -1043,9 +1467,8 @@
         </div>
     </footer>
 
-    <!-- Scripts - All animations kept intact -->
+    <!-- Scripts -->
     <script>
-        // Loader, Navbar, Menu, Reveal, Particles, Orb Parallax - all original
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('loader');
@@ -1163,7 +1586,7 @@
             });
         });
 
-        // Dropdown toggle function
+        // Dropdown toggle
         function toggleDropdown(button) {
             const content = button.nextElementSibling;
             button.classList.toggle('active');
@@ -1177,7 +1600,77 @@
             setTimeout(() => {
                 item.style.transform = '';
             }, 100);
+            updateSelectedTopics();
         }
+
+        function updateSelectedTopics() {
+            const selected = document.querySelectorAll('.dropdown-item.selected');
+            const topics = Array.from(selected).map(item => {
+                const text = item.childNodes[2]?.textContent?.trim() || '';
+                return text;
+            }).filter(t => t).slice(0, 3);
+            
+            const topicsInput = document.getElementById('bookingTopics');
+            if (topicsInput) {
+                topicsInput.value = topics.join(', ') || 'No topics selected yet';
+            }
+        }
+
+        // Booking modal
+        let currentPlan = { name: '', price: '', sessions: '', amount: 0 };
+        
+        function openBookingModal(planName, price, sessions, amount) {
+            currentPlan = { name: planName, price, sessions, amount };
+            
+            document.getElementById('summaryPlanName').textContent = planName;
+            document.getElementById('summarySessions').textContent = sessions;
+            document.getElementById('summaryPrice').textContent = price;
+            
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('bookingDate').min = today;
+            
+            updateSelectedTopics();
+            
+            document.getElementById('bookingModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function validateAndPay() {
+            const name = document.getElementById('bookingName').value.trim();
+            const email = document.getElementById('bookingEmail').value.trim();
+            const date = document.getElementById('bookingDate').value;
+            
+            if (!name || !email || !date) {
+                alert('Please fill in all fields before proceeding to payment.');
+                return false;
+            }
+            
+            // REPLACE THIS WITH YOUR CASH APP USERNAME
+            const cashAppUsername = 'YOURCASHAPP';
+            const note = encodeURIComponent(`LinuxMaster: ${currentPlan.name} for ${name} starting ${date}`);
+            const cashAppUrl = `https://cash.app/$${cashAppUsername}/${currentPlan.amount}?note=${note}`;
+            
+            document.getElementById('cashAppLink').href = cashAppUrl;
+            return true;
+        }
+        
+        function handleBooking(e) {
+            e.preventDefault();
+            validateAndPay();
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBookingModal();
+        });
+        
+        document.getElementById('bookingModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('bookingModal')) closeBookingModal();
+        });
     </script>
 </body>
 </html>
