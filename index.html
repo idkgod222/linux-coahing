@@ -80,132 +80,54 @@
         }
         .hero p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem; }
 
-        /* Distros Section */
-        .distros { padding: 6rem 2rem; background: var(--bg-dark); }
+        /* Distros List Section */
+        .distros { padding: 6rem 2rem; }
         .section-header { text-align: center; margin-bottom: 3rem; }
         .section-header h2 { font-size: 2.8rem; margin-bottom: 1rem; }
-        .section-header p { color: var(--text-secondary); max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
+        .section-header p { color: var(--text-secondary); max-width: 700px; margin: 0 auto; }
 
-        .distro-grid {
-            max-width: 1200px;
+        .distro-list {
+            max-width: 1000px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.8rem;
-        }
-        .distro-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
-            transition: all 0.4s ease;
         }
-        .distro-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 15px 40px rgba(88, 166, 255, 0.15);
+        .distro-item {
+            padding: 1.4rem 0;
+            border-bottom: 1px solid var(--border);
         }
-        .distro-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
+        .distro-item:last-child { border-bottom: none; }
+        .distro-name {
+            font-size: 1.5rem;
             color: var(--accent);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: color 0.3s;
         }
-        .distro-card .tag {
-            display: inline-block;
-            background: rgba(88,166,255,0.15);
-            color: var(--accent);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 1.2rem;
-        }
-        .distro-card h4 {
-            margin: 1.2rem 0 0.8rem;
-            color: var(--accent-green);
-            font-size: 1.1rem;
-        }
-        .distro-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .distro-card ul li {
-            padding: 0.45rem 0;
+        .distro-name:hover { color: #79b8ff; }
+        .distro-name i { font-size: 1.1rem; }
+        .distro-best {
+            margin-top: 0.8rem;
             color: var(--text-secondary);
-            position: relative;
-            padding-left: 1.6rem;
         }
-        .distro-card ul li:before {
-            content: "✔";
-            color: var(--accent-green);
-            position: absolute;
-            left: 0;
+        .distro-best ul {
+            padding-left: 1.2rem;
+            margin-top: 0.4rem;
+        }
+        .distro-best li {
+            margin-bottom: 0.3rem;
         }
 
-        /* Chat Widget */
-        .chat-widget { position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; }
-        .chat-toggle {
-            width: 60px; height: 60px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-green));
-            border: none; color: white; font-size: 1.5rem;
-            cursor: pointer; box-shadow: 0 4px 20px rgba(88,166,255,0.4);
-        }
-        .chat-container {
-            position: absolute; bottom: 80px; right: 0;
-            width: 380px; height: 520px;
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            display: none; flex-direction: column; overflow: hidden;
-        }
-        .chat-container.active { display: flex; }
-        .chat-header {
-            background: linear-gradient(135deg, var(--accent), var(--accent-green));
-            padding: 1rem; display: flex; justify-content: space-between; align-items: center;
-            color: white;
-        }
-        .chat-messages {
-            flex: 1; overflow-y: auto; padding: 1rem;
-            background: var(--bg-dark);
-            display: flex; flex-direction: column; gap: 1rem;
-        }
-        .message { display: flex; gap: 0.75rem; max-width: 85%; }
-        .user-message { align-self: flex-end; flex-direction: row-reverse; }
-        .message-avatar {
-            width: 35px; height: 35px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-        .ai-message .message-avatar {
-            background: linear-gradient(135deg, var(--accent-green), #2ea44f);
-            color: white;
-        }
-        .message-content {
-            background: var(--bg-hover); padding: 0.75rem 1rem;
-            border-radius: 12px; font-size: 0.9rem; border: 1px solid var(--border);
-        }
-        .user-message .message-content {
-            background: var(--accent); color: var(--bg-dark); border: none;
-        }
-        .chat-input-area {
-            padding: 1rem; border-top: 1px solid var(--border);
-            background: var(--bg-dark);
-        }
-        .chat-input-wrapper { display: flex; gap: 0.5rem; }
-        .chat-input {
-            flex: 1; padding: 0.75rem 1rem;
-            background: var(--bg-hover); border: 1px solid var(--border);
-            border-radius: 25px; color: var(--text-primary); font-size: 0.9rem;
-        }
-        .chat-send {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: var(--accent); border: none; color: var(--bg-dark); cursor: pointer;
-        }
-        .quick-btn {
-            padding: 0.4rem 0.75rem; background: var(--bg-hover);
-            border: 1px solid var(--border); border-radius: 20px;
-            color: var(--text-secondary); font-size: 0.8rem; cursor: pointer;
-        }
-        @media (max-width: 600px) {
-            .chat-container { width: 320px; height: 480px; }
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
         }
     </style>
 </head>
@@ -239,233 +161,218 @@
         </div>
     </section>
 
-    <!-- Distros Section with Columns -->
+    <!-- Distros List Section -->
     <section class="distros" id="distros">
         <div class="section-header">
-            <h2>Find Your Perfect Distro</h2>
-            <p>Professional coaching available for every use case — from daily driving to hardcore gaming and security</p>
+            <h2>Popular Linux Distros & What They're Best At</h2>
+            <p>Click on any distro name to visit its official website. Professional coaching available for all of them.</p>
         </div>
 
-        <div class="distro-grid">
-            <!-- Ubuntu -->
-            <div class="distro-card">
-                <h3>Ubuntu</h3>
-                <div class="tag">Beginner Friendly</div>
-                <h4>Best For:</h4>
-                <ul>
-                    <li>New Linux users</li>
-                    <li>Everyday desktop use</li>
-                    <li>Development & servers</li>
-                    <li>Long-term stability</li>
-                </ul>
+        <div class="distro-list">
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://ubuntu.com/', '_blank')">
+                    <i class="fab fa-ubuntu"></i> Ubuntu
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Beginners and daily desktop use</li>
+                        <li>Stable servers and development</li>
+                        <li>Excellent hardware support</li>
+                        <li>Long-term LTS releases</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Pop!_OS -->
-            <div class="distro-card">
-                <h3>Pop!_OS</h3>
-                <div class="tag">System76</div>
-                <h4>Best For:</h4>
-                <ul>
-                    <li>Gaming with NVIDIA GPUs</li>
-                    <li>Content creators</li>
-                    <li>Productivity + gaming</li>
-                    <li>Easy tiling & window management</li>
-                </ul>
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://pop.system76.com/', '_blank')">
+                    Pop!_OS
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Gaming with NVIDIA GPUs</li>
+                        <li>Content creation & productivity</li>
+                        <li>Modern GNOME experience with tiling</li>
+                        <li>Easy out-of-box hardware support</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Bazzite -->
-            <div class="distro-card">
-                <h3>Bazzite</h3>
-                <div class="tag">Gaming Focused</div>
-                <h4>Best For:</h4>
-                <ul>
-                    <li>Steam Deck-like experience on desktop</li>
-                    <li>Handheld gaming PCs</li>
-                    <li>Immutable gaming setup</li>
-                    <li>Zero-config gaming</li>
-                </ul>
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://bazzite.gg/', '_blank')">
+                    Bazzite
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Steam Deck-like gaming on desktop</li>
+                        <li>Handheld gaming PCs</li>
+                        <li>Immutable, hassle-free gaming</li>
+                        <li>Zero-config Steam experience</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Nobara -->
-            <div class="distro-card">
-                <h3>Nobara</h3>
-                <div class="tag">Gaming + Creative</div>
-                <h4>Best For:</h4>
-                <ul>
-                    <li>High-performance gaming</li>
-                    <li>Video editing & streaming</li>
-                    <li>AMD + NVIDIA gaming rigs</li>
-                    <li>Pre-tuned for gamers</li>
-                </ul>
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://nobaraproject.org/', '_blank')">
+                    Nobara
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>High-performance gaming</li>
+                        <li>Video editing and streaming</li>
+                        <li>AMD & NVIDIA optimized rigs</li>
+                        <li>Gamers who want pre-tuned system</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- CachyOS -->
-            <div class="distro-card">
-                <h3>CachyOS</h3>
-                <div class="tag">Performance</div>
-                <h4>Best For:</h4>
-                <ul>
-                    <li>Maximum performance</li>
-                    <li>High-end gaming PCs</li>
-                    <li>Optimized kernel & compilers</li>
-                    <li>Enthusiasts & power users</li>
-                </ul>
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://cachyos.org/', '_blank')">
+                    CachyOS
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Maximum performance & speed</li>
+                        <li>High-end gaming PCs</li>
+                        <li>Optimized kernels and compilers</li>
+                        <li>Enthusiasts wanting bleeding edge</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Arch Linux -->
-            <div class="distro-card">
-                <h3>Arch Linux</h3>
-                <div class="tag">Advanced</div>
-                <h4>Best For:</h4>
-                <ul>
-                    <li>Full customization (btw)</li>
-                    <li>Learning Linux deeply</li>
-                    <li>Ricing & aesthetic setups</li>
-                    <li>Bleeding-edge software</li>
-                </ul>
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://archlinux.org/', '_blank')">
+                    Arch Linux
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Full customization ("btw")</li>
+                        <li>Deep Linux learning</li>
+                        <li>Ricing and aesthetic setups</li>
+                        <li>Bleeding-edge software</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Garuda -->
-            <div class="distro-card">
-                <h3>Garuda Linux</h3>
-                <div class="tag">Gaming & Eye Candy</div>
-                <h4>Best For:</h4>
-                <ul>
-                    <li>Beautiful out-of-box experience</li>
-                    <li>Gaming with stunning themes</li>
-                    <li>Beginners who want flair</li>
-                    <li>Dragonized edition fans</li>
-                </ul>
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://garudalinux.org/', '_blank')">
+                    Garuda Linux
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Stunning out-of-box visuals</li>
+                        <li>Gaming with beautiful themes</li>
+                        <li>Beginners who want flair</li>
+                        <li>Dragonized & gaming editions</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Kali Linux -->
-            <div class="distro-card">
-                <h3>Kali Linux</h3>
-                <div class="tag">Security</div>
-                <h4>Best For:</h4>
-                <ul>
-                    <li>Penetration testing</li>
-                    <li>Ethical hacking</li>
-                    <li>Digital forensics</li>
-                    <li>Red team operations</li>
-                </ul>
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://www.linuxmint.com/', '_blank')">
+                    Linux Mint
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Windows refugees</li>
+                        <li>Simple and stable daily use</li>
+                        <li>Cinnamon desktop lovers</li>
+                        <li>Beginners who hate complexity</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://getfedora.org/', '_blank')">
+                    Fedora
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Latest software & GNOME</li>
+                        <li>Developers and workstation users</li>
+                        <li>Modern Wayland experience</li>
+                        <li>Red Hat ecosystem transition</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://www.debian.org/', '_blank')">
+                    Debian
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Rock-solid stability</li>
+                        <li>Servers and production environments</li>
+                        <li>Minimalist setups</li>
+                        <li>Base for other distros</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://www.kali.org/', '_blank')">
+                    Kali Linux
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Penetration testing & ethical hacking</li>
+                        <li>Security research and forensics</li>
+                        <li>Red team operations</li>
+                        <li>Learning cybersecurity tools</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="distro-item">
+                <div class="distro-name" onclick="window.open('https://manjaro.org/', '_blank')">
+                    Manjaro
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Easy Arch experience</li>
+                        <li>Hardware detection & drivers</li>
+                        <li>Beautiful desktop editions</li>
+                        <li>Beginner-friendly rolling release</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Premium Chat Widget -->
-    <div class="chat-widget" id="chatWidget">
-        <button class="chat-toggle" onclick="toggleChat()">
-            <i class="fab fa-linux"></i>
-        </button>
-        <div class="chat-container" id="chatContainer">
-            <div class="chat-header">
-                <div>
-                    <strong>Linux Bot Premium</strong> 
-                    <span style="font-size:0.8rem; opacity:0.8;">• Ask me anything</span>
-                </div>
-                <button onclick="toggleChat()" style="background:none;border:none;color:white;cursor:pointer;font-size:1.1rem;">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="message ai-message">
-                    <div class="message-avatar"><i class="fab fa-linux"></i></div>
-                    <div class="message-content">
-                        <strong>Yo, penguin squad! 🐧</strong><br><br>
-                        I'm <strong>Linux Bot Premium</strong>.<br>
-                        Ask me literally anything — Linux distros, gaming setups, parrots, or random stuff!<br><br>
-                        What's on your mind?
-                    </div>
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <div class="chat-input-wrapper">
-                    <input type="text" id="chatInput" class="chat-input"
-                           placeholder="Ask anything... (gaming, parrots, Linux...)"
-                           onkeypress="if(event.key==='Enter') sendMessage()">
-                    <button class="chat-send" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-                <div style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
-                    <button class="quick-btn" onclick="sendQuick('Best Linux distro for gaming in 2026?')">Gaming Distro</button>
-                    <button class="quick-btn" onclick="sendQuick('Tell me a fun fact about parrots')">Parrot Facts</button>
-                    <button class="quick-btn" onclick="sendQuick('How do I fix permission denied error?')">Permission Denied</button>
-                    <button class="quick-btn" onclick="sendQuick('Compare Pop!_OS vs Bazzite')">Pop!_OS vs Bazzite</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- KnockKnock AI Assistant will appear automatically after you add the script -->
 
-    <script>
-        function toggleChat() {
-            document.getElementById('chatContainer').classList.toggle('active');
-        }
-
-        function sendQuick(question) {
-            document.getElementById('chatInput').value = question;
-            sendMessage();
-        }
-
-        function addMessage(text, isUser) {
-            const container = document.getElementById('chatMessages');
-            const msgClass = isUser ? 'user-message' : 'ai-message';
-            const avatarIcon = isUser ? 'fas fa-user' : 'fab fa-linux';
-            
-            container.innerHTML += `
-                <div class="message ${msgClass}">
-                    <div class="message-avatar"><i class="${avatarIcon}"></i></div>
-                    <div class="message-content">${text}</div>
-                </div>`;
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const msg = input.value.trim();
-            if (!msg) return;
-
-            addMessage(msg, true);
-            input.value = '';
-
-            const thinkingId = 'thinking-' + Date.now();
-            const container = document.getElementById('chatMessages');
-            container.innerHTML += `
-                <div class="message ai-message" id="${thinkingId}">
-                    <div class="message-avatar"><i class="fab fa-linux"></i></div>
-                    <div class="message-content">Consulting the terminal spirits... 🐧</div>
-                </div>`;
-            container.scrollTop = container.scrollHeight;
-
-            fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    message: msg, 
-                    system: "You are Linux Bot Premium — a friendly, fun Linux expert with a penguin vibe. Answer anything about Linux distros, gaming, commands, parrots, or random topics. Be helpful and use markdown when useful."
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById(thinkingId).remove();
-                const reply = data.reply || data.response || "I'm here to help! Ask me anything about Linux or beyond. 🐧";
-                addMessage(reply, false);
-            })
-            .catch(() => {
-                document.getElementById(thinkingId).remove();
-                addMessage("Terminal is a bit slow today...<br>But I'm still listening! Try again. 🐧", false);
-            });
-        }
-
-        // Auto-open chat
-        setTimeout(() => {
-            if (!document.getElementById('chatContainer').classList.contains('active')) toggleChat();
-        }, 4500);
-    </script>
-
-    <footer style="background:var(--bg-card);border-top:1px solid var(--border);padding:3rem 2rem;text-align:center;margin-top:4rem;">
-        <p style="color:var(--text-secondary);">© 2026 LinuxMaster Coaching. All rights reserved.</p>
+    <footer>
+        <p>© 2026 LinuxMaster Coaching. All rights reserved.</p>
     </footer>
+
+    <!-- === KNOCKKNOCK AI WIDGET INTEGRATION === -->
+    <!-- 
+         1. Sign up at https://knockknockapp.ai/
+         2. Go to your dashboard and copy your widget code/snippet
+         3. Replace the line below with your actual script from KnockKnock
+    -->
+    <script src="https://cdn.knockknockapp.ai/widget.js"></script>
+    <script>
+        // Replace 'YOUR_WIDGET_ID_HERE' with the real ID from your KnockKnock dashboard
+        KnockKnock.init({
+            widgetId: 'YOUR_WIDGET_ID_HERE',
+            // Optional customizations (you can change these in the dashboard too):
+            position: 'bottom-right',
+            theme: 'dark',
+            // You can set AI personality to be Linux-focused + able to talk about anything
+        });
+    </script>
 </body>
 </html>
