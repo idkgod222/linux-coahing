@@ -16,9 +16,6 @@
             --text-secondary: #8b949e;
             --accent: #58a6ff;
             --accent-green: #3fb950;
-            --accent-orange: #f0883e;
-            --accent-purple: #a371f7;
-            --accent-red: #f85149;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -26,7 +23,6 @@
             background: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
         }
         .bg-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -61,9 +57,6 @@
             color: var(--accent); text-decoration: none;
             display: flex; align-items: center; gap: 0.5rem;
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--text-primary); }
 
         .hero {
             position: relative; min-height: 100vh;
@@ -86,44 +79,75 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .hero p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem; }
-        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-        .btn {
-            padding: 1rem 2rem; border-radius: 8px; font-weight: 600;
-            text-decoration: none; transition: all 0.3s; cursor: pointer;
-            border: none; font-size: 1rem;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-        }
-        .btn-primary { background: var(--accent); color: var(--bg-dark); }
-        .btn-primary:hover { background: #79b8ff; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(88,166,255,0.3); }
 
-        /* Pricing / Distros Section */
-        .pricing { padding: 6rem 2rem; position: relative; z-index: 1; }
-        .section-header { text-align: center; margin-bottom: 2rem; }
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .section-header p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pricing-grid {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
-        }
-        .pricing-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 16px; padding: 1.75rem; transition: all 0.3s;
-            display: flex; flex-direction: column;
-        }
-        .pricing-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .pricing-card h3 { margin-bottom: 1rem; color: var(--accent); }
-        .pricing-card .price { font-size: 2rem; font-weight: 700; margin: 1rem 0; }
-        .pricing-card ul { list-style: none; margin: 1.5rem 0; }
-        .pricing-card ul li { padding: 0.4rem 0; color: var(--text-secondary); }
+        /* Distros Section */
+        .distros { padding: 6rem 2rem; background: var(--bg-dark); }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.8rem; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-secondary); max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
 
-        /* Premium Chat Widget */
+        .distro-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+        .distro-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+        .distro-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(88, 166, 255, 0.15);
+        }
+        .distro-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        .distro-card .tag {
+            display: inline-block;
+            background: rgba(88,166,255,0.15);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+        }
+        .distro-card h4 {
+            margin: 1.2rem 0 0.8rem;
+            color: var(--accent-green);
+            font-size: 1.1rem;
+        }
+        .distro-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .distro-card ul li {
+            padding: 0.45rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.6rem;
+        }
+        .distro-card ul li:before {
+            content: "✔";
+            color: var(--accent-green);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Chat Widget */
         .chat-widget { position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; }
         .chat-toggle {
             width: 60px; height: 60px; border-radius: 50%;
             background: linear-gradient(135deg, var(--accent), var(--accent-green));
             border: none; color: white; font-size: 1.5rem;
             cursor: pointer; box-shadow: 0 4px 20px rgba(88,166,255,0.4);
-            transition: all 0.3s;
         }
         .chat-container {
             position: absolute; bottom: 80px; right: 0;
@@ -140,15 +164,15 @@
         }
         .chat-messages {
             flex: 1; overflow-y: auto; padding: 1rem;
-            display: flex; flex-direction: column; gap: 1rem;
             background: var(--bg-dark);
+            display: flex; flex-direction: column; gap: 1rem;
         }
         .message { display: flex; gap: 0.75rem; max-width: 85%; }
         .user-message { align-self: flex-end; flex-direction: row-reverse; }
         .message-avatar {
             width: 35px; height: 35px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            background: var(--bg-hover); color: var(--accent); flex-shrink: 0;
+            flex-shrink: 0;
         }
         .ai-message .message-avatar {
             background: linear-gradient(135deg, var(--accent-green), #2ea44f);
@@ -178,7 +202,7 @@
         .quick-btn {
             padding: 0.4rem 0.75rem; background: var(--bg-hover);
             border: 1px solid var(--border); border-radius: 20px;
-            color: var(--text-secondary); font-size: 0.8rem; cursor: pointer; margin: 0.25rem;
+            color: var(--text-secondary); font-size: 0.8rem; cursor: pointer;
         }
         @media (max-width: 600px) {
             .chat-container { width: 320px; height: 480px; }
@@ -197,7 +221,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#pricing">Distros</a></li>
+                <li><a href="#distros">Distros</a></li>
             </ul>
         </div>
     </nav>
@@ -210,68 +234,121 @@
             <h1>Master the Command Line</h1>
             <p>Personalized Linux coaching — from beginners to advanced sysadmins.</p>
             <div class="cta-buttons">
-                <a href="#pricing" class="btn btn-primary">Explore Distros</a>
+                <a href="#distros" class="btn btn-primary">Explore Distros</a>
             </div>
         </div>
     </section>
 
-    <!-- Distros / Pricing Section -->
-    <section class="pricing" id="pricing">
+    <!-- Distros Section with Columns -->
+    <section class="distros" id="distros">
         <div class="section-header">
-            <h2>Choose Your Distro</h2>
-            <p>Professional coaching available for all major distributions</p>
+            <h2>Find Your Perfect Distro</h2>
+            <p>Professional coaching available for every use case — from daily driving to hardcore gaming and security</p>
         </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
+
+        <div class="distro-grid">
+            <!-- Ubuntu -->
+            <div class="distro-card">
                 <h3>Ubuntu</h3>
-                <div class="price">$49<span style="font-size:1rem;">/month</span></div>
-                <p>Best for beginners and daily use</p>
+                <div class="tag">Beginner Friendly</div>
+                <h4>Best For:</h4>
                 <ul>
-                    <li>✔ Stable & User-friendly</li>
-                    <li>✔ Excellent hardware support</li>
-                    <li>✔ Great for servers & desktops</li>
-                    <li>✔ 1-on-1 coaching included</li>
+                    <li>New Linux users</li>
+                    <li>Everyday desktop use</li>
+                    <li>Development & servers</li>
+                    <li>Long-term stability</li>
                 </ul>
-                <a href="#" class="btn btn-primary" style="margin-top:auto;">Start Learning</a>
             </div>
 
-            <div class="pricing-card">
+            <!-- Pop!_OS -->
+            <div class="distro-card">
+                <h3>Pop!_OS</h3>
+                <div class="tag">System76</div>
+                <h4>Best For:</h4>
+                <ul>
+                    <li>Gaming with NVIDIA GPUs</li>
+                    <li>Content creators</li>
+                    <li>Productivity + gaming</li>
+                    <li>Easy tiling & window management</li>
+                </ul>
+            </div>
+
+            <!-- Bazzite -->
+            <div class="distro-card">
+                <h3>Bazzite</h3>
+                <div class="tag">Gaming Focused</div>
+                <h4>Best For:</h4>
+                <ul>
+                    <li>Steam Deck-like experience on desktop</li>
+                    <li>Handheld gaming PCs</li>
+                    <li>Immutable gaming setup</li>
+                    <li>Zero-config gaming</li>
+                </ul>
+            </div>
+
+            <!-- Nobara -->
+            <div class="distro-card">
+                <h3>Nobara</h3>
+                <div class="tag">Gaming + Creative</div>
+                <h4>Best For:</h4>
+                <ul>
+                    <li>High-performance gaming</li>
+                    <li>Video editing & streaming</li>
+                    <li>AMD + NVIDIA gaming rigs</li>
+                    <li>Pre-tuned for gamers</li>
+                </ul>
+            </div>
+
+            <!-- CachyOS -->
+            <div class="distro-card">
+                <h3>CachyOS</h3>
+                <div class="tag">Performance</div>
+                <h4>Best For:</h4>
+                <ul>
+                    <li>Maximum performance</li>
+                    <li>High-end gaming PCs</li>
+                    <li>Optimized kernel & compilers</li>
+                    <li>Enthusiasts & power users</li>
+                </ul>
+            </div>
+
+            <!-- Arch Linux -->
+            <div class="distro-card">
                 <h3>Arch Linux</h3>
-                <div class="price">$79<span style="font-size:1rem;">/month</span></div>
-                <p>For power users and custom builds</p>
+                <div class="tag">Advanced</div>
+                <h4>Best For:</h4>
                 <ul>
-                    <li>✔ Rolling release</li>
-                    <li>✔ Full customization</li>
-                    <li>✔ Advanced troubleshooting</li>
-                    <li>✔ ricing & optimization</li>
+                    <li>Full customization (btw)</li>
+                    <li>Learning Linux deeply</li>
+                    <li>Ricing & aesthetic setups</li>
+                    <li>Bleeding-edge software</li>
                 </ul>
-                <a href="#" class="btn btn-primary" style="margin-top:auto;">Start Learning</a>
             </div>
 
-            <div class="pricing-card">
-                <h3>Pop!_OS / Nobara</h3>
-                <div class="price">$69<span style="font-size:1rem;">/month</span></div>
-                <p>Gaming + Creative Work</p>
+            <!-- Garuda -->
+            <div class="distro-card">
+                <h3>Garuda Linux</h3>
+                <div class="tag">Gaming & Eye Candy</div>
+                <h4>Best For:</h4>
                 <ul>
-                    <li>✔ Pre-configured for gaming</li>
-                    <li>✔ NVIDIA/AMD optimized</li>
-                    <li>✔ Steam + Proton ready</li>
-                    <li>✔ Content creation focus</li>
+                    <li>Beautiful out-of-box experience</li>
+                    <li>Gaming with stunning themes</li>
+                    <li>Beginners who want flair</li>
+                    <li>Dragonized edition fans</li>
                 </ul>
-                <a href="#" class="btn btn-primary" style="margin-top:auto;">Start Learning</a>
             </div>
 
-            <div class="pricing-card">
+            <!-- Kali Linux -->
+            <div class="distro-card">
                 <h3>Kali Linux</h3>
-                <div class="price">$89<span style="font-size:1rem;">/month</span></div>
-                <p>Penetration Testing & Security</p>
+                <div class="tag">Security</div>
+                <h4>Best For:</h4>
                 <ul>
-                    <li>✔ Ethical hacking tools</li>
-                    <li>✔ Security auditing</li>
-                    <li>✔ Forensics & red team</li>
-                    <li>✔ Advanced pentesting</li>
+                    <li>Penetration testing</li>
+                    <li>Ethical hacking</li>
+                    <li>Digital forensics</li>
+                    <li>Red team operations</li>
                 </ul>
-                <a href="#" class="btn btn-primary" style="margin-top:auto;">Start Learning</a>
             </div>
         </div>
     </section>
@@ -297,15 +374,15 @@
                     <div class="message-content">
                         <strong>Yo, penguin squad! 🐧</strong><br><br>
                         I'm <strong>Linux Bot Premium</strong>.<br>
-                        Ask me literally anything — Linux, gaming, parrots, memes, or whatever!<br><br>
-                        How can I help you today?
+                        Ask me literally anything — Linux distros, gaming setups, parrots, or random stuff!<br><br>
+                        What's on your mind?
                     </div>
                 </div>
             </div>
             <div class="chat-input-area">
                 <div class="chat-input-wrapper">
                     <input type="text" id="chatInput" class="chat-input"
-                           placeholder="Ask anything... (e.g. Best distro for gaming?)"
+                           placeholder="Ask anything... (gaming, parrots, Linux...)"
                            onkeypress="if(event.key==='Enter') sendMessage()">
                     <button class="chat-send" onclick="sendMessage()">
                         <i class="fas fa-paper-plane"></i>
@@ -315,7 +392,7 @@
                     <button class="quick-btn" onclick="sendQuick('Best Linux distro for gaming in 2026?')">Gaming Distro</button>
                     <button class="quick-btn" onclick="sendQuick('Tell me a fun fact about parrots')">Parrot Facts</button>
                     <button class="quick-btn" onclick="sendQuick('How do I fix permission denied error?')">Permission Denied</button>
-                    <button class="quick-btn" onclick="sendQuick('Recommend a beginner-friendly distro')">Beginner Distro</button>
+                    <button class="quick-btn" onclick="sendQuick('Compare Pop!_OS vs Bazzite')">Pop!_OS vs Bazzite</button>
                 </div>
             </div>
         </div>
@@ -361,38 +438,30 @@
                 </div>`;
             container.scrollTop = container.scrollHeight;
 
-            // Premium AI Call
             fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     message: msg, 
-                    system: "You are Linux Bot Premium — a friendly, fun, and helpful Linux expert with a penguin personality. Answer ANY question: Linux commands, distros, gaming, parrots, memes, life advice, etc. Be concise, use markdown/code blocks when useful, and keep a fun tone."
+                    system: "You are Linux Bot Premium — a friendly, fun Linux expert with a penguin vibe. Answer anything about Linux distros, gaming, commands, parrots, or random topics. Be helpful and use markdown when useful."
                 })
             })
-            .then(res => {
-                if (!res.ok) throw new Error('API error');
-                return res.json();
-            })
+            .then(res => res.json())
             .then(data => {
                 document.getElementById(thinkingId).remove();
-                const reply = data.reply || data.response || "I'm here! What else can I help you with? 🐧";
+                const reply = data.reply || data.response || "I'm here to help! Ask me anything about Linux or beyond. 🐧";
                 addMessage(reply, false);
             })
-            .catch(err => {
-                console.error(err);
+            .catch(() => {
                 document.getElementById(thinkingId).remove();
-                // Better fallback so it doesn't always say glitch
-                addMessage("The terminal is a bit laggy right now...<br>But I'm still here! Try asking again or something else. 🐧", false);
+                addMessage("Terminal is a bit slow today...<br>But I'm still listening! Try again. 🐧", false);
             });
         }
 
-        // Auto open chat after 5 seconds
+        // Auto-open chat
         setTimeout(() => {
-            if (!document.getElementById('chatContainer').classList.contains('active')) {
-                toggleChat();
-            }
-        }, 5000);
+            if (!document.getElementById('chatContainer').classList.contains('active')) toggleChat();
+        }, 4500);
     </script>
 
     <footer style="background:var(--bg-card);border-top:1px solid var(--border);padding:3rem 2rem;text-align:center;margin-top:4rem;">
