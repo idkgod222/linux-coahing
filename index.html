@@ -23,6 +23,7 @@
             background: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         .bg-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -32,17 +33,17 @@
             pointer-events: none; z-index: 0;
         }
         .bg-glow {
-            position: fixed; width: 600px; height: 600px;
-            border-radius: 50%; filter: blur(100px); opacity: 0.15;
+            position: fixed; width: 700px; height: 700px;
+            border-radius: 50%; filter: blur(120px); opacity: 0.12;
             pointer-events: none; z-index: 0;
         }
-        .glow-1 { top: -200px; left: -200px; background: var(--accent); }
-        .glow-2 { bottom: -200px; right: -200px; background: var(--accent-green); }
+        .glow-1 { top: -150px; left: -150px; background: var(--accent); }
+        .glow-2 { bottom: -150px; right: -150px; background: var(--accent-green); }
 
         nav {
             position: fixed; top: 0; width: 100%;
-            background: rgba(13,17,23,0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(13,17,23,0.95);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             z-index: 1000; padding: 1rem 0;
         }
@@ -56,6 +57,27 @@
             font-size: 1.5rem; font-weight: 700;
             color: var(--accent); text-decoration: none;
             display: flex; align-items: center; gap: 0.5rem;
+        }
+        .hamburger {
+            display: flex; flex-direction: column; gap: 4px; cursor: pointer;
+        }
+        .hamburger span {
+            width: 25px; height: 3px; background: var(--text-primary);
+            transition: all 0.3s;
+        }
+        .nav-links {
+            display: none; flex-direction: column; position: absolute; top: 70px; right: 20px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            gap: 0.8rem; min-width: 180px;
+        }
+        .nav-links.active { display: flex; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none; font-weight: 500;
+            padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            background: var(--bg-hover); color: var(--text-primary);
         }
 
         .hero {
@@ -80,7 +102,7 @@
         }
         .hero p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem; }
 
-        /* Distros List Section */
+        /* Distros List */
         .distros { padding: 6rem 2rem; }
         .section-header { text-align: center; margin-bottom: 3rem; }
         .section-header h2 { font-size: 2.8rem; margin-bottom: 1rem; }
@@ -106,20 +128,23 @@
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
-        .distro-name:hover { color: #79b8ff; }
-        .distro-name i { font-size: 1.1rem; }
-        .distro-best {
-            margin-top: 0.8rem;
-            color: var(--text-secondary);
+        .distro-name:hover { color: #79b8ff; text-decoration: underline; }
+
+        /* About This Site */
+        .about {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--bg-card), #0f141b);
         }
-        .distro-best ul {
-            padding-left: 1.2rem;
-            margin-top: 0.4rem;
-        }
-        .distro-best li {
-            margin-bottom: 0.3rem;
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: rgba(22, 27, 34, 0.6);
         }
 
         footer {
@@ -127,7 +152,6 @@
             border-top: 1px solid var(--border);
             padding: 3rem 2rem;
             text-align: center;
-            margin-top: 4rem;
         }
     </style>
 </head>
@@ -141,10 +165,16 @@
             <a href="#" class="logo">
                 <i class="fab fa-linux"></i> LinuxMaster
             </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#distros">Distros</a></li>
-            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#distros">Distros</a>
+            <a href="#about">About This Site</a>
         </div>
     </nav>
 
@@ -155,17 +185,14 @@
             </div>
             <h1>Master the Command Line</h1>
             <p>Personalized Linux coaching — from beginners to advanced sysadmins.</p>
-            <div class="cta-buttons">
-                <a href="#distros" class="btn btn-primary">Explore Distros</a>
-            </div>
         </div>
     </section>
 
-    <!-- Distros List Section -->
+    <!-- Distros List -->
     <section class="distros" id="distros">
         <div class="section-header">
             <h2>Popular Linux Distros & What They're Best At</h2>
-            <p>Click on any distro name to visit its official website. Professional coaching available for all of them.</p>
+            <p>Click on any distro name to visit its official website.</p>
         </div>
 
         <div class="distro-list">
@@ -179,7 +206,6 @@
                         <li>Beginners and daily desktop use</li>
                         <li>Stable servers and development</li>
                         <li>Excellent hardware support</li>
-                        <li>Long-term LTS releases</li>
                     </ul>
                 </div>
             </div>
@@ -192,9 +218,8 @@
                     <strong>Best For:</strong>
                     <ul>
                         <li>Gaming with NVIDIA GPUs</li>
-                        <li>Content creation & productivity</li>
-                        <li>Modern GNOME experience with tiling</li>
-                        <li>Easy out-of-box hardware support</li>
+                        <li>Content creation</li>
+                        <li>Modern desktop experience</li>
                     </ul>
                 </div>
             </div>
@@ -206,10 +231,9 @@
                 <div class="distro-best">
                     <strong>Best For:</strong>
                     <ul>
-                        <li>Steam Deck-like gaming on desktop</li>
-                        <li>Handheld gaming PCs</li>
-                        <li>Immutable, hassle-free gaming</li>
-                        <li>Zero-config Steam experience</li>
+                        <li>Steam Deck style gaming</li>
+                        <li>Handheld PCs</li>
+                        <li>Immutable gaming setup</li>
                     </ul>
                 </div>
             </div>
@@ -222,9 +246,8 @@
                     <strong>Best For:</strong>
                     <ul>
                         <li>High-performance gaming</li>
-                        <li>Video editing and streaming</li>
-                        <li>AMD & NVIDIA optimized rigs</li>
-                        <li>Gamers who want pre-tuned system</li>
+                        <li>Video editing & streaming</li>
+                        <li>Pre-tuned for gamers</li>
                     </ul>
                 </div>
             </div>
@@ -236,10 +259,9 @@
                 <div class="distro-best">
                     <strong>Best For:</strong>
                     <ul>
-                        <li>Maximum performance & speed</li>
-                        <li>High-end gaming PCs</li>
-                        <li>Optimized kernels and compilers</li>
-                        <li>Enthusiasts wanting bleeding edge</li>
+                        <li>Maximum performance</li>
+                        <li>High-end gaming rigs</li>
+                        <li>Optimized kernel</li>
                     </ul>
                 </div>
             </div>
@@ -251,10 +273,9 @@
                 <div class="distro-best">
                     <strong>Best For:</strong>
                     <ul>
-                        <li>Full customization ("btw")</li>
-                        <li>Deep Linux learning</li>
-                        <li>Ricing and aesthetic setups</li>
-                        <li>Bleeding-edge software</li>
+                        <li>Full customization</li>
+                        <li>Learning Linux deeply</li>
+                        <li>Ricing setups</li>
                     </ul>
                 </div>
             </div>
@@ -266,10 +287,8 @@
                 <div class="distro-best">
                     <strong>Best For:</strong>
                     <ul>
-                        <li>Stunning out-of-box visuals</li>
-                        <li>Gaming with beautiful themes</li>
-                        <li>Beginners who want flair</li>
-                        <li>Dragonized & gaming editions</li>
+                        <li>Beautiful gaming experience</li>
+                        <li>Stunning themes</li>
                     </ul>
                 </div>
             </div>
@@ -281,97 +300,54 @@
                 <div class="distro-best">
                     <strong>Best For:</strong>
                     <ul>
-                        <li>Windows refugees</li>
-                        <li>Simple and stable daily use</li>
-                        <li>Cinnamon desktop lovers</li>
-                        <li>Beginners who hate complexity</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="distro-item">
-                <div class="distro-name" onclick="window.open('https://getfedora.org/', '_blank')">
-                    Fedora
-                </div>
-                <div class="distro-best">
-                    <strong>Best For:</strong>
-                    <ul>
-                        <li>Latest software & GNOME</li>
-                        <li>Developers and workstation users</li>
-                        <li>Modern Wayland experience</li>
-                        <li>Red Hat ecosystem transition</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="distro-item">
-                <div class="distro-name" onclick="window.open('https://www.debian.org/', '_blank')">
-                    Debian
-                </div>
-                <div class="distro-best">
-                    <strong>Best For:</strong>
-                    <ul>
-                        <li>Rock-solid stability</li>
-                        <li>Servers and production environments</li>
-                        <li>Minimalist setups</li>
-                        <li>Base for other distros</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="distro-item">
-                <div class="distro-name" onclick="window.open('https://www.kali.org/', '_blank')">
-                    Kali Linux
-                </div>
-                <div class="distro-best">
-                    <strong>Best For:</strong>
-                    <ul>
-                        <li>Penetration testing & ethical hacking</li>
-                        <li>Security research and forensics</li>
-                        <li>Red team operations</li>
-                        <li>Learning cybersecurity tools</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="distro-item">
-                <div class="distro-name" onclick="window.open('https://manjaro.org/', '_blank')">
-                    Manjaro
-                </div>
-                <div class="distro-best">
-                    <strong>Best For:</strong>
-                    <ul>
-                        <li>Easy Arch experience</li>
-                        <li>Hardware detection & drivers</li>
-                        <li>Beautiful desktop editions</li>
-                        <li>Beginner-friendly rolling release</li>
+                        <li>Windows users switching</li>
+                        <li>Simple & stable desktop</li>
+                        <li>Beginners</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- KnockKnock AI Assistant will appear automatically after you add the script -->
+    <!-- About This Site -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About This Site</h2>
+            <p style="margin: 1.5rem 0; font-size: 1.1rem;">
+                LinuxMaster provides professional one-on-one coaching for all major Linux distributions.<br>
+                Whether you're just starting out or want to master advanced topics like gaming optimization, 
+                security, or system administration — we've got you covered.
+            </p>
+            <p style="color: var(--text-secondary);">
+                Our goal is to make Linux accessible, fun, and powerful for everyone.
+            </p>
+        </div>
+    </section>
 
     <footer>
         <p>© 2026 LinuxMaster Coaching. All rights reserved.</p>
     </footer>
 
-    <!-- === KNOCKKNOCK AI WIDGET INTEGRATION === -->
-    <!-- 
-         1. Sign up at https://knockknockapp.ai/
-         2. Go to your dashboard and copy your widget code/snippet
-         3. Replace the line below with your actual script from KnockKnock
-    -->
+    <!-- KnockKnock AI Integration -->
     <script src="https://cdn.knockknockapp.ai/widget.js"></script>
     <script>
-        // Replace 'YOUR_WIDGET_ID_HERE' with the real ID from your KnockKnock dashboard
         KnockKnock.init({
-            widgetId: 'YOUR_WIDGET_ID_HERE',
-            // Optional customizations (you can change these in the dashboard too):
+            widgetId: 'YOUR_WIDGET_ID_HERE',   // ← Replace with your real KnockKnock widget ID
             position: 'bottom-right',
-            theme: 'dark',
-            // You can set AI personality to be Linux-focused + able to talk about anything
+            theme: 'dark'
+        });
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('active');
+            }
         });
     </script>
 </body>
