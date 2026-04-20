@@ -21,11 +21,7 @@
             --accent-red: #f85149;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -36,195 +32,101 @@
         }
 
         .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
             background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
+            pointer-events: none; z-index: 0;
         }
 
         .bg-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
+            position: fixed; width: 600px; height: 600px;
+            border-radius: 50%; filter: blur(100px); opacity: 0.15;
+            pointer-events: none; z-index: 0;
         }
-
         .glow-1 { top: -200px; left: -200px; background: var(--accent); }
         .glow-2 { bottom: -200px; right: -200px; background: var(--accent-green); }
 
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(13, 17, 23, 0.9);
+            position: fixed; top: 0; width: 100%;
+            background: rgba(13,17,23,0.9);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1rem 0;
+            z-index: 1000; padding: 1rem 0;
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1200px; margin: 0 auto;
             padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
         .logo {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 1.5rem; font-weight: 700;
+            color: var(--accent); text-decoration: none;
+            display: flex; align-items: center; gap: 0.5rem;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--text-primary); }
 
         .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 4rem;
-            z-index: 1;
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 6rem 2rem 4rem; z-index: 1;
         }
 
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-        }
+        .hero-content { text-align: center; max-width: 800px; }
 
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(88, 166, 255, 0.1);
-            border: 1px solid rgba(88, 166, 255, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(88,166,255,0.1);
+            border: 1px solid rgba(88,166,255,0.3);
+            padding: 0.5rem 1rem; border-radius: 50px;
+            font-size: 0.9rem; color: var(--accent); margin-bottom: 2rem;
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
+            font-size: 4rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1;
             background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
+        .hero p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem; }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            padding: 1rem 2rem; border-radius: 8px; font-weight: 600;
+            text-decoration: none; transition: all 0.3s; cursor: pointer;
+            border: none; font-size: 1rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
         }
 
-        .btn-primary {
-            background: var(--accent);
-            color: var(--bg-dark);
-        }
-
-        .btn-primary:hover {
-            background: #79b8ff;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(88, 166, 255, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
+        .btn-primary { background: var(--accent); color: var(--bg-dark); }
+        .btn-primary:hover { background: #79b8ff; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(88,166,255,0.3); }
+        .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
 
         .terminal-window {
-            max-width: 700px;
-            margin: 3rem auto 0;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-width: 700px; margin: 3rem auto 0;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         .terminal-header {
-            background: var(--bg-hover);
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            background: var(--bg-hover); padding: 0.75rem 1rem;
+            display: flex; align-items: center; gap: 0.5rem;
             border-bottom: 1px solid var(--border);
         }
 
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot-red { background: var(--accent-red); }
         .dot-yellow { background: #f0883e; }
         .dot-green { background: var(--accent-green); }
@@ -232,301 +134,252 @@
         .terminal-body {
             padding: 1.5rem;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.8;
+            font-size: 0.9rem; line-height: 1.8;
         }
 
-        .terminal-line {
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+        .terminal-line { opacity: 0; animation: fadeIn 0.5s forwards; }
+        @keyframes fadeIn { to { opacity: 1; } }
 
         .prompt { color: var(--accent-green); }
         .command { color: var(--text-primary); }
         .output { color: var(--text-secondary); }
         .highlight { color: var(--accent); }
 
+        /* ─── DISTRO SECTION ─── */
         .pricing {
             padding: 6rem 2rem;
-            position: relative;
-            z-index: 1;
+            position: relative; z-index: 1;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
+        .section-header { text-align: center; margin-bottom: 2rem; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+        /* Filter tabs */
+        .filter-bar {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            justify-content: center; margin-bottom: 3rem;
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .filter-tab {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.875rem; font-weight: 500;
+            cursor: pointer; transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
         }
+
+        .filter-tab:hover { border-color: var(--accent); color: var(--text-primary); }
+        .filter-tab.active { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
 
         .pricing-grid {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1200px; margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
         .pricing-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s;
-            position: relative;
+            border-radius: 16px; padding: 1.75rem;
+            transition: all 0.3s; position: relative;
+            display: flex; flex-direction: column;
         }
 
         .pricing-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(88,166,255,0.1);
         }
 
-        .distro-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .pricing-card.hidden { display: none; }
+
+        /* Category accent stripe */
+        .pricing-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; border-radius: 16px 16px 0 0;
+        }
+
+        .card-beginner::before { background: var(--accent-green); }
+        .card-work::before { background: var(--accent); }
+        .card-gaming::before { background: var(--accent-purple); }
+        .card-privacy::before { background: var(--accent-orange); }
+        .card-advanced::before { background: var(--accent-red); }
+        .card-lightweight::before { background: #79c0ff; }
+
+        .card-top {
+            display: flex; align-items: flex-start;
+            justify-content: space-between; margin-bottom: 1rem;
+        }
+
+        .distro-icon { font-size: 2.5rem; }
+
+        .category-badge {
+            font-size: 0.7rem; font-weight: 700;
+            padding: 0.25rem 0.6rem; border-radius: 20px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        .badge-beginner { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+        .badge-work { background: rgba(88,166,255,0.15); color: var(--accent); }
+        .badge-gaming { background: rgba(163,113,247,0.15); color: var(--accent-purple); }
+        .badge-privacy { background: rgba(240,136,62,0.15); color: var(--accent-orange); }
+        .badge-advanced { background: rgba(248,81,73,0.15); color: var(--accent-red); }
+        .badge-lightweight { background: rgba(121,192,255,0.15); color: #79c0ff; }
+
+        .pricing-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
+
+        .distro-tagline {
+            font-size: 0.8rem; color: var(--text-secondary);
+            margin-bottom: 0.75rem; font-style: italic;
         }
 
         .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin: 1rem 0;
+            font-size: 2rem; font-weight: 800; color: var(--accent); margin: 0.75rem 0;
         }
+        .price span { font-size: 1rem; font-weight: 400; color: var(--text-secondary); }
 
-        .features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
+        .features { list-style: none; margin: 0.75rem 0 1.25rem; flex: 1; }
         .features li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            padding: 0.35rem 0; color: var(--text-secondary);
+            display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.875rem;
+        }
+        .features li i { color: var(--accent-green); margin-top: 3px; flex-shrink: 0; }
+
+        .distro-based {
+            font-size: 0.75rem; color: var(--text-secondary);
+            background: var(--bg-hover);
+            padding: 0.25rem 0.6rem; border-radius: 4px;
+            display: inline-block; margin-bottom: 0.75rem;
         }
 
-        /* Public AI Widget */
-        .chat-widget {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 3000;
-        }
+        /* Chat widget */
+        .chat-widget { position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; }
 
         .chat-toggle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 60px; height: 60px; border-radius: 50%;
             background: linear-gradient(135deg, var(--accent), var(--accent-green));
-            border: none;
-            color: white;
-            font-size: 1.5rem;
+            border: none; color: white; font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(88, 166, 255, 0.4);
-            transition: all 0.3s;
-            position: relative;
+            box-shadow: 0 4px 20px rgba(88,166,255,0.4);
+            transition: all 0.3s; position: relative;
         }
 
         .chat-badge {
-            position: absolute;
-            bottom: -5px;
-            right: -5px;
-            background: var(--accent-green);
-            color: white;
-            font-size: 0.65rem;
-            font-weight: bold;
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
+            position: absolute; bottom: -5px; right: -5px;
+            background: var(--accent-green); color: white;
+            font-size: 0.65rem; font-weight: bold;
+            padding: 0.2rem 0.5rem; border-radius: 10px;
         }
 
         .chat-container {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 380px;
-            height: 500px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
+            position: absolute; bottom: 80px; right: 0;
+            width: 380px; height: 500px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            display: none; flex-direction: column; overflow: hidden;
         }
-
-        .chat-container.active {
-            display: flex;
-        }
+        .chat-container.active { display: flex; }
 
         .chat-header {
             background: linear-gradient(135deg, var(--accent), var(--accent-green));
             padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             color: white;
         }
 
         .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            flex: 1; overflow-y: auto; padding: 1rem;
+            display: flex; flex-direction: column; gap: 1rem;
         }
 
-        .message {
-            display: flex;
-            gap: 0.75rem;
-            max-width: 90%;
-        }
-
-        .user-message {
-            align-self: flex-end;
-            flex-direction: row-reverse;
-        }
+        .message { display: flex; gap: 0.75rem; max-width: 90%; }
+        .user-message { align-self: flex-end; flex-direction: row-reverse; }
 
         .message-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-hover);
-            color: var(--accent);
-            border: 1px solid var(--accent);
+            width: 35px; height: 35px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--bg-hover); color: var(--accent);
+            border: 1px solid var(--accent); flex-shrink: 0;
         }
 
         .ai-message .message-avatar {
             background: linear-gradient(135deg, var(--accent), var(--accent-green));
-            color: white;
-            border: none;
+            color: white; border: none;
         }
 
         .message-content {
-            background: var(--bg-hover);
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            border: 1px solid var(--border);
+            background: var(--bg-hover); padding: 0.75rem 1rem;
+            border-radius: 12px; font-size: 0.9rem; border: 1px solid var(--border);
         }
-
-        .user-message .message-content {
-            background: var(--accent);
-            color: var(--bg-dark);
-            border: none;
-        }
+        .user-message .message-content { background: var(--accent); color: var(--bg-dark); border: none; }
 
         .chat-input-area {
-            padding: 1rem;
-            border-top: 1px solid var(--border);
+            padding: 1rem; border-top: 1px solid var(--border);
             background: var(--bg-dark);
         }
 
-        .chat-input-wrapper {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
+        .chat-input-wrapper { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
 
         .chat-input {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            background: var(--bg-hover);
-            border: 1px solid var(--border);
-            border-radius: 25px;
-            color: var(--text-primary);
-            font-size: 0.9rem;
+            flex: 1; padding: 0.75rem 1rem;
+            background: var(--bg-hover); border: 1px solid var(--border);
+            border-radius: 25px; color: var(--text-primary); font-size: 0.9rem;
         }
 
         .chat-send {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--accent);
-            border: none;
-            color: var(--bg-dark);
-            cursor: pointer;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--accent); border: none; color: var(--bg-dark); cursor: pointer;
         }
 
         .quick-btn {
             padding: 0.4rem 0.75rem;
-            background: var(--bg-hover);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            cursor: pointer;
-            margin: 0.25rem;
+            background: var(--bg-hover); border: 1px solid var(--border);
+            border-radius: 20px; color: var(--text-secondary);
+            font-size: 0.8rem; cursor: pointer; margin: 0.25rem;
         }
 
         .upgrade-banner {
-            background: rgba(240, 136, 62, 0.1);
-            border: 1px solid var(--accent-orange);
-            border-radius: 8px;
-            padding: 0.75rem;
-            margin-top: 0.75rem;
-            font-size: 0.85rem;
+            background: rgba(240,136,62,0.1); border: 1px solid var(--accent-orange);
+            border-radius: 8px; padding: 0.75rem; margin-top: 0.75rem; font-size: 0.85rem;
         }
+        .upgrade-banner a { color: var(--accent-orange); font-weight: 600; }
 
-        .upgrade-banner a {
-            color: var(--accent-orange);
-            font-weight: 600;
+        .code-block {
+            background: var(--bg-dark); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.75rem; margin: 0.5rem 0;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; overflow-x: auto;
         }
 
         /* Modal */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 2000;
+            align-items: center; justify-content: center;
         }
-
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
 
         .modal-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-        }
-
-        .code-block {
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.75rem;
-            margin: 0.5rem 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            overflow-x: auto;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2rem;
+            max-width: 500px; width: 90%;
         }
 
         footer {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
+            background: var(--bg-card); border-top: 1px solid var(--border);
+            padding: 3rem 2rem; text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .chat-container { width: 320px; }
         }
     </style>
 </head>
@@ -543,7 +396,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#pricing">Distros</a></li>
             </ul>
         </div>
     </nav>
@@ -557,7 +410,7 @@
             <h1>Master the Command Line</h1>
             <p>Personalized Linux coaching tailored to your distro, skill level, and goals.</p>
             <div class="cta-buttons">
-                <a href="#pricing" class="btn btn-primary">View Pricing</a>
+                <a href="#pricing" class="btn btn-primary">Explore Distros</a>
             </div>
             <div class="terminal-window">
                 <div class="terminal-header">
@@ -572,6 +425,12 @@
                     <div class="terminal-line" style="animation-delay: 1s">
                         <span class="output">Reading package lists... Done</span>
                     </div>
+                    <div class="terminal-line" style="animation-delay: 1.5s">
+                        <span class="output">Found: Ubuntu, Fedora, Arch, Pop!_OS, Kali, and 15 more...</span>
+                    </div>
+                    <div class="terminal-line" style="animation-delay: 2s">
+                        <span class="highlight">✓ All distros ready for coaching</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -580,24 +439,563 @@
     <section class="pricing" id="pricing">
         <div class="section-header">
             <h2>Choose Your Distro</h2>
+            <p>From beginner-friendly to hardcore, we cover every corner of the Linux universe. Filter by your use case below.</p>
         </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <div class="distro-icon"><i class="fab fa-ubuntu" style="color: #e95420;"></i></div>
-                <h3>Ubuntu / Debian</h3>
+
+        <div class="filter-bar">
+            <button class="filter-tab active" onclick="filterCards('all', this)">All Distros</button>
+            <button class="filter-tab" onclick="filterCards('beginner', this)">🟢 Beginner</button>
+            <button class="filter-tab" onclick="filterCards('work', this)">🔵 Work / Enterprise</button>
+            <button class="filter-tab" onclick="filterCards('gaming', this)">🟣 Gaming</button>
+            <button class="filter-tab" onclick="filterCards('privacy', this)">🟠 Privacy / Security</button>
+            <button class="filter-tab" onclick="filterCards('advanced', this)">🔴 Advanced</button>
+            <button class="filter-tab" onclick="filterCards('lightweight', this)">🩵 Lightweight</button>
+        </div>
+
+        <div class="pricing-grid" id="distroGrid">
+
+            <!-- ─── BEGINNER ─── -->
+            <div class="pricing-card card-beginner" data-category="beginner">
+                <div class="card-top">
+                    <div class="distro-icon"><i class="fab fa-ubuntu" style="color:#e95420;"></i></div>
+                    <span class="category-badge badge-beginner">Beginner</span>
+                </div>
+                <h3>Ubuntu</h3>
+                <span class="distro-based">Based on: Debian</span>
+                <p class="distro-tagline">"The world's most popular Linux distro"</p>
                 <div class="price">$45<span>/hour</span></div>
-                <button class="btn btn-primary" style="width: 100%;" onclick="openModal()">Book Now</button>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Huge community & documentation</li>
+                    <li><i class="fas fa-check-circle"></i> LTS releases (5-year support)</li>
+                    <li><i class="fas fa-check-circle"></i> Snap & APT package managers</li>
+                    <li><i class="fas fa-check-circle"></i> Ideal for first-time Linux users</li>
+                    <li><i class="fas fa-check-circle"></i> GNOME desktop, very polished</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
             </div>
-            <div class="pricing-card">
-                <div class="distro-icon"><i class="fab fa-redhat" style="color: #ee0000;"></i></div>
-                <h3>RHEL / CentOS</h3>
+
+            <div class="pricing-card card-beginner" data-category="beginner">
+                <div class="card-top">
+                    <div class="distro-icon">🌿</div>
+                    <span class="category-badge badge-beginner">Beginner</span>
+                </div>
+                <h3>Linux Mint</h3>
+                <span class="distro-based">Based on: Ubuntu / Debian</span>
+                <p class="distro-tagline">"Windows switchers' best friend"</p>
+                <div class="price">$45<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Familiar Windows-like layout</li>
+                    <li><i class="fas fa-check-circle"></i> Cinnamon desktop is very intuitive</li>
+                    <li><i class="fas fa-check-circle"></i> Comes with codecs pre-installed</li>
+                    <li><i class="fas fa-check-circle"></i> Very stable, great for older hardware</li>
+                    <li><i class="fas fa-check-circle"></i> Active Timeshift backup system</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-beginner" data-category="beginner">
+                <div class="card-top">
+                    <div class="distro-icon">🦎</div>
+                    <span class="category-badge badge-beginner">Beginner</span>
+                </div>
+                <h3>openSUSE Leap</h3>
+                <span class="distro-based">Based on: SUSE</span>
+                <p class="distro-tagline">"Enterprise stability for the desktop"</p>
+                <div class="price">$50<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> YaST graphical admin tool</li>
+                    <li><i class="fas fa-check-circle"></i> Rock-solid long-term releases</li>
+                    <li><i class="fas fa-check-circle"></i> Great KDE Plasma experience</li>
+                    <li><i class="fas fa-check-circle"></i> Excellent hardware support</li>
+                    <li><i class="fas fa-check-circle"></i> OBS software build system</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-beginner" data-category="beginner">
+                <div class="card-top">
+                    <div class="distro-icon">🐧</div>
+                    <span class="category-badge badge-beginner">Beginner</span>
+                </div>
+                <h3>Zorin OS</h3>
+                <span class="distro-based">Based on: Ubuntu</span>
+                <p class="distro-tagline">"Looks like Windows or macOS — your choice"</p>
+                <div class="price">$45<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Zorin Appearance layout switcher</li>
+                    <li><i class="fas fa-check-circle"></i> Windows app compatibility tools built-in</li>
+                    <li><i class="fas fa-check-circle"></i> Very polished, modern UI</li>
+                    <li><i class="fas fa-check-circle"></i> Great for school and office use</li>
+                    <li><i class="fas fa-check-circle"></i> Lite edition for old hardware</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <!-- ─── WORK / ENTERPRISE ─── -->
+            <div class="pricing-card card-work" data-category="work">
+                <div class="card-top">
+                    <div class="distro-icon"><i class="fab fa-redhat" style="color:#ee0000;"></i></div>
+                    <span class="category-badge badge-work">Work</span>
+                </div>
+                <h3>RHEL / AlmaLinux</h3>
+                <span class="distro-based">Based on: Red Hat</span>
+                <p class="distro-tagline">"The gold standard for enterprise Linux"</p>
+                <div class="price">$65<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Industry standard for sysadmins</li>
+                    <li><i class="fas fa-check-circle"></i> RHCSA/RHCE certification prep</li>
+                    <li><i class="fas fa-check-circle"></i> SELinux security framework</li>
+                    <li><i class="fas fa-check-circle"></i> 10-year support lifecycle</li>
+                    <li><i class="fas fa-check-circle"></i> DNF/YUM package management</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-work" data-category="work">
+                <div class="card-top">
+                    <div class="distro-icon">🐧</div>
+                    <span class="category-badge badge-work">Work</span>
+                </div>
+                <h3>Ubuntu Server / LTS</h3>
+                <span class="distro-based">Based on: Debian</span>
+                <p class="distro-tagline">"Powers 80% of the public cloud"</p>
                 <div class="price">$55<span>/hour</span></div>
-                <button class="btn btn-primary" style="width: 100%;" onclick="openModal()">Book Now</button>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> AWS, Azure, GCP default image</li>
+                    <li><i class="fas fa-check-circle"></i> LXD containers & MicroK8s</li>
+                    <li><i class="fas fa-check-circle"></i> MAAS for bare-metal provisioning</li>
+                    <li><i class="fas fa-check-circle"></i> Landscape for fleet management</li>
+                    <li><i class="fas fa-check-circle"></i> Livepatch security updates</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
             </div>
+
+            <div class="pricing-card card-work" data-category="work">
+                <div class="card-top">
+                    <div class="distro-icon">🎩</div>
+                    <span class="category-badge badge-work">Work</span>
+                </div>
+                <h3>Fedora Workstation</h3>
+                <span class="distro-based">Based on: Red Hat upstream</span>
+                <p class="distro-tagline">"Cutting-edge tools for developers"</p>
+                <div class="price">$55<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Latest kernel & software</li>
+                    <li><i class="fas fa-check-circle"></i> Excellent developer tooling</li>
+                    <li><i class="fas fa-check-circle"></i> Flatpak & RPM packages</li>
+                    <li><i class="fas fa-check-circle"></i> Wayland display server default</li>
+                    <li><i class="fas fa-check-circle"></i> Loved by Red Hat engineers</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-work" data-category="work">
+                <div class="card-top">
+                    <div class="distro-icon">🌀</div>
+                    <span class="category-badge badge-work">Work</span>
+                </div>
+                <h3>Debian Stable</h3>
+                <span class="distro-based">Based on: Independent</span>
+                <p class="distro-tagline">"The universal operating system"</p>
+                <div class="price">$50<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Ultra-stable, battle-tested releases</li>
+                    <li><i class="fas fa-check-circle"></i> 59,000+ packages in repos</li>
+                    <li><i class="fas fa-check-circle"></i> Runs on everything (servers to routers)</li>
+                    <li><i class="fas fa-check-circle"></i> No telemetry, pure free software</li>
+                    <li><i class="fas fa-check-circle"></i> Base of Ubuntu, Mint, and more</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-work" data-category="work">
+                <div class="card-top">
+                    <div class="distro-icon">🔷</div>
+                    <span class="category-badge badge-work">Work</span>
+                </div>
+                <h3>Rocky Linux</h3>
+                <span class="distro-based">Based on: RHEL</span>
+                <p class="distro-tagline">"CentOS successor, enterprise-grade"</p>
+                <div class="price">$60<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> 1:1 RHEL binary compatibility</li>
+                    <li><i class="fas fa-check-circle"></i> Perfect for server migrations</li>
+                    <li><i class="fas fa-check-circle"></i> Peridot build system</li>
+                    <li><i class="fas fa-check-circle"></i> Trusted by HPC & research labs</li>
+                    <li><i class="fas fa-check-circle"></i> Free forever, community-backed</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-work" data-category="work">
+                <div class="card-top">
+                    <div class="distro-icon">🖥️</div>
+                    <span class="category-badge badge-work">Work</span>
+                </div>
+                <h3>Pop!_OS (Work)</h3>
+                <span class="distro-based">Based on: Ubuntu</span>
+                <p class="distro-tagline">"Built by System76 for developers"</p>
+                <div class="price">$50<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Auto tiling window manager</li>
+                    <li><i class="fas fa-check-circle"></i> COSMIC desktop (custom GNOME)</li>
+                    <li><i class="fas fa-check-circle"></i> Excellent multi-monitor support</li>
+                    <li><i class="fas fa-check-circle"></i> Hybrid GPU switching built-in</li>
+                    <li><i class="fas fa-check-circle"></i> Recovery partition included</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <!-- ─── GAMING ─── -->
+            <div class="pricing-card card-gaming" data-category="gaming">
+                <div class="card-top">
+                    <div class="distro-icon">🎮</div>
+                    <span class="category-badge badge-gaming">Gaming</span>
+                </div>
+                <h3>SteamOS / HoloISO</h3>
+                <span class="distro-based">Based on: Arch Linux</span>
+                <p class="distro-tagline">"Valve's gaming-first OS (Steam Deck)"</p>
+                <div class="price">$55<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Proton compatibility layer for Windows games</li>
+                    <li><i class="fas fa-check-circle"></i> Immutable OS with dual-boot</li>
+                    <li><i class="fas fa-check-circle"></i> KDE Plasma desktop mode</li>
+                    <li><i class="fas fa-check-circle"></i> MangoHud performance overlay</li>
+                    <li><i class="fas fa-check-circle"></i> Flatpak app support</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-gaming" data-category="gaming">
+                <div class="card-top">
+                    <div class="distro-icon">🚀</div>
+                    <span class="category-badge badge-gaming">Gaming</span>
+                </div>
+                <h3>Pop!_OS (Gaming)</h3>
+                <span class="distro-based">Based on: Ubuntu</span>
+                <p class="distro-tagline">"NVIDIA's favourite Linux distro"</p>
+                <div class="price">$50<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> NVIDIA driver ISO available</li>
+                    <li><i class="fas fa-check-circle"></i> GPU switching (hybrid NVIDIA/AMD)</li>
+                    <li><i class="fas fa-check-circle"></i> Steam & Lutris pre-configured</li>
+                    <li><i class="fas fa-check-circle"></i> GameMode CPU optimizer</li>
+                    <li><i class="fas fa-check-circle"></i> Low-latency kernel option</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-gaming" data-category="gaming">
+                <div class="card-top">
+                    <div class="distro-icon">🏔️</div>
+                    <span class="category-badge badge-gaming">Gaming</span>
+                </div>
+                <h3>Nobara Linux</h3>
+                <span class="distro-based">Based on: Fedora</span>
+                <p class="distro-tagline">"Gaming-focused Fedora by GloriousEggroll"</p>
+                <div class="price">$55<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Custom GE-Proton included</li>
+                    <li><i class="fas fa-check-circle"></i> OBS Studio patches for low-latency</li>
+                    <li><i class="fas fa-check-circle"></i> Wine & gaming libs pre-installed</li>
+                    <li><i class="fas fa-check-circle"></i> Xbox controller support out-of-box</li>
+                    <li><i class="fas fa-check-circle"></i> Bleeding-edge mesa & kernel</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-gaming" data-category="gaming">
+                <div class="card-top">
+                    <div class="distro-icon">🎯</div>
+                    <span class="category-badge badge-gaming">Gaming</span>
+                </div>
+                <h3>Garuda Linux</h3>
+                <span class="distro-based">Based on: Arch Linux</span>
+                <p class="distro-tagline">"Beautiful, fast, gaming-ready Arch"</p>
+                <div class="price">$60<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Zen kernel for low latency</li>
+                    <li><i class="fas fa-check-circle"></i> BTRFS + Snapper snapshots</li>
+                    <li><i class="fas fa-check-circle"></i> Gaming edition with Lutris/Steam</li>
+                    <li><i class="fas fa-check-circle"></i> Beautiful Dracula/Nordic themes</li>
+                    <li><i class="fas fa-check-circle"></i> GameMode & Gamepad support</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-gaming" data-category="gaming">
+                <div class="card-top">
+                    <div class="distro-icon">🐲</div>
+                    <span class="category-badge badge-gaming">Gaming</span>
+                </div>
+                <h3>Bazzite</h3>
+                <span class="distro-based">Based on: Fedora Atomic</span>
+                <p class="distro-tagline">"Immutable gaming OS for desktop & Steam Deck"</p>
+                <div class="price">$55<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> OCI-based immutable system</li>
+                    <li><i class="fas fa-check-circle"></i> Proton & WINE pre-configured</li>
+                    <li><i class="fas fa-check-circle"></i> HTPC / living-room TV mode</li>
+                    <li><i class="fas fa-check-circle"></i> ROG/Framework laptop support</li>
+                    <li><i class="fas fa-check-circle"></i> Automatic rollback on bad updates</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <!-- ─── PRIVACY / SECURITY ─── -->
+            <div class="pricing-card card-privacy" data-category="privacy">
+                <div class="card-top">
+                    <div class="distro-icon">🕵️</div>
+                    <span class="category-badge badge-privacy">Privacy</span>
+                </div>
+                <h3>Tails OS</h3>
+                <span class="distro-based">Based on: Debian</span>
+                <p class="distro-tagline">"Leave no trace — amnesic live system"</p>
+                <div class="price">$70<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Runs entirely from USB</li>
+                    <li><i class="fas fa-check-circle"></i> Tor Browser built-in</li>
+                    <li><i class="fas fa-check-circle"></i> No persistent data by default</li>
+                    <li><i class="fas fa-check-circle"></i> Used by journalists & activists</li>
+                    <li><i class="fas fa-check-circle"></i> Encrypted persistent storage option</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-privacy" data-category="privacy">
+                <div class="card-top">
+                    <div class="distro-icon"><i class="fas fa-dragon" style="color:#a371f7;"></i></div>
+                    <span class="category-badge badge-privacy">Privacy</span>
+                </div>
+                <h3>Kali Linux</h3>
+                <span class="distro-based">Based on: Debian</span>
+                <p class="distro-tagline">"The penetration testing standard"</p>
+                <div class="price">$75<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> 600+ pre-installed security tools</li>
+                    <li><i class="fas fa-check-circle"></i> Metasploit, Burp Suite, Nmap</li>
+                    <li><i class="fas fa-check-circle"></i> CEH / OSCP exam preparation</li>
+                    <li><i class="fas fa-check-circle"></i> Live USB, VM, and WSL options</li>
+                    <li><i class="fas fa-check-circle"></i> Kali NetHunter for Android</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-privacy" data-category="privacy">
+                <div class="card-top">
+                    <div class="distro-icon">🛡️</div>
+                    <span class="category-badge badge-privacy">Privacy</span>
+                </div>
+                <h3>Whonix</h3>
+                <span class="distro-based">Based on: Debian</span>
+                <p class="distro-tagline">"Maximum anonymity via Tor routing"</p>
+                <div class="price">$70<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> All traffic routed through Tor</li>
+                    <li><i class="fas fa-check-circle"></i> Gateway + Workstation VM split</li>
+                    <li><i class="fas fa-check-circle"></i> IP leak protection by design</li>
+                    <li><i class="fas fa-check-circle"></i> Pairs perfectly with Qubes OS</li>
+                    <li><i class="fas fa-check-circle"></i> Used for high-risk anonymity</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-privacy" data-category="privacy">
+                <div class="card-top">
+                    <div class="distro-icon">🔒</div>
+                    <span class="category-badge badge-privacy">Privacy</span>
+                </div>
+                <h3>Qubes OS</h3>
+                <span class="distro-based">Based on: Xen hypervisor</span>
+                <p class="distro-tagline">"Security by compartmentalization"</p>
+                <div class="price">$80<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Each app runs in its own VM</li>
+                    <li><i class="fas fa-check-circle"></i> Endorsed by Edward Snowden</li>
+                    <li><i class="fas fa-check-circle"></i> Whonix integration for Tor</li>
+                    <li><i class="fas fa-check-circle"></i> Disposable VMs for risky tasks</li>
+                    <li><i class="fas fa-check-circle"></i> Color-coded security domains</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-privacy" data-category="privacy">
+                <div class="card-top">
+                    <div class="distro-icon">🦅</div>
+                    <span class="category-badge badge-privacy">Privacy</span>
+                </div>
+                <h3>Parrot OS</h3>
+                <span class="distro-based">Based on: Debian</span>
+                <p class="distro-tagline">"Security + privacy + development in one"</p>
+                <div class="price">$65<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Security, Home, and HTB editions</li>
+                    <li><i class="fas fa-check-circle"></i> AnonSurf anonymizer tool</li>
+                    <li><i class="fas fa-check-circle"></i> Lighter than Kali Linux</li>
+                    <li><i class="fas fa-check-circle"></i> Includes dev tools (VSCode, Docker)</li>
+                    <li><i class="fas fa-check-circle"></i> Great for CTF competitions</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <!-- ─── ADVANCED ─── -->
+            <div class="pricing-card card-advanced" data-category="advanced">
+                <div class="card-top">
+                    <div class="distro-icon">🏹</div>
+                    <span class="category-badge badge-advanced">Advanced</span>
+                </div>
+                <h3>Arch Linux</h3>
+                <span class="distro-based">Based on: Independent</span>
+                <p class="distro-tagline">"Build your system from scratch, your way"</p>
+                <div class="price">$70<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Rolling release, always bleeding-edge</li>
+                    <li><i class="fas fa-check-circle"></i> The legendary Arch Wiki</li>
+                    <li><i class="fas fa-check-circle"></i> AUR — largest user package repo</li>
+                    <li><i class="fas fa-check-circle"></i> Zero bloat, install only what you need</li>
+                    <li><i class="fas fa-check-circle"></i> Deep Linux understanding guaranteed</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-advanced" data-category="advanced">
+                <div class="card-top">
+                    <div class="distro-icon">🔬</div>
+                    <span class="category-badge badge-advanced">Advanced</span>
+                </div>
+                <h3>Gentoo Linux</h3>
+                <span class="distro-based">Based on: Independent</span>
+                <p class="distro-tagline">"Compile everything for your exact hardware"</p>
+                <div class="price">$85<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Source-based, maximum optimization</li>
+                    <li><i class="fas fa-check-circle"></i> USE flags for granular control</li>
+                    <li><i class="fas fa-check-circle"></i> Portage package management</li>
+                    <li><i class="fas fa-check-circle"></i> Teaches Linux internals deeply</li>
+                    <li><i class="fas fa-check-circle"></i> Used in embedded systems & research</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-advanced" data-category="advanced">
+                <div class="card-top">
+                    <div class="distro-icon">📦</div>
+                    <span class="category-badge badge-advanced">Advanced</span>
+                </div>
+                <h3>NixOS</h3>
+                <span class="distro-based">Based on: Independent</span>
+                <p class="distro-tagline">"Declarative, reproducible system config"</p>
+                <div class="price">$80<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Entire OS defined in one config file</li>
+                    <li><i class="fas fa-check-circle"></i> Atomic upgrades & rollbacks</li>
+                    <li><i class="fas fa-check-circle"></i> Nix package manager (90,000+ pkgs)</li>
+                    <li><i class="fas fa-check-circle"></i> Reproducible dev environments</li>
+                    <li><i class="fas fa-check-circle"></i> Loved by DevOps & Haskell devs</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-advanced" data-category="advanced">
+                <div class="card-top">
+                    <div class="distro-icon">⚙️</div>
+                    <span class="category-badge badge-advanced">Advanced</span>
+                </div>
+                <h3>LFS (Linux From Scratch)</h3>
+                <span class="distro-based">Based on: Source code</span>
+                <p class="distro-tagline">"Build Linux itself from the ground up"</p>
+                <div class="price">$90<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Compile the kernel yourself</li>
+                    <li><i class="fas fa-check-circle"></i> Full understanding of every component</li>
+                    <li><i class="fas fa-check-circle"></i> BLFS for beyond-basic software</li>
+                    <li><i class="fas fa-check-circle"></i> Resume-level expertise on completion</li>
+                    <li><i class="fas fa-check-circle"></i> The ultimate Linux challenge</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <!-- ─── LIGHTWEIGHT ─── -->
+            <div class="pricing-card card-lightweight" data-category="lightweight">
+                <div class="card-top">
+                    <div class="distro-icon">🐾</div>
+                    <span class="category-badge badge-lightweight">Lightweight</span>
+                </div>
+                <h3>Puppy Linux</h3>
+                <span class="distro-based">Based on: Various</span>
+                <p class="distro-tagline">"Runs entirely in RAM — ancient hardware hero"</p>
+                <div class="price">$40<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Under 300MB, runs from USB</li>
+                    <li><i class="fas fa-check-circle"></i> Works on 10-year-old machines</li>
+                    <li><i class="fas fa-check-circle"></i> Full suite of apps included</li>
+                    <li><i class="fas fa-check-circle"></i> Blazing fast once loaded to RAM</li>
+                    <li><i class="fas fa-check-circle"></i> Great for data recovery tasks</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-lightweight" data-category="lightweight">
+                <div class="card-top">
+                    <div class="distro-icon">🌾</div>
+                    <span class="category-badge badge-lightweight">Lightweight</span>
+                </div>
+                <h3>antiX Linux</h3>
+                <span class="distro-based">Based on: Debian</span>
+                <p class="distro-tagline">"Systemd-free, blazing fast, old hardware"</p>
+                <div class="price">$45<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> No systemd — uses runit/sysvinit</li>
+                    <li><i class="fas fa-check-circle"></i> 256MB RAM minimum</li>
+                    <li><i class="fas fa-check-circle"></i> IceWM / fluxbox / jwm window managers</li>
+                    <li><i class="fas fa-check-circle"></i> Ideal for reviving old laptops</li>
+                    <li><i class="fas fa-check-circle"></i> Excellent live USB tools</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-lightweight" data-category="lightweight">
+                <div class="card-top">
+                    <div class="distro-icon">🦇</div>
+                    <span class="category-badge badge-lightweight">Lightweight</span>
+                </div>
+                <h3>BunsenLabs Linux</h3>
+                <span class="distro-based">Based on: Debian</span>
+                <p class="distro-tagline">"Openbox-based minimal aesthetic powerhouse"</p>
+                <div class="price">$45<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Openbox window manager</li>
+                    <li><i class="fas fa-check-circle"></i> Conky system monitor built-in</li>
+                    <li><i class="fas fa-check-circle"></i> Very low RAM usage (~150MB idle)</li>
+                    <li><i class="fas fa-check-circle"></i> Highly customizable keybinds</li>
+                    <li><i class="fas fa-check-circle"></i> CrunchBang++ spiritual successor</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
+            <div class="pricing-card card-lightweight" data-category="lightweight">
+                <div class="card-top">
+                    <div class="distro-icon">🌱</div>
+                    <span class="category-badge badge-lightweight">Lightweight</span>
+                </div>
+                <h3>Lubuntu</h3>
+                <span class="distro-based">Based on: Ubuntu</span>
+                <p class="distro-tagline">"Ubuntu's lightweight LXQt cousin"</p>
+                <div class="price">$45<span>/hour</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> LXQt desktop, very snappy</li>
+                    <li><i class="fas fa-check-circle"></i> Ubuntu repos & PPAs available</li>
+                    <li><i class="fas fa-check-circle"></i> 512MB RAM minimum</li>
+                    <li><i class="fas fa-check-circle"></i> Good for older notebooks</li>
+                    <li><i class="fas fa-check-circle"></i> Official Ubuntu flavor</li>
+                </ul>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Book Now</button>
+            </div>
+
         </div>
     </section>
 
-    <!-- Public AI Chat -->
+    <!-- AI Chat Widget -->
     <div class="chat-widget" id="chatWidget">
         <button class="chat-toggle" onclick="toggleChat()">
             <i class="fas fa-robot"></i>
@@ -606,25 +1004,28 @@
         <div class="chat-container" id="chatContainer">
             <div class="chat-header">
                 <div>Linux Tips AI</div>
-                <button onclick="toggleChat()" style="background:none;border:none;color:white;"><i class="fas fa-times"></i></button>
+                <button onclick="toggleChat()" style="background:none;border:none;color:white;cursor:pointer;"><i class="fas fa-times"></i></button>
             </div>
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai-message">
                     <div class="message-avatar"><i class="fas fa-graduation-cap"></i></div>
                     <div class="message-content">
                         <strong>Welcome!</strong><br>
-                        I can help with basic Linux tips. For advanced topics, book a session!
+                        I can help with basic Linux tips and distro recommendations. For advanced topics, book a session!
                     </div>
                 </div>
             </div>
             <div class="chat-input-area">
                 <div class="chat-input-wrapper">
-                    <input type="text" id="chatInput" class="chat-input" placeholder="Ask a basic question..." onkeypress="if(event.key==='Enter')sendMessage()">
+                    <input type="text" id="chatInput" class="chat-input" placeholder="Ask a basic question..."
+                        onkeypress="if(event.key==='Enter')sendMessage()">
                     <button class="chat-send" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
                 </div>
                 <div>
                     <button class="quick-btn" onclick="sendQuick('What is Linux?')">What is Linux?</button>
                     <button class="quick-btn" onclick="sendQuick('Basic commands')">Commands</button>
+                    <button class="quick-btn" onclick="sendQuick('Best distro for gaming?')">Gaming?</button>
+                    <button class="quick-btn" onclick="sendQuick('Best distro for work?')">Work?</button>
                 </div>
                 <div class="upgrade-banner">
                     <i class="fas fa-lock"></i> Need advanced help? <a href="#pricing" onclick="toggleChat()">Book a session</a>
@@ -636,22 +1037,38 @@
     <!-- Booking Modal -->
     <div class="modal" id="bookingModal">
         <div class="modal-content">
-            <h2>Book Your Session</h2>
-            <p>Enter your details and we'll contact you within 24 hours.</p>
-            <form style="display:flex;flex-direction:column;gap:1rem;margin-top:1rem;">
-                <input type="text" placeholder="Your Name" style="padding:0.75rem;background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);">
-                <input type="email" placeholder="Email" style="padding:0.75rem;background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);">
-                <button type="button" onclick="closeModal()" class="btn btn-primary" style="justify-content:center;">Send Request</button>
-            </form>
+            <h2 style="margin-bottom:0.5rem;">Book Your Session</h2>
+            <p style="color:var(--text-secondary);margin-bottom:1.5rem;">Enter your details and we'll contact you within 24 hours.</p>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+                <input type="text" placeholder="Your Name"
+                    style="padding:0.75rem;background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:1rem;">
+                <input type="email" placeholder="Email"
+                    style="padding:0.75rem;background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:1rem;">
+                <select style="padding:0.75rem;background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:1rem;">
+                    <option value="">Select your distro...</option>
+                    <option>Ubuntu</option><option>Linux Mint</option><option>openSUSE Leap</option>
+                    <option>Zorin OS</option><option>RHEL / AlmaLinux</option><option>Ubuntu Server</option>
+                    <option>Fedora Workstation</option><option>Debian Stable</option><option>Rocky Linux</option>
+                    <option>Pop!_OS</option><option>SteamOS / HoloISO</option><option>Nobara Linux</option>
+                    <option>Garuda Linux</option><option>Bazzite</option><option>Tails OS</option>
+                    <option>Kali Linux</option><option>Whonix</option><option>Qubes OS</option>
+                    <option>Parrot OS</option><option>Arch Linux</option><option>Gentoo Linux</option>
+                    <option>NixOS</option><option>Linux From Scratch</option><option>Puppy Linux</option>
+                    <option>antiX Linux</option><option>BunsenLabs</option><option>Lubuntu</option>
+                </select>
+                <button type="button" onclick="closeModal()" class="btn btn-primary" style="justify-content:center;">
+                    <i class="fas fa-paper-plane"></i> Send Request
+                </button>
+                <button type="button" onclick="closeModal()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;">Cancel</button>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>LinuxMaster Coaching. All rights reserved.</p>
+        <p style="color:var(--text-secondary);">© 2025 LinuxMaster Coaching. All rights reserved.</p>
     </footer>
 
     <script>
-        // Chat Functions
         function toggleChat() {
             document.getElementById('chatContainer').classList.toggle('active');
         }
@@ -666,35 +1083,42 @@
             const msg = input.value.trim();
             if (!msg) return;
 
-            // Add user message
             const container = document.getElementById('chatMessages');
             container.innerHTML += `
                 <div class="message user-message">
                     <div class="message-avatar"><i class="fas fa-user"></i></div>
                     <div class="message-content">${msg}</div>
-                </div>
-            `;
+                </div>`;
             input.value = '';
             container.scrollTop = container.scrollHeight;
 
-            // Simple responses
             setTimeout(() => {
                 let response = "I can help with basic Linux questions! For advanced topics like security, certifications, or kernel development, please book a coaching session.";
-                
-                if (msg.toLowerCase().includes('what is linux')) {
-                    response = "Linux is a free, open-source operating system kernel. Popular distros include Ubuntu (beginner-friendly), Fedora (cutting-edge), and Debian (stable). <br><br><i class='fas fa-arrow-right' style='color:var(--accent-orange)'></i> <a href='#pricing' onclick='toggleChat()' style='color:var(--accent-orange)'>Book a session for detailed comparisons!</a>";
-                } else if (msg.toLowerCase().includes('command')) {
-                    response = "<strong>Basic commands:</strong><br><div class='code-block'>ls - List files<br>cd - Change directory<br>pwd - Show location<br>cat - View file</div><br><i class='fas fa-lock' style='color:var(--accent-orange)'></i> Advanced commands available with Premium AI!";
-                } else if (msg.toLowerCase().includes('security') || msg.toLowerCase().includes('pentest') || msg.toLowerCase().includes('certification')) {
-                    response = "<i class='fas fa-lock' style='color:var(--accent-orange)'></i> <strong>This requires Premium AI access.</strong><br><br>Advanced security, penetration testing, and certification prep are only available to students who book sessions.<br><br><a href='#pricing' onclick='toggleChat()' style='color:var(--accent-orange);font-weight:600;'>Book a session to unlock Premium AI</a>";
+                const m = msg.toLowerCase();
+
+                if (m.includes('what is linux')) {
+                    response = "Linux is a free, open-source OS kernel created by Linus Torvalds in 1991. Distros bundle it with software — Ubuntu for beginners, Arch for power users, Kali for security pros.<br><br><a href='#pricing' onclick='toggleChat()' style='color:var(--accent-orange)'>→ Explore all distros</a>";
+                } else if (m.includes('command')) {
+                    response = "<strong>Basic commands:</strong><div class='code-block'>ls — list files<br>cd — change directory<br>pwd — current path<br>cat — view file<br>sudo — admin mode<br>apt install — install package</div>";
+                } else if (m.includes('gaming')) {
+                    response = "<strong>Best gaming distros:</strong><br>🎮 <b>Pop!_OS</b> — best NVIDIA support<br>🚀 <b>Nobara</b> — GE-Proton built-in<br>🎯 <b>Garuda</b> — beautiful Arch-based<br>🐲 <b>Bazzite</b> — immutable & Steam Deck ready<br>🕹 <b>SteamOS</b> — official Valve OS<br><br><a href='#pricing' onclick='toggleChat()' style='color:var(--accent-orange)'>→ Book a gaming session</a>";
+                } else if (m.includes('work') || m.includes('enterprise') || m.includes('server')) {
+                    response = "<strong>Best work/enterprise distros:</strong><br>🔵 <b>RHEL/AlmaLinux</b> — cert standard<br>🖥 <b>Ubuntu Server</b> — powers the cloud<br>🎩 <b>Fedora</b> — developer favourite<br>🌀 <b>Debian</b> — ultra-stable base<br>🔷 <b>Rocky Linux</b> — CentOS successor<br><br><a href='#pricing' onclick='toggleChat()' style='color:var(--accent-orange)'>→ Book an enterprise session</a>";
+                } else if (m.includes('privacy') || m.includes('security') || m.includes('pentest') || m.includes('anonymous')) {
+                    response = "<i class='fas fa-lock' style='color:var(--accent-orange)'></i> <b>Privacy/Security distros:</b><br>🕵️ <b>Tails</b> — no trace, Tor built-in<br>🦅 <b>Kali</b> — 600+ security tools<br>🛡️ <b>Whonix</b> — all traffic via Tor<br>🔒 <b>Qubes OS</b> — compartmentalized VMs<br><br><a href='#pricing' onclick='toggleChat()' style='color:var(--accent-orange)'>→ Book a security session</a>";
+                } else if (m.includes('beginner') || m.includes('start') || m.includes('new')) {
+                    response = "<strong>Best distros for beginners:</strong><br>🟠 <b>Ubuntu</b> — most popular, huge support<br>🌿 <b>Linux Mint</b> — Windows-like layout<br>🐧 <b>Zorin OS</b> — polished & beautiful<br>🦎 <b>openSUSE Leap</b> — stable & user-friendly<br><br><a href='#pricing' onclick='toggleChat()' style='color:var(--accent-orange)'>→ Book a beginner session</a>";
+                } else if (m.includes('arch')) {
+                    response = "Arch Linux is a rolling release distro — always up to date, minimal by default. It teaches you Linux deeply. The Arch Wiki is legendary. Difficult to install but incredibly rewarding. We offer dedicated Arch coaching!";
+                } else if (m.includes('lightweight') || m.includes('old') || m.includes('slow')) {
+                    response = "<strong>Lightweight distros for old hardware:</strong><br>🐾 <b>Puppy Linux</b> — runs in RAM, under 300MB<br>🌾 <b>antiX</b> — no systemd, 256MB RAM min<br>🌱 <b>Lubuntu</b> — Ubuntu with LXQt<br>🦇 <b>BunsenLabs</b> — Openbox minimal<br><br>We can help revive any old machine!";
                 }
 
                 container.innerHTML += `
                     <div class="message ai-message">
                         <div class="message-avatar"><i class="fas fa-graduation-cap"></i></div>
                         <div class="message-content">${response}</div>
-                    </div>
-                `;
+                    </div>`;
                 container.scrollTop = container.scrollHeight;
             }, 800);
         }
@@ -707,10 +1131,22 @@
             document.getElementById('bookingModal').classList.remove('active');
         }
 
-        // Close modal on outside click
         document.getElementById('bookingModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
+
+        function filterCards(category, btn) {
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
     </script>
 </body>
 </html>
