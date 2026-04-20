@@ -30,9 +30,8 @@
         }
         .bg-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image:
-                linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             pointer-events: none; z-index: 0;
         }
@@ -43,6 +42,7 @@
         }
         .glow-1 { top: -200px; left: -200px; background: var(--accent); }
         .glow-2 { bottom: -200px; right: -200px; background: var(--accent-green); }
+
         nav {
             position: fixed; top: 0; width: 100%;
             background: rgba(13,17,23,0.9);
@@ -64,6 +64,7 @@
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover { color: var(--text-primary); }
+
         .hero {
             position: relative; min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
@@ -95,18 +96,11 @@
         .btn-primary { background: var(--accent); color: var(--bg-dark); }
         .btn-primary:hover { background: #79b8ff; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(88,166,255,0.3); }
 
-        /* Pricing section styles */
+        /* Pricing / Distros Section */
         .pricing { padding: 6rem 2rem; position: relative; z-index: 1; }
         .section-header { text-align: center; margin-bottom: 2rem; }
         .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
         .section-header p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 3rem; }
-        .filter-tab {
-            padding: 0.5rem 1.2rem; border-radius: 50px; border: 1px solid var(--border);
-            background: transparent; color: var(--text-secondary); font-size: 0.875rem;
-            cursor: pointer; transition: all 0.2s;
-        }
-        .filter-tab.active { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
         .pricing-grid {
             max-width: 1200px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
@@ -117,6 +111,10 @@
             display: flex; flex-direction: column;
         }
         .pricing-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .pricing-card h3 { margin-bottom: 1rem; color: var(--accent); }
+        .pricing-card .price { font-size: 2rem; font-weight: 700; margin: 1rem 0; }
+        .pricing-card ul { list-style: none; margin: 1.5rem 0; }
+        .pricing-card ul li { padding: 0.4rem 0; color: var(--text-secondary); }
 
         /* Premium Chat Widget */
         .chat-widget { position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; }
@@ -191,6 +189,7 @@
     <div class="bg-grid"></div>
     <div class="bg-glow glow-1"></div>
     <div class="bg-glow glow-2"></div>
+
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">
@@ -202,6 +201,7 @@
             </ul>
         </div>
     </nav>
+
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-badge">
@@ -215,10 +215,68 @@
         </div>
     </section>
 
-    <!-- Distro pricing section - Add your full pricing grid here if needed -->
-    <!-- <section class="pricing" id="pricing"> ... </section> -->
+    <!-- Distros / Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <h2>Choose Your Distro</h2>
+            <p>Professional coaching available for all major distributions</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Ubuntu</h3>
+                <div class="price">$49<span style="font-size:1rem;">/month</span></div>
+                <p>Best for beginners and daily use</p>
+                <ul>
+                    <li>✔ Stable & User-friendly</li>
+                    <li>✔ Excellent hardware support</li>
+                    <li>✔ Great for servers & desktops</li>
+                    <li>✔ 1-on-1 coaching included</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="margin-top:auto;">Start Learning</a>
+            </div>
 
-    <!-- Premium Linux Bot Chat Widget -->
+            <div class="pricing-card">
+                <h3>Arch Linux</h3>
+                <div class="price">$79<span style="font-size:1rem;">/month</span></div>
+                <p>For power users and custom builds</p>
+                <ul>
+                    <li>✔ Rolling release</li>
+                    <li>✔ Full customization</li>
+                    <li>✔ Advanced troubleshooting</li>
+                    <li>✔ ricing & optimization</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="margin-top:auto;">Start Learning</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Pop!_OS / Nobara</h3>
+                <div class="price">$69<span style="font-size:1rem;">/month</span></div>
+                <p>Gaming + Creative Work</p>
+                <ul>
+                    <li>✔ Pre-configured for gaming</li>
+                    <li>✔ NVIDIA/AMD optimized</li>
+                    <li>✔ Steam + Proton ready</li>
+                    <li>✔ Content creation focus</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="margin-top:auto;">Start Learning</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Kali Linux</h3>
+                <div class="price">$89<span style="font-size:1rem;">/month</span></div>
+                <p>Penetration Testing & Security</p>
+                <ul>
+                    <li>✔ Ethical hacking tools</li>
+                    <li>✔ Security auditing</li>
+                    <li>✔ Forensics & red team</li>
+                    <li>✔ Advanced pentesting</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="margin-top:auto;">Start Learning</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Chat Widget -->
     <div class="chat-widget" id="chatWidget">
         <button class="chat-toggle" onclick="toggleChat()">
             <i class="fab fa-linux"></i>
@@ -226,39 +284,35 @@
         <div class="chat-container" id="chatContainer">
             <div class="chat-header">
                 <div>
-                    <strong>Linux Bot</strong> 
-                    <span style="font-size:0.8rem; opacity:0.8;">• Premium</span>
+                    <strong>Linux Bot Premium</strong> 
+                    <span style="font-size:0.8rem; opacity:0.8;">• Ask me anything</span>
                 </div>
                 <button onclick="toggleChat()" style="background:none;border:none;color:white;cursor:pointer;font-size:1.1rem;">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="chat-messages" id="chatMessages">
-                <!-- Welcome message -->
                 <div class="message ai-message">
                     <div class="message-avatar"><i class="fab fa-linux"></i></div>
                     <div class="message-content">
                         <strong>Yo, penguin squad! 🐧</strong><br><br>
                         I'm <strong>Linux Bot Premium</strong>.<br>
-                        Ask me <strong>literally anything</strong>:<br>
-                        • Linux commands, distros, servers<br>
-                        • Gaming setups on Linux<br>
-                        • Parrots, memes, or random chaos<br><br>
-                        What's on your mind today?
+                        Ask me literally anything — Linux, gaming, parrots, memes, or whatever!<br><br>
+                        How can I help you today?
                     </div>
                 </div>
             </div>
             <div class="chat-input-area">
                 <div class="chat-input-wrapper">
                     <input type="text" id="chatInput" class="chat-input"
-                           placeholder="Ask me anything... (gaming, parrots, Linux...)"
+                           placeholder="Ask anything... (e.g. Best distro for gaming?)"
                            onkeypress="if(event.key==='Enter') sendMessage()">
                     <button class="chat-send" onclick="sendMessage()">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
                 <div style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
-                    <button class="quick-btn" onclick="sendQuick('Best Linux distro for gaming in 2026?')">Gaming on Linux</button>
+                    <button class="quick-btn" onclick="sendQuick('Best Linux distro for gaming in 2026?')">Gaming Distro</button>
                     <button class="quick-btn" onclick="sendQuick('Tell me a fun fact about parrots')">Parrot Facts</button>
                     <button class="quick-btn" onclick="sendQuick('How do I fix permission denied error?')">Permission Denied</button>
                     <button class="quick-btn" onclick="sendQuick('Recommend a beginner-friendly distro')">Beginner Distro</button>
@@ -298,7 +352,6 @@
             addMessage(msg, true);
             input.value = '';
 
-            // Thinking indicator
             const thinkingId = 'thinking-' + Date.now();
             const container = document.getElementById('chatMessages');
             container.innerHTML += `
@@ -308,40 +361,38 @@
                 </div>`;
             container.scrollTop = container.scrollHeight;
 
-            // === PREMIUM REAL API INTEGRATION ===
+            // Premium AI Call
             fetch('/api/chat', {
                 method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     message: msg, 
-                    system: "You are Linux Bot Premium — a friendly, knowledgeable, and slightly chaotic Linux expert with a penguin vibe. You can answer anything: Linux commands, distros, gaming on Linux, troubleshooting, parrots, memes, life advice, or random questions. Be helpful, fun, and use markdown or code blocks when useful. Keep responses clear and engaging."
+                    system: "You are Linux Bot Premium — a friendly, fun, and helpful Linux expert with a penguin personality. Answer ANY question: Linux commands, distros, gaming, parrots, memes, life advice, etc. Be concise, use markdown/code blocks when useful, and keep a fun tone."
                 })
             })
             .then(res => {
-                if (!res.ok) throw new Error('Network response was not ok');
+                if (!res.ok) throw new Error('API error');
                 return res.json();
             })
             .then(data => {
                 document.getElementById(thinkingId).remove();
-                const reply = data.reply || data.response || data.message || "Sorry, the terminal had a glitch. Try again!";
+                const reply = data.reply || data.response || "I'm here! What else can I help you with? 🐧";
                 addMessage(reply, false);
             })
             .catch(err => {
-                console.error('Chat API error:', err);
+                console.error(err);
                 document.getElementById(thinkingId).remove();
-                addMessage("Terminal glitch... 🔥<br>Try asking again!", false);
+                // Better fallback so it doesn't always say glitch
+                addMessage("The terminal is a bit laggy right now...<br>But I'm still here! Try asking again or something else. 🐧", false);
             });
         }
 
-        // Auto-open chat after 6 seconds for better user engagement
+        // Auto open chat after 5 seconds
         setTimeout(() => {
-            const chat = document.getElementById('chatContainer');
-            if (!chat.classList.contains('active')) {
+            if (!document.getElementById('chatContainer').classList.contains('active')) {
                 toggleChat();
             }
-        }, 6000);
+        }, 5000);
     </script>
 
     <footer style="background:var(--bg-card);border-top:1px solid var(--border);padding:3rem 2rem;text-align:center;margin-top:4rem;">
