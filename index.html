@@ -1,15 +1,9 @@
 
-# Let's create the complete corrected HTML file from scratch
-# First read the original to preserve everything
+# Read the original file
 with open('/mnt/agents/upload/user_pasted_clipboard_long_content_as_file_!DOCTYPE html htm.txt', 'r', encoding='utf-8') as f:
     original = f.read()
 
-# The issue: we need to insert the mini terminal CSS and HTML properly
-# without any Python artifacts getting into the HTML
-
-# Find the position to insert CSS (before closing </style>)
-style_end = original.find('    </style>')
-
+# Define CSS as a raw string with NO Python comments
 mini_terminal_css = """        /* Mini Terminal */
         .mini-terminal {
             background: #0d1117;
@@ -100,12 +94,13 @@ mini_terminal_css = """        /* Mini Terminal */
         }
 """
 
-# Insert CSS
+# Find style end and insert CSS
+style_end = original.find('    </style>')
 part1 = original[:style_end]
 part2 = original[style_end:]
 with_css = part1 + mini_terminal_css + '\n' + part2
 
-# Now replace the sudo apt install line with the mini terminal
+# Define HTML replacement
 old_line = '<p style="font-size: 1.35rem; margin: 1rem 0; color: var(--accent-green);">sudo apt install knowledge</p>'
 
 mini_terminal_html = """            <div class="mini-terminal">
@@ -123,16 +118,25 @@ mini_terminal_html = """            <div class="mini-terminal">
 
 final_html = with_css.replace(old_line, mini_terminal_html)
 
-# Save the clean file
-output_path = '/mnt/agents/output/linuxmaster_fixed.html'
+# CRITICAL: Check for any Python artifacts
+bad_patterns = ['content =', 'with open', 'import re', 'original =', 'part1 =', 'part2 =', 
+                'style_end =', 'mini_terminal_css', 'mini_terminal_html', 'final_html =',
+                '# Find', '# Define', '# Read', '# Insert', '# Now', '# CRITICAL']
+
+found_bad = []
+for pattern in bad_patterns:
+    if pattern in final_html:
+        found_bad.append(pattern)
+
+if found_bad:
+    print("❌ BAD PATTERNS FOUND:", found_bad)
+else:
+    print("✅ No Python artifacts found")
+
+# Save
+output_path = '/mnt/agents/output/linuxmaster_clean.html'
 with open(output_path, 'w', encoding='utf-8') as f:
     f.write(final_html)
 
-print(f"✅ File saved: {output_path}")
-print(f"📊 Size: {len(final_html)} characters")
-
-# Verify the file doesn't contain any Python artifacts
-if 'content =' in final_html or 'with open' in final_html or 'import re' in final_html:
-    print("⚠️ WARNING: Python artifacts found!")
-else:
-    print("✅ No Python artifacts - file is clean HTML")
+print(f"✅ Saved: {output_path}")
+print(f"📊 Size: {len(final_html)} chars")
