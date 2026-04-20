@@ -92,6 +92,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
 
         .logo {
@@ -99,6 +100,7 @@
             font-size: 1.5rem; font-weight: 700;
             color: var(--accent); text-decoration: none;
             display: flex; align-items: center; gap: 0.5rem;
+            order: 0;
         }
        
         .logo i {
@@ -113,6 +115,8 @@
         .hamburger {
             display: flex; flex-direction: column; gap: 5px; cursor: pointer;
             padding: 8px; z-index: 1001;
+            margin-left: auto;
+            order: 2;
         }
        
         .hamburger span {
@@ -134,23 +138,17 @@
         }
 
         .nav-links {
-            display: flex; gap: 2rem; align-items: center;
+            display: none; /* Hidden by default, shown in mobile menu */
+            gap: 2rem; align-items: center;
         }
-       
-        .nav-links a {
-            color: var(--text-secondary); text-decoration: none; font-weight: 500;
-            padding: 0.5rem 1rem; border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-       
-        .nav-cta {
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-            color: white !important;
-            padding: 0.6rem 1.5rem !important;
-            border-radius: 8px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(88,166,255,0.3);
-            transition: all 0.3s ease;
+        
+        @media (min-width: 769px) {
+            .nav-links {
+                display: flex;
+            }
+            .hamburger {
+                display: none;
+            }
         }
 
         .menu-overlay {
@@ -186,6 +184,7 @@
                 transition: right 0.3s ease;
                 border-left: 1px solid var(--border);
                 z-index: 1000;
+                display: flex; /* Show when active */
             }
             
             .nav-links.active {
