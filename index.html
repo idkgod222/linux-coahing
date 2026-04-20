@@ -327,6 +327,7 @@
             border-radius: 20px;
             padding: 2.5rem 2rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
        
         .plan-card.popular {
@@ -914,6 +915,129 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .distros {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .distro-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+        
+        .distro-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        
+        .distro-icon {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+        
+        .distro-arrow {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .distro-item:hover .distro-arrow {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+        
+        .distro-best {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .distro-best ul {
+            list-style: none;
+            margin-top: 0.3rem;
+        }
+        
+        .distro-best li {
+            padding: 0.15rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        
+        .distro-best li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .plan-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -1185,24 +1309,24 @@
                     <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Docker basics</li>
                 </ul>
                 <div class="plan-dropdown">
-                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this, event)">
                         <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-content">
                         <div class="dropdown-inner">
                             <div class="dropdown-category">Ubuntu Server</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-server"></i> LAMP Stack Setup<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-shield-alt"></i> UFW Firewall<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-users"></i> User & Permission Mgmt<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-server"></i> LAMP Stack Setup<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-shield-alt"></i> UFW Firewall<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-users"></i> User & Permission Mgmt<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">CentOS / Rocky</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-box"></i> YUM/DNF Package Mgmt<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-network-wired"></i> SELinux Basics<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-hdd"></i> LVM Storage<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-box"></i> YUM/DNF Package Mgmt<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-network-wired"></i> SELinux Basics<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-hdd"></i> LVM Storage<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Docker & Containers</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fab fa-docker"></i> Dockerfile Creation<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-cubes"></i> Docker Compose<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-sync"></i> Container Networking<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fab fa-docker"></i> Dockerfile Creation<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-cubes"></i> Docker Compose<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-sync"></i> Container Networking<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                         </div>
                     </div>
                 </div>
@@ -1218,24 +1342,24 @@
                     <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Advanced admin + Monitoring</li>
                 </ul>
                 <div class="plan-dropdown">
-                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this, event)">
                         <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-content">
                         <div class="dropdown-inner">
                             <div class="dropdown-category">Enterprise Linux</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-building"></i> RHEL / Rocky / Alma<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-certificate"></i> RHCSA Prep<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-cogs"></i> systemd Deep Dive<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-building"></i> RHEL / Rocky / Alma<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-certificate"></i> RHCSA Prep<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-cogs"></i> systemd Deep Dive<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Monitoring & Logging</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-chart-line"></i> Prometheus + Grafana<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-bell"></i> AlertManager Setup<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-file-alt"></i> ELK Stack (Elasticsearch)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-chart-line"></i> Prometheus + Grafana<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-bell"></i> AlertManager Setup<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-file-alt"></i> ELK Stack (Elasticsearch)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Automation</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-robot"></i> Ansible Playbooks<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-code-branch"></i> CI/CD Pipelines<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-cloud"></i> Terraform Basics<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-robot"></i> Ansible Playbooks<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-code-branch"></i> CI/CD Pipelines<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-cloud"></i> Terraform Basics<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                         </div>
                     </div>
                 </div>
@@ -1246,24 +1370,24 @@
                 <div class="plan-name">Cyber Starter</div>
                 <div class="plan-price">$199<small>/month</small></div>
                 <div class="plan-dropdown">
-                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this, event)">
                         <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-content">
                         <div class="dropdown-inner">
                             <div class="dropdown-category">Kali Linux</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-terminal"></i> Kali Tools Overview<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-wifi"></i> WiFi Auditing (Aircrack)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-fingerprint"></i> OSINT & Recon<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-terminal"></i> Kali Tools Overview<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-wifi"></i> WiFi Auditing (Aircrack)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-fingerprint"></i> OSINT & Recon<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Parrot OS</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-bug"></i> Vulnerability Scanning<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-user-secret"></i> Anonymity Tools<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-lock"></i> Encryption Basics<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-bug"></i> Vulnerability Scanning<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-user-secret"></i> Anonymity Tools<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-lock"></i> Encryption Basics<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Fundamentals</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-network-wired"></i> TCP/IP & Networking<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-file-code"></i> Bash Scripting<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-shield-alt"></i> Security Hardening<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-network-wired"></i> TCP/IP & Networking<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-file-code"></i> Bash Scripting<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-shield-alt"></i> Security Hardening<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                         </div>
                     </div>
                 </div>
@@ -1275,24 +1399,24 @@
                 <div class="plan-name">Pro Linux + Security</div>
                 <div class="plan-price">$399<small>/month</small></div>
                 <div class="plan-dropdown">
-                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this, event)">
                         <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-content">
                         <div class="dropdown-inner">
                             <div class="dropdown-category">Advanced Pentesting</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-crosshairs"></i> Metasploit Framework<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-spider"></i> Burp Suite Pro<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-globe"></i> Web App Exploitation<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-crosshairs"></i> Metasploit Framework<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-spider"></i> Burp Suite Pro<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-globe"></i> Web App Exploitation<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Distro Specialization</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-skull"></i> Kali: Advanced Workflows<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-parrot"></i> Parrot: DFIR & Forensics<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-dragon"></i> Garuda: Gaming Security<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-skull"></i> Kali: Advanced Workflows<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-parrot"></i> Parrot: DFIR & Forensics<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-dragon"></i> Garuda: Gaming Security<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Certification Prep</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-award"></i> CompTIA Security+<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-award"></i> CEH (Certified Ethical Hacker)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-award"></i> eJPT (eLearnSecurity)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-award"></i> CompTIA Security+<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-award"></i> CEH (Certified Ethical Hacker)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-award"></i> eJPT (eLearnSecurity)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                         </div>
                     </div>
                 </div>
@@ -1303,27 +1427,27 @@
                 <div class="plan-name">Elite Pentester</div>
                 <div class="plan-price">$699<small>/month</small></div>
                 <div class="plan-dropdown">
-                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this, event)">
                         <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-content">
                         <div class="dropdown-inner">
                             <div class="dropdown-category">Red Team Operations</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-user-ninja"></i> Cobalt Strike / Sliver<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-mask"></i> AV Evasion Techniques<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-exchange-alt"></i> Lateral Movement<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-user-ninja"></i> Cobalt Strike / Sliver<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-mask"></i> AV Evasion Techniques<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-exchange-alt"></i> Lateral Movement<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Advanced Distros</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-box"></i> BlackArch: 2800+ Tools<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-ghost"></i> BackBox: Anonymity Focus<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-hat-cowboy"></i> Pentoo: Live Environment<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-box"></i> BlackArch: 2800+ Tools<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-ghost"></i> BackBox: Anonymity Focus<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-hat-cowboy"></i> Pentoo: Live Environment<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Expert Certifications</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-trophy"></i> OSCP (Offensive Security)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-trophy"></i> OSWE (Web Expert)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-trophy"></i> OSEP (Evasion Expert)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-trophy"></i> OSCP (Offensive Security)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-trophy"></i> OSWE (Web Expert)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-trophy"></i> OSEP (Evasion Expert)<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                             <div class="dropdown-category">Bug Bounty</div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-bug"></i> HackerOne / Bugcrowd<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
-                            <div class="dropdown-item" onclick="selectItem(this)"><i class="fas fa-code"></i> Custom Exploit Dev<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-bug"></i> HackerOne / Bugcrowd<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
+                            <div class="dropdown-item" onclick="selectItem(this, event)"><i class="fas fa-code"></i> Custom Exploit Dev<span class="check-indicator"><i class="fas fa-check-circle"></i></span></div>
                         </div>
                     </div>
                 </div>
@@ -1461,7 +1585,7 @@
     <footer id="contact">
         <div class="footer-content">
             <p class="footer-text">
-                © 2026 LinuxMaster Coaching. All rights reserved.<br>
+                &copy; 2026 LinuxMaster Coaching. All rights reserved.<br>
                 Built with <i class="fas fa-heart" style="color: var(--accent);"></i> for the Linux community
             </p>
         </div>
@@ -1586,51 +1710,57 @@
             });
         });
 
-        // Dropdown toggle
-        function toggleDropdown(button) {
+        // ==================== FIXED DROPDOWN FUNCTIONS ====================
+
+        function toggleDropdown(button, event) {
+            if (event) event.stopPropagation();
             const content = button.nextElementSibling;
             button.classList.toggle('active');
             content.classList.toggle('open');
         }
 
-        // Select dropdown item
-        function selectItem(item) {
+        function selectItem(item, event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
             item.classList.toggle('selected');
-            item.style.transform = 'scale(0.98)';
+            item.style.transform = 'scale(0.97)';
             setTimeout(() => {
                 item.style.transform = '';
-            }, 100);
+            }, 120);
             updateSelectedTopics();
         }
 
         function updateSelectedTopics() {
             const selected = document.querySelectorAll('.dropdown-item.selected');
             const topics = Array.from(selected).map(item => {
-                const text = item.childNodes[2]?.textContent?.trim() || '';
-                return text;
-            }).filter(t => t).slice(0, 3);
+                const clone = item.cloneNode(true);
+                const icon = clone.querySelector('i');
+                const check = clone.querySelector('.check-indicator');
+                if (icon) icon.remove();
+                if (check) check.remove();
+                return clone.textContent.trim();
+            }).filter(t => t.length > 0).slice(0, 3);
             
             const topicsInput = document.getElementById('bookingTopics');
             if (topicsInput) {
-                topicsInput.value = topics.join(', ') || 'No topics selected yet';
+                topicsInput.value = topics.length > 0 ? topics.join(', ') : 'No topics selected yet';
             }
         }
 
-        // Booking modal
+        // ==================== BOOKING MODAL ====================
+
         let currentPlan = { name: '', price: '', sessions: '', amount: 0 };
         
         function openBookingModal(planName, price, sessions, amount) {
             currentPlan = { name: planName, price, sessions, amount };
-            
             document.getElementById('summaryPlanName').textContent = planName;
             document.getElementById('summarySessions').textContent = sessions;
             document.getElementById('summaryPrice').textContent = price;
-            
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('bookingDate').min = today;
-            
             updateSelectedTopics();
-            
             document.getElementById('bookingModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -1650,7 +1780,6 @@
                 return false;
             }
             
-            // REPLACE THIS WITH YOUR CASH APP USERNAME
             const cashAppUsername = 'YOURCASHAPP';
             const note = encodeURIComponent(`LinuxMaster: ${currentPlan.name} for ${name} starting ${date}`);
             const cashAppUrl = `https://cash.app/$${cashAppUsername}/${currentPlan.amount}?note=${note}`;
