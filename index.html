@@ -1,16 +1,16 @@
 
-# Read the uploaded HTML file
+# Let's create the complete corrected HTML file from scratch
+# First read the original to preserve everything
 with open('/mnt/agents/upload/user_pasted_clipboard_long_content_as_file_!DOCTYPE html htm.txt', 'r', encoding='utf-8') as f:
-    content = f.read()
+    original = f.read()
 
-# Find the hero section and add a mini terminal with the sudo apt install command
-# We need to add the mini terminal right after the hero content or near the sudo apt install text
+# The issue: we need to insert the mini terminal CSS and HTML properly
+# without any Python artifacts getting into the HTML
 
-import re
+# Find the position to insert CSS (before closing </style>)
+style_end = original.find('    </style>')
 
-# First, let's add the mini terminal CSS styles in the <style> section
-mini_terminal_css = """
-        /* Mini Terminal */
+mini_terminal_css = """        /* Mini Terminal */
         .mini-terminal {
             background: #0d1117;
             border: 1px solid var(--border);
@@ -100,13 +100,15 @@ mini_terminal_css = """
         }
 """
 
-# Insert the CSS before the closing </style> tag
-content = content.replace('    </style>', mini_terminal_css + '\n    </style>')
+# Insert CSS
+part1 = original[:style_end]
+part2 = original[style_end:]
+with_css = part1 + mini_terminal_css + '\n' + part2
 
-# Now find the sudo apt install line and replace it with the mini terminal
-old_sudo_line = '<p style="font-size: 1.35rem; margin: 1rem 0; color: var(--accent-green);">sudo apt install knowledge</p>'
+# Now replace the sudo apt install line with the mini terminal
+old_line = '<p style="font-size: 1.35rem; margin: 1rem 0; color: var(--accent-green);">sudo apt install knowledge</p>'
 
-mini_terminal_html = """<div class="mini-terminal">
+mini_terminal_html = """            <div class="mini-terminal">
                 <div class="terminal-buttons">
                     <div class="terminal-btn red"></div>
                     <div class="terminal-btn yellow"></div>
@@ -115,17 +117,22 @@ mini_terminal_html = """<div class="mini-terminal">
                 <div class="terminal-title">linuxmaster@terminal ~</div>
                 <div class="terminal-body">
                     <span class="terminal-prompt">user@linuxmaster:~$</span> <span class="terminal-command">sudo apt install knowledge</span><span class="terminal-cursor"></span>
-                    <div class="terminal-output">Reading package lists... Done<br>Building dependency tree... Done<br> knowledge is already the newest version (2026.04.20).<br>0 upgraded, 0 newly installed, 0 to remove.</div>
+                    <div class="terminal-output">Reading package lists... Done<br>Building dependency tree... Done<br>knowledge is already the newest version (2026.04.20).<br>0 upgraded, 0 newly installed, 0 to remove.</div>
                 </div>
             </div>"""
 
-content = content.replace(old_sudo_line, mini_terminal_html)
+final_html = with_css.replace(old_line, mini_terminal_html)
 
-# Save the modified file
-output_path = '/mnt/agents/output/linuxmaster_modified.html'
+# Save the clean file
+output_path = '/mnt/agents/output/linuxmaster_fixed.html'
 with open(output_path, 'w', encoding='utf-8') as f:
-    f.write(content)
+    f.write(final_html)
 
-print("File saved successfully!")
-print(f"Output path: {output_path}")
-print(f"File size: {len(content)} characters")
+print(f"✅ File saved: {output_path}")
+print(f"📊 Size: {len(final_html)} characters")
+
+# Verify the file doesn't contain any Python artifacts
+if 'content =' in final_html or 'with open' in final_html or 'import re' in final_html:
+    print("⚠️ WARNING: Python artifacts found!")
+else:
+    print("✅ No Python artifacts - file is clean HTML")
