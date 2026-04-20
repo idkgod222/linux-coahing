@@ -35,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* === ALL ORIGINAL ANIMATIONS KEPT EXACTLY AS BEFORE === */
+        /* === ALL ORIGINAL ANIMATIONS PRESERVED === */
         .bg-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
@@ -177,7 +177,7 @@
             font-weight: 600;
         }
 
-        /* Pricing Section Styles */
+        /* Pricing Styles */
         .pricing {
             padding: 6rem 2rem;
             position: relative;
@@ -198,8 +198,6 @@
             border-radius: 20px;
             padding: 2.5rem 2rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
         }
        
         .plan-card.popular {
@@ -257,7 +255,6 @@
             box-shadow: 0 10px 30px rgba(88,166,255,0.4);
         }
 
-        /* Rest of original styles (reveal, about, footer, particles, loader, etc.) */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -279,8 +276,13 @@
     </style>
 </head>
 <body>
-    <!-- Loader, Backgrounds, Nav, Hero, Distros - ALL ORIGINAL -->
-    <!-- (Loader + Background Effects + Navigation + Hero + Distros Section kept exactly as in your original code) -->
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Initializing Linux Matrix...</div>
+        </div>
+    </div>
 
     <!-- Background Effects -->
     <canvas id="particles"></canvas>
@@ -291,7 +293,7 @@
 
     <!-- Navigation -->
     <nav id="navbar">
-        <div class="nav-container" style="max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;">
+        <div class="nav-container">
             <a href="#" class="logo">
                 <i class="fab fa-linux"></i> LinuxMaster
             </a>
@@ -310,14 +312,14 @@
         </div>
     </nav>
 
-    <!-- Hero Section (original) -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content" style="text-align:center;max-width:800px;">
+        <div class="hero-content">
             <div class="hero-badge">
                 <i class="fas fa-terminal"></i> Expert Linux Coaching
             </div>
             <h1>Master the Command Line</h1>
-            <p>Personalized Linux coaching — from beginners to advanced sysadmins and security professionals.</p>
+            <p>Personalized Linux coaching — from beginners to advanced sysadmins, gamers, and security professionals.</p>
             <div class="hero-buttons">
                 <a href="#distros" class="btn btn-primary">
                     <i class="fas fa-rocket"></i> Explore Distros
@@ -327,63 +329,272 @@
                 </a>
             </div>
         </div>
+        <div class="scroll-indicator" onclick="document.getElementById('distros').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chevron-down" style="font-size: 1.5rem; color: var(--text-secondary);"></i>
+        </div>
     </section>
 
-    <!-- Distros Section - Original + Cybersecurity ones kept -->
+    <!-- Distros Section - FULL ORIGINAL LIST RESTORED -->
     <section class="distros" id="distros">
         <div class="section-header reveal">
             <h2>Popular Linux Distros</h2>
-            <p>Click on any distro to visit its official website.</p>
+            <p>Click on any distro to visit its official website. Each is optimized for different workflows and skill levels.</p>
         </div>
         <div class="distro-list">
-            <!-- All your original distros + cyber ones are here. For brevity, they are the same as your last good version. -->
-            <!-- Ubuntu, Pop!_OS, Bazzite, Nobara, CachyOS, Arch, Garuda, Mint, Kali, Parrot, Qubes, Tails, BlackArch, BackBox -->
-            <!-- (They all have full hover animations) -->
+            <div class="distro-item reveal" onclick="window.open('https://ubuntu.com/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fab fa-ubuntu distro-icon"></i> Ubuntu
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Beginners</li>
+                        <li>Daily Desktop</li>
+                        <li>Stable Servers</li>
+                        <li>Development</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://pop.system76.com/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-desktop distro-icon"></i> Pop!_OS
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>NVIDIA Gaming</li>
+                        <li>Content Creation</li>
+                        <li>Modern Desktop</li>
+                        <li>Productivity</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://bazzite.gg/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-gamepad distro-icon"></i> Bazzite
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Steam Deck Style</li>
+                        <li>Handheld PCs</li>
+                        <li>Immutable Setup</li>
+                        <li>Console Experience</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://nobaraproject.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-fire distro-icon"></i> Nobara
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>High-Performance Gaming</li>
+                        <li>Video Editing</li>
+                        <li>Streaming</li>
+                        <li>Pre-tuned Systems</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://cachyos.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-bolt distro-icon"></i> CachyOS
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Maximum Performance</li>
+                        <li>High-End Rigs</li>
+                        <li>Optimized Kernel</li>
+                        <li>Speed Demons</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://archlinux.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fab fa-linux distro-icon"></i> Arch Linux
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Full Customization</li>
+                        <li>Deep Learning</li>
+                        <li>Ricing Setups</li>
+                        <li>Minimalists</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://garudalinux.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-dragon distro-icon"></i> Garuda Linux
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Beautiful Gaming</li>
+                        <li>Stunning Themes</li>
+                        <li>Eye Candy</li>
+                        <li>Performance</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://www.linuxmint.com/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fab fa-linux distro-icon"></i> Linux Mint
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Windows Migrants</li>
+                        <li>Simple Desktop</li>
+                        <li>Stability</li>
+                        <li>Beginners</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cybersecurity Distros -->
+            <div class="distro-item reveal" onclick="window.open('https://www.kali.org/', '_blank')">
+                <div class="distro-tag">Cybersecurity</div>
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-skull distro-icon"></i> Kali Linux
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Penetration Testing</li>
+                        <li>Ethical Hacking</li>
+                        <li>Digital Forensics</li>
+                        <li>Security Research</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://parrotsec.org/', '_blank')">
+                <div class="distro-tag">Cybersecurity</div>
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-parrot distro-icon"></i> Parrot OS
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Lightweight Pentesting</li>
+                        <li>Privacy & Anonymity</li>
+                        <li>Daily Driver + Security</li>
+                        <li>Forensics</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://www.qubes-os.org/', '_blank')">
+                <div class="distro-tag">Security</div>
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-shield-alt distro-icon"></i> Qubes OS
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Compartmentalization</li>
+                        <li>High-Security Workflows</li>
+                        <li>Privacy Professionals</li>
+                        <li>Advanced Isolation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://tails.net/', '_blank')">
+                <div class="distro-tag">Privacy</div>
+                <div class="distro-header">
+                    <div class="distro-name">
+                        <i class="fas fa-mask distro-icon"></i> Tails
+                    </div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul>
+                        <li>Amnesic Live Sessions</li>
+                        <li>Journalists & Activists</li>
+                        <li>Maximum Anonymity</li>
+                        <li>Tor Integration</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- New Plans Section - Multiple Plans (Server cheaper, Cyber higher) -->
+    <!-- Plans Section - Multiple Plans (Server cheaper, Cyber higher) -->
     <section class="pricing" id="plans">
         <div class="section-header reveal">
             <h2>Training Plans</h2>
-            <p>Choose the right plan based on what you want to learn. Server plans are priced lower than full cybersecurity tracks.</p>
+            <p>Choose your path. Server & Infrastructure plans are priced lower than full Cybersecurity tracks.</p>
         </div>
-
         <div class="pricing-grid">
-            <!-- Server Plans (Cheaper) -->
+            <!-- Server Plans (Lower Price) -->
             <div class="plan-card reveal">
                 <div class="plan-name">Server Starter</div>
                 <div class="plan-price">$149<small>/month</small></div>
-                <ul class="plan-features" style="list-style:none;margin:1.5rem 0;">
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>4 sessions/month</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Linux server setup</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Docker basics</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Basic security</li>
+                <ul class="plan-features" style="list-style:none; margin:1.5rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> 4 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Linux server setup & SSH</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Basic web server & Docker</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Firewall & basic security</li>
                 </ul>
-                <a href="#contact" class="plan-cta">Choose Server Starter</a>
+                <a href="#contact" class="plan-cta">Start Server Plan</a>
             </div>
 
             <div class="plan-card popular reveal">
                 <div class="plan-badge">RECOMMENDED</div>
                 <div class="plan-name">Server Pro</div>
                 <div class="plan-price">$279<small>/month</small></div>
-                <ul class="plan-features" style="list-style:none;margin:1.5rem 0;">
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>8 sessions/month</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Advanced server admin</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Docker + Monitoring</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Backups & automation</li>
+                <ul class="plan-features" style="list-style:none; margin:1.5rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> 8 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Advanced server administration</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Docker Compose & monitoring</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Backups & automation</li>
                 </ul>
                 <a href="#contact" class="plan-cta">Enroll in Server Pro</a>
             </div>
 
-            <!-- Cybersecurity Plans (Higher) -->
+            <!-- Cybersecurity Plans (Higher Price) -->
             <div class="plan-card reveal">
                 <div class="plan-name">Cyber Starter</div>
                 <div class="plan-price">$199<small>/month</small></div>
-                <ul class="plan-features" style="list-style:none;margin:1.5rem 0;">
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>4 sessions/month</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Linux security basics</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Intro to ethical hacking</li>
+                <ul class="plan-features" style="list-style:none; margin:1.5rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> 4 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Linux security basics</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Intro to ethical hacking</li>
                 </ul>
                 <a href="#contact" class="plan-cta">Start Cyber</a>
             </div>
@@ -392,10 +603,10 @@
                 <div class="plan-badge">MOST POPULAR</div>
                 <div class="plan-name">Pro Linux + Security</div>
                 <div class="plan-price">$399<small>/month</small></div>
-                <ul class="plan-features" style="list-style:none;margin:1.5rem 0;">
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>8 sessions/month</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>System hardening</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Ethical hacking fundamentals</li>
+                <ul class="plan-features" style="list-style:none; margin:1.5rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> 8 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> System hardening</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Ethical hacking fundamentals</li>
                 </ul>
                 <a href="#contact" class="plan-cta">Enroll Now</a>
             </div>
@@ -403,21 +614,23 @@
             <div class="plan-card reveal">
                 <div class="plan-name">Elite Pentester</div>
                 <div class="plan-price">$699<small>/month</small></div>
-                <ul class="plan-features" style="list-style:none;margin:1.5rem 0;">
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>12 sessions/month</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>OSCP-style mentoring</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Advanced red team tactics</li>
+                <ul class="plan-features" style="list-style:none; margin:1.5rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> 12 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> OSCP-style mentoring</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);"></i> Advanced red team tactics</li>
                 </ul>
                 <a href="#contact" class="plan-cta">Go Elite</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section (original) -->
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="about-content reveal">
-            <h2>About LinuxMaster</h2>
-            <p>We provide professional one-on-one coaching for Linux, servers, and cybersecurity.</p>
+            <div class="about-inner">
+                <h2>About LinuxMaster</h2>
+                <p>We provide professional one-on-one coaching for all major Linux distributions and cybersecurity topics.</p>
+            </div>
         </div>
     </section>
 
@@ -425,34 +638,39 @@
     <footer id="contact">
         <div class="footer-content">
             <p class="footer-text">
-                © 2026 LinuxMaster Coaching. All rights reserved.
+                © 2026 LinuxMaster Coaching. All rights reserved.<br>
+                Built with <i class="fas fa-heart" style="color: var(--accent);"></i> for the Linux community
             </p>
         </div>
     </footer>
 
-    <!-- Scripts - ALL ORIGINAL ANIMATIONS PRESERVED -->
+    <!-- Scripts - All original animations preserved -->
     <script>
-        // Loader, Navbar scroll, Mobile menu, Scroll reveal, Particles, Orb parallax - ALL KEPT
+        // Loader
         window.addEventListener('load', () => {
             setTimeout(() => {
-                const loader = document.getElementById('loader');
-                if (loader) loader.classList.add('hidden');
+                document.getElementById('loader').classList.add('hidden');
             }, 800);
         });
 
+        // Navbar scroll
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
 
+        // Mobile menu
         function toggleMenu() {
             const menu = document.getElementById('navLinks');
             const hamburger = document.getElementById('hamburger');
             menu.classList.toggle('active');
             hamburger.classList.toggle('active');
         }
-
+       
         function closeMenu() {
             const menu = document.getElementById('navLinks');
             const hamburger = document.getElementById('hamburger');
@@ -463,13 +681,15 @@
         // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Particle system (original)
+        // Particle system
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -508,24 +728,26 @@
 
         function initParticles() {
             particles = [];
-            const count = Math.min(window.innerWidth / 10, 100);
-            for (let i = 0; i < count; i++) particles.push(new Particle());
+            const particleCount = Math.min(window.innerWidth / 10, 100);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
         }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p, i) => {
-                p.update();
-                p.draw();
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[j].x - p.x;
-                    const dy = particles[j].y - p.y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 100) {
-                        ctx.strokeStyle = `rgba(88,166,255,${0.1 * (1 - dist/100)})`;
-                        ctx.lineWidth = 0.5;
+            particles.forEach((particle, index) => {
+                particle.update();
+                particle.draw();
+                for (let j = index + 1; j < particles.length; j++) {
+                    const dx = particles[j].x - particle.x;
+                    const dy = particles[j].y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
                         ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
+                        ctx.strokeStyle = `rgba(88, 166, 255, ${0.1 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particle.x, particle.y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
                     }
@@ -537,7 +759,7 @@
         initParticles();
         animateParticles();
 
-        // Orb mouse parallax (original)
+        // Orb parallax
         window.addEventListener('mousemove', (e) => {
             const mouseX = e.clientX / window.innerWidth - 0.5;
             const mouseY = e.clientY / window.innerHeight - 0.5;
