@@ -1,10 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinuxMaster - Professional Linux Coaching & Classes</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --bg-hover: #21262d;
+            --border: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #a371f7;
+            --accent-orange: #f0883e;
+        }
+       
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+       
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+       
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-# Read the original file
-with open('/mnt/agents/upload/user_pasted_clipboard_long_content_as_file_!DOCTYPE html htm.txt', 'r', encoding='utf-8') as f:
-    original = f.read()
+        /* ALL ORIGINAL ANIMATIONS PRESERVED */
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none; z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(0deg); }
+            100% { transform: perspective(500px) rotateX(0deg); }
+        }
 
-# Define CSS as a raw string with NO Python comments
-mini_terminal_css = """        /* Mini Terminal */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+       
+        .orb-1 { width: 600px; height: 600px; top: -200px; left: -200px; background: var(--accent); }
+        .orb-2 { width: 500px; height: 500px; bottom: -150px; right: -150px; background: var(--accent-green); animation-delay: -5s; }
+        .orb-3 { width: 400px; height: 400px; top: 50%; left: 50%; background: var(--accent-purple); animation-delay: -10s; opacity: 0.08; }
+       
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(20px, 40px) scale(1.05); }
+        }
+
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(13,17,23,0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(48,54,61,0.5);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+       
+        nav.scrolled {
+            background: rgba(13,17,23,0.95);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem; font-weight: 700;
+            color: var(--accent); text-decoration: none;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+       
+        .logo i {
+            animation: spin 10s linear infinite;
+        }
+       
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hamburger {
+            display: flex; flex-direction: column; gap: 5px; cursor: pointer;
+            padding: 8px; z-index: 1001;
+        }
+       
+        .hamburger span {
+            width: 25px; height: 2px; background: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex; gap: 2rem; align-items: center;
+        }
+       
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none; font-weight: 500;
+            padding: 0.5rem 1rem; border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+       
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(88,166,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hero {
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 6rem 2rem 4rem; z-index: 1;
+        }
+
+        .distro-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .distro-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+       
+        .distro-item:hover {
+            transform: translateX(8px) translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(88,166,255,0.15);
+            background: var(--bg-hover);
+        }
+
+        .distro-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-orange);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+
+        /* Plans */
+        .pricing {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+       
+        .pricing-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+       
+        .plan-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+       
+        .plan-card.popular {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(88,166,255,0.2);
+            transform: scale(1.05);
+        }
+       
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(88,166,255,0.2);
+            border-color: var(--accent);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+       
+        .plan-price small {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .plan-cta {
+            display: block;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+       
+        .plan-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(88,166,255,0.4);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+       
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Mini Terminal */
         .mini-terminal {
             background: #0d1117;
             border: 1px solid var(--border);
@@ -92,18 +361,45 @@ mini_terminal_css = """        /* Mini Terminal */
             font-size: 0.85rem;
             margin-top: 0.3rem;
         }
-"""
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <canvas id="particles"></canvas>
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-# Find style end and insert CSS
-style_end = original.find('    </style>')
-part1 = original[:style_end]
-part2 = original[style_end:]
-with_css = part1 + mini_terminal_css + '\n' + part2
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fab fa-linux"></i> LinuxMaster
+            </a>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" onclick="closeMenu()">Home</a>
+                <a href="#distros" onclick="closeMenu()">Distros</a>
+                <a href="#plans" onclick="closeMenu()">Plans</a>
+                <a href="#about" onclick="closeMenu()">About</a>
+                <a href="#contact" class="nav-cta" onclick="closeMenu()">Get Started</a>
+            </div>
+        </div>
+    </nav>
 
-# Define HTML replacement
-old_line = '<p style="font-size: 1.35rem; margin: 1rem 0; color: var(--accent-green);">sudo apt install knowledge</p>'
-
-mini_terminal_html = """            <div class="mini-terminal">
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content" style="text-align: center; max-width: 800px;">
+            <div class="hero-badge">
+                <i class="fas fa-terminal"></i> Expert Linux Coaching
+            </div>
+            <h1>Master the Command Line</h1>
+            <div class="mini-terminal">
                 <div class="terminal-buttons">
                     <div class="terminal-btn red"></div>
                     <div class="terminal-btn yellow"></div>
@@ -114,29 +410,400 @@ mini_terminal_html = """            <div class="mini-terminal">
                     <span class="terminal-prompt">user@linuxmaster:~$</span> <span class="terminal-command">sudo apt install knowledge</span><span class="terminal-cursor"></span>
                     <div class="terminal-output">Reading package lists... Done<br>Building dependency tree... Done<br>knowledge is already the newest version (2026.04.20).<br>0 upgraded, 0 newly installed, 0 to remove.</div>
                 </div>
-            </div>"""
+            </div>
+            <div class="hero-buttons">
+                <a href="#distros" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Explore Distros
+                </a>
+                <a href="#plans" class="btn btn-secondary">
+                    <i class="fas fa-credit-card"></i> Buy a Plan
+                </a>
+            </div>
+        </div>
+    </section>
 
-final_html = with_css.replace(old_line, mini_terminal_html)
+    <!-- Distros Section - Now with many more distros -->
+    <section class="distros" id="distros">
+        <div class="section-header reveal">
+            <h2>Popular Linux Distros</h2>
+            <p>Click on any distro to visit its official website. We've added even more options for different use cases.</p>
+        </div>
+        <div class="distro-list">
+            <!-- Original distros -->
+            <div class="distro-item reveal" onclick="window.open('https://ubuntu.com/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-ubuntu distro-icon"></i> Ubuntu</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Beginners</li><li>Daily Desktop</li><li>Stable Servers</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://pop.system76.com/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fas fa-desktop distro-icon"></i> Pop!_OS</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>NVIDIA Gaming</li><li>Content Creation</li><li>Modern Desktop</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://bazzite.gg/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fas fa-gamepad distro-icon"></i> Bazzite</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Steam Deck</li><li>Handheld PCs</li><li>Immutable Gaming</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://nobaraproject.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fas fa-fire distro-icon"></i> Nobara</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Gaming</li><li>Video Editing</li><li>Streaming</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://cachyos.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fas fa-bolt distro-icon"></i> CachyOS</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Maximum Performance</li><li>High-End Hardware</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://archlinux.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> Arch Linux</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Full Customization</li><li>Advanced Users</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://garudalinux.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fas fa-dragon distro-icon"></i> Garuda Linux</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Gaming</li><li>Beautiful Themes</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://www.linuxmint.com/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> Linux Mint</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Windows Users</li><li>Simplicity</li><li>Stability</li></ul>
+                </div>
+            </div>
 
-# CRITICAL: Check for any Python artifacts
-bad_patterns = ['content =', 'with open', 'import re', 'original =', 'part1 =', 'part2 =', 
-                'style_end =', 'mini_terminal_css', 'mini_terminal_html', 'final_html =',
-                '# Find', '# Define', '# Read', '# Insert', '# Now', '# CRITICAL']
+            <!-- Newly Added Distros -->
+            <div class="distro-item reveal" onclick="window.open('https://getfedora.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-fedora distro-icon"></i> Fedora</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Latest Software</li><li>Workstations</li><li>Developers</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://www.debian.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> Debian</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Stability</li><li>Servers</li><li>Minimalism</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://www.opensuse.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> openSUSE</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Enterprise</li><li>Leap/Tumbleweed</li><li>YaST Config</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://manjaro.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> Manjaro</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Arch-Based Easy</li><li>Gaming</li><li>Beginners</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://endeavouros.com/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> EndeavourOS</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Arch Experience</li><li>Calamares Installer</li><li>Customization</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://alpinelinux.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> Alpine Linux</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Lightweight</li><li>Security</li><li>Containers</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://rockylinux.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> Rocky Linux</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Enterprise Servers</li><li>RHEL Compatible</li><li>Production</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://voidlinux.org/', '_blank')">
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fab fa-linux distro-icon"></i> Void Linux</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Minimalism</li><li>Runit Init</li><li>Advanced Users</li></ul>
+                </div>
+            </div>
 
-found_bad = []
-for pattern in bad_patterns:
-    if pattern in final_html:
-        found_bad.append(pattern)
+            <!-- Cybersecurity Distros (kept) -->
+            <div class="distro-item reveal" onclick="window.open('https://www.kali.org/', '_blank')">
+                <div class="distro-tag">Cybersecurity</div>
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fas fa-skull distro-icon"></i> Kali Linux</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Penetration Testing</li><li>Ethical Hacking</li></ul>
+                </div>
+            </div>
+            <div class="distro-item reveal" onclick="window.open('https://parrotsec.org/', '_blank')">
+                <div class="distro-tag">Cybersecurity</div>
+                <div class="distro-header">
+                    <div class="distro-name"><i class="fas fa-parrot distro-icon"></i> Parrot OS</div>
+                    <i class="fas fa-external-link-alt distro-arrow"></i>
+                </div>
+                <div class="distro-best">
+                    <strong>Best For:</strong>
+                    <ul><li>Lightweight Pentesting</li><li>Privacy</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-if found_bad:
-    print("❌ BAD PATTERNS FOUND:", found_bad)
-else:
-    print("✅ No Python artifacts found")
+    <!-- Plans Section -->
+    <section class="pricing" id="plans">
+        <div class="section-header reveal">
+            <h2>Training Plans</h2>
+            <p>Server plans are more affordable. Cybersecurity plans are intensive and career-focused.</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- Server Plans -->
+            <div class="plan-card reveal">
+                <div class="plan-name">Server Starter</div>
+                <div class="plan-price">$149<small>/month</small></div>
+                <ul style="list-style:none;margin:1.5rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>4 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Linux server setup</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Docker basics</li>
+                </ul>
+                <a href="#contact" class="plan-cta">Buy Server Starter</a>
+            </div>
 
-# Save
-output_path = '/mnt/agents/output/linuxmaster_clean.html'
-with open(output_path, 'w', encoding='utf-8') as f:
-    f.write(final_html)
+            <div class="plan-card popular reveal">
+                <div class="plan-badge">RECOMMENDED</div>
+                <div class="plan-name">Server Pro</div>
+                <div class="plan-price">$279<small>/month</small></div>
+                <ul style="list-style:none;margin:1.5rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>8 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Advanced admin + Monitoring</li>
+                </ul>
+                <a href="#contact" class="plan-cta">Buy Server Pro</a>
+            </div>
 
-print(f"✅ Saved: {output_path}")
-print(f"📊 Size: {len(final_html)} chars")
+            <!-- Cybersecurity Plans -->
+            <div class="plan-card reveal">
+                <div class="plan-name">Cyber Starter</div>
+                <div class="plan-price">$199<small>/month</small></div>
+                <a href="#contact" class="plan-cta">Buy Cyber Starter</a>
+            </div>
+
+            <div class="plan-card popular reveal">
+                <div class="plan-badge">MOST POPULAR</div>
+                <div class="plan-name">Pro Linux + Security</div>
+                <div class="plan-price">$399<small>/month</small></div>
+                <a href="#contact" class="plan-cta">Buy Pro Security</a>
+            </div>
+
+            <div class="plan-card reveal">
+                <div class="plan-name">Elite Pentester</div>
+                <div class="plan-price">$699<small>/month</small></div>
+                <a href="#contact" class="plan-cta">Buy Elite Pentester</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (directly under plans) -->
+    <section class="about" id="about">
+        <div class="about-content reveal">
+            <h2>About LinuxMaster</h2>
+            <p>We provide professional one-on-one coaching for Linux, servers, and cybersecurity. Our goal is to make open source accessible, powerful, and fun for everyone.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <p class="footer-text">
+                © 2026 LinuxMaster Coaching. All rights reserved.<br>
+                Built with <i class="fas fa-heart" style="color: var(--accent);"></i> for the Linux community
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts - All animations kept intact -->
+    <script>
+        // Loader, Navbar, Menu, Reveal, Particles, Orb Parallax - all original
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) loader.classList.add('hidden');
+            }, 800);
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('navLinks');
+            const hamburger = document.getElementById('hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('navLinks');
+            const hamburger = document.getElementById('hamburger');
+            menu.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Particle system
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(88, 166, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(window.innerWidth / 10, 100);
+            for (let i = 0; i < count; i++) particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((particle, index) => {
+                particle.update();
+                particle.draw();
+                for (let j = index + 1; j < particles.length; j++) {
+                    const dx = particles[j].x - particle.x;
+                    const dy = particles[j].y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(88, 166, 255, ${0.1 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particle.x, particle.y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Orb parallax
+        window.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth - 0.5;
+            const mouseY = e.clientY / window.innerHeight - 0.5;
+            document.querySelectorAll('.orb').forEach((orb, index) => {
+                const speed = (index + 1) * 20;
+                orb.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
