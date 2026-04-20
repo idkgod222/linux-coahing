@@ -85,6 +85,15 @@
             box-shadow: 0 4px 30px rgba(0,0,0,0.3);
         }
 
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .logo {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem; font-weight: 700;
@@ -112,6 +121,18 @@
             border-radius: 2px;
         }
 
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
         .nav-links {
             display: flex; gap: 2rem; align-items: center;
         }
@@ -132,10 +153,120 @@
             transition: all 0.3s ease;
         }
 
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 1.5rem;
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--border);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
         .hero {
             position: relative; min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
             padding: 6rem 2rem 4rem; z-index: 1;
+        }
+
+        .hero-content {
+            padding-top: 80px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white;
+            box-shadow: 0 4px 15px rgba(88,166,255,0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(88,166,255,0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: var(--bg-card);
+            transform: translateY(-2px);
         }
 
         .distro-list {
@@ -473,6 +604,8 @@
     </style>
 </head>
 <body>
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
     <!-- Background Effects -->
     <canvas id="particles"></canvas>
     <div class="bg-grid"></div>
@@ -930,15 +1063,19 @@
         function toggleMenu() {
             const menu = document.getElementById('navLinks');
             const hamburger = document.getElementById('hamburger');
+            const overlay = document.getElementById('menuOverlay');
             menu.classList.toggle('active');
             hamburger.classList.toggle('active');
+            overlay.classList.toggle('active');
         }
 
         function closeMenu() {
             const menu = document.getElementById('navLinks');
             const hamburger = document.getElementById('hamburger');
+            const overlay = document.getElementById('menuOverlay');
             menu.classList.remove('active');
             hamburger.classList.remove('active');
+            overlay.classList.remove('active');
         }
 
         const observer = new IntersectionObserver((entries) => {
