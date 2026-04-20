@@ -361,6 +361,93 @@
             font-size: 0.85rem;
             margin-top: 0.3rem;
         }
+
+        /* Plan Dropdowns */
+        .plan-dropdown {
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-toggle:hover {
+            border-color: var(--accent);
+            background: var(--bg-card);
+        }
+        
+        .dropdown-toggle i {
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-toggle.active i {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .dropdown-content.open {
+            max-height: 600px;
+        }
+        
+        .dropdown-inner {
+            padding: 1rem 0.5rem 0.5rem;
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.6rem 0.8rem;
+            margin-bottom: 0.4rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            border-color: var(--accent-green);
+            color: var(--text-primary);
+            transform: translateX(4px);
+        }
+        
+        .dropdown-item i {
+            color: var(--accent-green);
+            width: 16px;
+            text-align: center;
+        }
+        
+        .dropdown-category {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin: 0.8rem 0 0.4rem 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -635,6 +722,28 @@
                     <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Linux server setup</li>
                     <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Docker basics</li>
                 </ul>
+                <div class="plan-dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-category">Ubuntu Server</div>
+                            <div class="dropdown-item"><i class="fas fa-server"></i> LAMP Stack Setup</div>
+                            <div class="dropdown-item"><i class="fas fa-shield-alt"></i> UFW Firewall</div>
+                            <div class="dropdown-item"><i class="fas fa-users"></i> User & Permission Mgmt</div>
+                            <div class="dropdown-category">CentOS / Rocky</div>
+                            <div class="dropdown-item"><i class="fas fa-box"></i> YUM/DNF Package Mgmt</div>
+                            <div class="dropdown-item"><i class="fas fa-network-wired"></i> SELinux Basics</div>
+                            <div class="dropdown-item"><i class="fas fa-hdd"></i> LVM Storage</div>
+                            <div class="dropdown-category">Docker & Containers</div>
+                            <div class="dropdown-item"><i class="fab fa-docker"></i> Dockerfile Creation</div>
+                            <div class="dropdown-item"><i class="fas fa-cubes"></i> Docker Compose</div>
+                            <div class="dropdown-item"><i class="fas fa-sync"></i> Container Networking</div>
+                        </div>
+                    </div>
+                </div>
                 <a href="#contact" class="plan-cta">Buy Server Starter</a>
             </div>
 
@@ -646,6 +755,28 @@
                     <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>8 sessions/month</li>
                     <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Advanced admin + Monitoring</li>
                 </ul>
+                <div class="plan-dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-category">Enterprise Linux</div>
+                            <div class="dropdown-item"><i class="fas fa-building"></i> RHEL / Rocky / Alma</div>
+                            <div class="dropdown-item"><i class="fas fa-certificate"></i> RHCSA Prep</div>
+                            <div class="dropdown-item"><i class="fas fa-cogs"></i> systemd Deep Dive</div>
+                            <div class="dropdown-category">Monitoring & Logging</div>
+                            <div class="dropdown-item"><i class="fas fa-chart-line"></i> Prometheus + Grafana</div>
+                            <div class="dropdown-item"><i class="fas fa-bell"></i> AlertManager Setup</div>
+                            <div class="dropdown-item"><i class="fas fa-file-alt"></i> ELK Stack (Elasticsearch)</div>
+                            <div class="dropdown-category">Automation</div>
+                            <div class="dropdown-item"><i class="fas fa-robot"></i> Ansible Playbooks</div>
+                            <div class="dropdown-item"><i class="fas fa-code-branch"></i> CI/CD Pipelines</div>
+                            <div class="dropdown-item"><i class="fas fa-cloud"></i> Terraform Basics</div>
+                        </div>
+                    </div>
+                </div>
                 <a href="#contact" class="plan-cta">Buy Server Pro</a>
             </div>
 
@@ -653,6 +784,28 @@
             <div class="plan-card reveal">
                 <div class="plan-name">Cyber Starter</div>
                 <div class="plan-price">$199<small>/month</small></div>
+                <div class="plan-dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-category">Kali Linux</div>
+                            <div class="dropdown-item"><i class="fas fa-terminal"></i> Kali Tools Overview</div>
+                            <div class="dropdown-item"><i class="fas fa-wifi"></i> WiFi Auditing (Aircrack)</div>
+                            <div class="dropdown-item"><i class="fas fa-fingerprint"></i> OSINT & Recon</div>
+                            <div class="dropdown-category">Parrot OS</div>
+                            <div class="dropdown-item"><i class="fas fa-bug"></i> Vulnerability Scanning</div>
+                            <div class="dropdown-item"><i class="fas fa-user-secret"></i> Anonymity Tools</div>
+                            <div class="dropdown-item"><i class="fas fa-lock"></i> Encryption Basics</div>
+                            <div class="dropdown-category">Fundamentals</div>
+                            <div class="dropdown-item"><i class="fas fa-network-wired"></i> TCP/IP & Networking</div>
+                            <div class="dropdown-item"><i class="fas fa-file-code"></i> Bash Scripting</div>
+                            <div class="dropdown-item"><i class="fas fa-shield-alt"></i> Security Hardening</div>
+                        </div>
+                    </div>
+                </div>
                 <a href="#contact" class="plan-cta">Buy Cyber Starter</a>
             </div>
 
@@ -660,12 +813,59 @@
                 <div class="plan-badge">MOST POPULAR</div>
                 <div class="plan-name">Pro Linux + Security</div>
                 <div class="plan-price">$399<small>/month</small></div>
+                <div class="plan-dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-category">Advanced Pentesting</div>
+                            <div class="dropdown-item"><i class="fas fa-crosshairs"></i> Metasploit Framework</div>
+                            <div class="dropdown-item"><i class="fas fa-spider"></i> Burp Suite Pro</div>
+                            <div class="dropdown-item"><i class="fas fa-globe"></i> Web App Exploitation</div>
+                            <div class="dropdown-category">Distro Specialization</div>
+                            <div class="dropdown-item"><i class="fas fa-skull"></i> Kali: Advanced Workflows</div>
+                            <div class="dropdown-item"><i class="fas fa-parrot"></i> Parrot: DFIR & Forensics</div>
+                            <div class="dropdown-item"><i class="fas fa-dragon"></i> Garuda: Gaming Security</div>
+                            <div class="dropdown-category">Certification Prep</div>
+                            <div class="dropdown-item"><i class="fas fa-award"></i> CompTIA Security+</div>
+                            <div class="dropdown-item"><i class="fas fa-award"></i> CEH (Certified Ethical Hacker)</div>
+                            <div class="dropdown-item"><i class="fas fa-award"></i> eJPT (eLearnSecurity)</div>
+                        </div>
+                    </div>
+                </div>
                 <a href="#contact" class="plan-cta">Buy Pro Security</a>
             </div>
 
             <div class="plan-card reveal">
                 <div class="plan-name">Elite Pentester</div>
                 <div class="plan-price">$699<small>/month</small></div>
+                <div class="plan-dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span><i class="fas fa-book-open" style="margin-right:8px;color:var(--accent);"></i>Choose What to Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-category">Red Team Operations</div>
+                            <div class="dropdown-item"><i class="fas fa-user-ninja"></i> Cobalt Strike / Sliver</div>
+                            <div class="dropdown-item"><i class="fas fa-mask"></i> AV Evasion Techniques</div>
+                            <div class="dropdown-item"><i class="fas fa-exchange-alt"></i> Lateral Movement</div>
+                            <div class="dropdown-category">Advanced Distros</div>
+                            <div class="dropdown-item"><i class="fas fa-box"></i> BlackArch: 2800+ Tools</div>
+                            <div class="dropdown-item"><i class="fas fa-ghost"></i> BackBox: Anonymity Focus</div>
+                            <div class="dropdown-item"><i class="fas fa-hat-cowboy"></i> Pentoo: Live Environment</div>
+                            <div class="dropdown-category">Expert Certifications</div>
+                            <div class="dropdown-item"><i class="fas fa-trophy"></i> OSCP (Offensive Security)</div>
+                            <div class="dropdown-item"><i class="fas fa-trophy"></i> OSWE (Web Expert)</div>
+                            <div class="dropdown-item"><i class="fas fa-trophy"></i> OSEP (Evasion Expert)</div>
+                            <div class="dropdown-category">Bug Bounty</div>
+                            <div class="dropdown-item"><i class="fas fa-bug"></i> HackerOne / Bugcrowd</div>
+                            <div class="dropdown-item"><i class="fas fa-code"></i> Custom Exploit Dev</div>
+                        </div>
+                    </div>
+                </div>
                 <a href="#contact" class="plan-cta">Buy Elite Pentester</a>
             </div>
         </div>
@@ -804,6 +1004,13 @@
                 orb.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
             });
         });
+
+        // Dropdown toggle function
+        function toggleDropdown(button) {
+            const content = button.nextElementSibling;
+            button.classList.toggle('active');
+            content.classList.toggle('open');
+        }
     </script>
 </body>
 </html>
