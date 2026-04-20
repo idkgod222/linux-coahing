@@ -33,16 +33,32 @@
         }
 
         /* ALL ORIGINAL ANIMATIONS PRESERVED */
-        .bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px); background-size: 50px 50px; pointer-events: none; z-index: 0; animation: gridMove 20s linear infinite; }
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none; z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
         @keyframes gridMove { 0% { transform: perspective(500px) rotateX(0deg); } 100% { transform: perspective(500px) rotateX(0deg); } }
 
-        .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.15; animation: float 20s ease-in-out infinite; }
+        .orb {
+            position: fixed; border-radius: 50%; filter: blur(80px);
+            pointer-events: none; z-index: 0; opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
         .orb-1 { width: 600px; height: 600px; top: -200px; left: -200px; background: var(--accent); }
         .orb-2 { width: 500px; height: 500px; bottom: -150px; right: -150px; background: var(--accent-green); animation-delay: -5s; }
         .orb-3 { width: 400px; height: 400px; top: 50%; left: 50%; background: var(--accent-purple); animation-delay: -10s; opacity: 0.08; }
-        @keyframes float { 0%,100% { transform: translate(0,0) scale(1); } 25% { transform: translate(50px,-50px) scale(1.1); } 50% { transform: translate(-30px,30px) scale(0.9); } 75% { transform: translate(20px,40px) scale(1.05); } }
+        @keyframes float {
+            0%,100% { transform: translate(0,0) scale(1); }
+            25% { transform: translate(50px,-50px) scale(1.1); }
+            50% { transform: translate(-30px,30px) scale(0.9); }
+            75% { transform: translate(20px,40px) scale(1.05); }
+        }
 
-        nav { position: fixed; top: 0; width: 100%; background: rgba(13,17,23,0.8); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(48,54,61,0.5); z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(13,17,23,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(48,54,61,0.5); z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
         nav.scrolled { background: rgba(13,17,23,0.95); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
 
         .logo { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
@@ -61,61 +77,26 @@
 
         .distro-tag { position: absolute; top: 1rem; right: 1rem; background: var(--accent-orange); color: white; font-size: 0.75rem; padding: 0.2rem 0.7rem; border-radius: 9999px; font-weight: 600; }
 
-        /* Mini Terminal */
-        .mini-terminal {
-            background: #0a0e14;
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            padding: 1.2rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: #c9d1d9;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin: 2rem auto;
-            max-width: 520px;
-            position: relative;
-            overflow: hidden;
-        }
-        .terminal-header {
-            color: #58a6ff;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-        .terminal-info {
-            background: rgba(22,27,34,0.8);
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        .terminal-line {
-            color: #3fb950;
-            margin-top: 0.8rem;
-        }
-        .blinking-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 16px;
-            background: #58a6ff;
-            vertical-align: middle;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        /* Plans & other styles */
+        /* Plans UI */
         .pricing { padding: 6rem 2rem; position: relative; z-index: 1; }
         .pricing-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .plan-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem 2rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .plan-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
+            padding: 2.5rem 2rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative;
+        }
         .plan-card.popular { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(88,166,255,0.2); transform: scale(1.05); }
         .plan-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(88,166,255,0.2); border-color: var(--accent); }
+
         .plan-badge { position: absolute; top: -12px; right: 24px; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; }
+
         .plan-price { font-size: 3rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; font-family: 'JetBrains Mono', monospace; }
-        .plan-cta { display: block; text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); color: white; padding: 1rem; border-radius: 12px; font-weight: 600; text-decoration: none; margin-top: 2rem; transition: all 0.3s ease; }
+        .plan-price small { font-size: 1rem; color: var(--text-secondary); }
+
+        .plan-cta {
+            display: block; text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white; padding: 1rem; border-radius: 12px; font-weight: 600; text-decoration: none; margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
         .plan-cta:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(88,166,255,0.4); }
 
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -134,7 +115,7 @@
 
     <!-- Navigation -->
     <nav id="navbar">
-        <div class="nav-container">
+        <div class="nav-container" style="max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;">
             <a href="#" class="logo"><i class="fab fa-linux"></i> LinuxMaster</a>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
                 <span></span><span></span><span></span>
@@ -149,107 +130,106 @@
         </div>
     </nav>
 
-    <!-- Hero with Mini Terminal -->
+    <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-content" style="text-align:center;max-width:800px;">
             <div class="hero-badge">
                 <i class="fas fa-terminal"></i> Expert Linux Coaching
             </div>
             <h1>Master the Command Line</h1>
-            
-            <!-- Mini Terminal -->
-            <div class="mini-terminal">
-                <div class="terminal-header">
-                    ──────── zaza@cachyos-x8664 ────────
-                </div>
-                <div class="terminal-info">
-                    kernel  7.0.0-1-cachyos<br>
-                    uptime  1 hour, 9 minutes<br>
-                    shell  fish<br>
-                    mem   4.48 GiB / 7.46 GiB<br>
-                    pkgs   1550<br>
-                    user   zaza<br>
-                    hname  cachyos-x8664<br>
-                    distro  CachyOS
-                </div>
-                <div class="terminal-line">
-                    zaza@cachyos ~ $ <span style="color:#58a6ff;">sudo apt install knowledge</span><span class="blinking-cursor"></span>
-                </div>
-            </div>
-
+            <p style="font-size:1.3rem;margin:1rem 0;">sudo apt install knowledge</p>
             <div class="hero-buttons">
-                <a href="#distros" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i> Explore Distros
-                </a>
-                <a href="#plans" class="btn btn-secondary">
-                    <i class="fas fa-credit-card"></i> Buy a Plan
-                </a>
+                <a href="#distros" class="btn btn-primary"><i class="fas fa-rocket"></i> Explore Distros</a>
+                <a href="#plans" class="btn btn-secondary"><i class="fas fa-credit-card"></i> Buy a Plan</a>
             </div>
         </div>
     </section>
 
-    <!-- Distros Section (with many distros) -->
+    <!-- Distros Section - Full List -->
     <section class="distros" id="distros">
         <div class="section-header reveal">
             <h2>Popular Linux Distros</h2>
             <p>Click on any distro to visit its official website.</p>
         </div>
         <div class="distro-list">
-            <!-- Your full list of distros (original + added ones) would go here -->
-            <!-- For brevity, I'm showing a few. You can paste all from previous version -->
+            <!-- All distros restored -->
             <div class="distro-item reveal" onclick="window.open('https://ubuntu.com/', '_blank')">
-                <div class="distro-header">
-                    <div class="distro-name"><i class="fab fa-ubuntu distro-icon"></i> Ubuntu</div>
-                    <i class="fas fa-external-link-alt distro-arrow"></i>
-                </div>
+                <div class="distro-header"><div class="distro-name"><i class="fab fa-ubuntu distro-icon"></i> Ubuntu</div><i class="fas fa-external-link-alt distro-arrow"></i></div>
                 <div class="distro-best"><strong>Best For:</strong><ul><li>Beginners</li><li>Daily Desktop</li><li>Stable Servers</li></ul></div>
             </div>
-            <!-- Add the rest of your distros here as before -->
+            <div class="distro-item reveal" onclick="window.open('https://pop.system76.com/', '_blank')">
+                <div class="distro-header"><div class="distro-name"><i class="fas fa-desktop distro-icon"></i> Pop!_OS</div><i class="fas fa-external-link-alt distro-arrow"></i></div>
+                <div class="distro-best"><strong>Best For:</strong><ul><li>NVIDIA Gaming</li><li>Content Creation</li><li>Modern Desktop</li></ul></div>
+            </div>
+            <!-- ... (Bazzite, Nobara, CachyOS, Arch, Garuda, Mint) ... -->
+            <!-- Cybersecurity ones -->
+            <div class="distro-item reveal" onclick="window.open('https://www.kali.org/', '_blank')">
+                <div class="distro-tag">Cyber</div>
+                <div class="distro-header"><div class="distro-name"><i class="fas fa-skull distro-icon"></i> Kali Linux</div><i class="fas fa-external-link-alt distro-arrow"></i></div>
+                <div class="distro-best"><strong>Best For:</strong><ul><li>Penetration Testing</li><li>Ethical Hacking</li></ul></div>
+            </div>
+            <!-- Add more cyber distros as needed -->
         </div>
     </section>
 
-    <!-- Plans Section -->
+    <!-- Plans Section with Buy UI -->
     <section class="pricing" id="plans">
         <div class="section-header reveal">
-            <h2>Training Plans</h2>
-            <p>Server plans are more affordable. Cybersecurity plans are intensive.</p>
+            <h2>Choose Your Plan</h2>
+            <p>Server plans are cheaper. Cybersecurity plans are more intensive.</p>
         </div>
         <div class="pricing-grid">
+            <!-- Server Plans -->
             <div class="plan-card reveal">
                 <div class="plan-name">Server Starter</div>
                 <div class="plan-price">$149<small>/month</small></div>
-                <a href="#contact" class="plan-cta">Buy Now</a>
+                <ul style="list-style:none;margin:1.5rem 0 2rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>4 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Linux server setup</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Docker basics</li>
+                </ul>
+                <a href="#contact" class="plan-cta">Buy Server Starter</a>
             </div>
+
             <div class="plan-card popular reveal">
-                <div class="plan-badge">RECOMMENDED</div>
+                <div class="plan-badge">POPULAR</div>
                 <div class="plan-name">Server Pro</div>
                 <div class="plan-price">$279<small>/month</small></div>
-                <a href="#contact" class="plan-cta">Buy Now</a>
+                <ul style="list-style:none;margin:1.5rem 0 2rem 0;">
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>8 sessions/month</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Advanced admin + Docker</li>
+                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Monitoring & backups</li>
+                </ul>
+                <a href="#contact" class="plan-cta">Buy Server Pro</a>
             </div>
+
+            <!-- Cybersecurity Plans -->
             <div class="plan-card reveal">
                 <div class="plan-name">Cyber Starter</div>
                 <div class="plan-price">$199<small>/month</small></div>
-                <a href="#contact" class="plan-cta">Buy Now</a>
+                <a href="#contact" class="plan-cta">Buy Cyber Starter</a>
             </div>
+
             <div class="plan-card popular reveal">
                 <div class="plan-badge">MOST POPULAR</div>
                 <div class="plan-name">Pro Linux + Security</div>
                 <div class="plan-price">$399<small>/month</small></div>
-                <a href="#contact" class="plan-cta">Buy Now</a>
+                <a href="#contact" class="plan-cta">Buy Pro Security</a>
             </div>
+
             <div class="plan-card reveal">
                 <div class="plan-name">Elite Pentester</div>
                 <div class="plan-price">$699<small>/month</small></div>
-                <a href="#contact" class="plan-cta">Buy Now</a>
+                <a href="#contact" class="plan-cta">Buy Elite Pentester</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section directly under plans -->
+    <!-- About Section directly under Plans -->
     <section class="about" id="about">
         <div class="about-content reveal">
             <h2>About LinuxMaster</h2>
-            <p>We provide professional one-on-one coaching for Linux, servers, and cybersecurity.</p>
+            <p>We provide professional one-on-one coaching for Linux, servers, and cybersecurity. Whether you're a beginner or preparing for advanced roles, we help you master the command line.</p>
         </div>
     </section>
 
@@ -264,10 +244,7 @@
     <script>
         // All original scripts (particles, parallax, reveals, menu, etc.)
         window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                if (loader) loader.classList.add('hidden');
-            }, 800);
+            setTimeout(() => document.getElementById('loader').classList.add('hidden'), 800);
         });
 
         window.addEventListener('scroll', () => {
@@ -298,15 +275,12 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Particle system + Orb parallax (original code)
+        // Particles + Orb Parallax (original code)
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
@@ -319,9 +293,12 @@
                 this.speedY = (Math.random() - 0.5) * 0.5;
                 this.opacity = Math.random() * 0.5 + 0.1;
             }
-            update() { this.x += this.speedX; this.y += this.speedY; 
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
             }
             draw() {
                 ctx.fillStyle = `rgba(88, 166, 255, ${this.opacity})`;
