@@ -689,6 +689,267 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* AI Chat Widget Styles */
+        .chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 3000;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(88, 166, 255, 0.4);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(88, 166, 255, 0.6);
+        }
+
+        .chat-notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent-red);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .chat-container {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 380px;
+            height: 500px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s;
+        }
+
+        .chat-container.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .chat-close:hover {
+            opacity: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 90%;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ai-message .message-avatar {
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white;
+        }
+
+        .user-message .message-avatar {
+            background: var(--bg-hover);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .message-content {
+            background: var(--bg-hover);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid var(--border);
+        }
+
+        .user-message .message-content {
+            background: var(--accent);
+            color: var(--bg-dark);
+            border: none;
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-dark);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: var(--bg-dark);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-send:hover {
+            background: #79b8ff;
+            transform: scale(1.05);
+        }
+
+        .chat-quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .quick-btn {
+            padding: 0.4rem 0.75rem;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 0.25rem;
+            padding: 0.5rem 0;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .code-block {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 480px) {
+            .chat-container {
+                width: calc(100vw - 2rem);
+                height: 70vh;
+                right: -1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1089,6 +1350,63 @@
         </div>
     </div>
 
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-toggle" onclick="toggleChat()">
+            <i class="fas fa-robot"></i>
+            <span class="chat-notification" id="chatNotification">1</span>
+        </button>
+        
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fas fa-terminal"></i>
+                    <span>Linux AI Assistant</span>
+                </div>
+                <button class="chat-close" onclick="toggleChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Hello! I'm your Linux AI assistant. Ask me anything about:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                            <li>Command line & bash scripting</li>
+                            <li>Package management (apt, yum, pacman)</li>
+                            <li>System administration</li>
+                            <li>Distro-specific questions</li>
+                            <li>Customization & theming</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <div class="chat-input-wrapper">
+                    <input type="text" 
+                           class="chat-input" 
+                           id="chatInput" 
+                           placeholder="Ask about Linux... (e.g., 'How do I install nginx on Ubuntu?')"
+                           onkeypress="handleChatKeypress(event)">
+                    <button class="chat-send" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="chat-quick-actions">
+                    <button class="quick-btn" onclick="sendQuickQuestion('How do I update packages on Ubuntu?')">Ubuntu Update</button>
+                    <button class="quick-btn" onclick="sendQuickQuestion('What is SELinux?')">SELinux</button>
+                    <button class="quick-btn" onclick="sendQuickQuestion('How to check disk space?')">Disk Space</button>
+                    <button class="quick-btn" onclick="sendQuickQuestion('How do I create a bash script?')">Bash Script</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Price Calculator Logic
         function calculatePrice() {
@@ -1183,6 +1501,400 @@
 
         // Initialize calculator
         calculatePrice();
+
+        // Chat Widget Functions
+        function toggleChat() {
+            const container = document.getElementById('chatContainer');
+            const notification = document.getElementById('chatNotification');
+            container.classList.toggle('active');
+            if (container.classList.contains('active')) {
+                notification.style.display = 'none';
+                document.getElementById('chatInput').focus();
+            }
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendQuickQuestion(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        // Linux Knowledge Base for AI responses
+        const linuxKnowledge = {
+            'ubuntu update': `To update packages on Ubuntu/Debian:
+
+<div class="code-block">sudo apt update
+sudo apt upgrade
+sudo apt full-upgrade</div>
+
+<strong>Explanation:</strong>
+• <code>apt update</code> - Updates package lists
+• <code>apt upgrade</code> - Upgrades installed packages
+• <code>apt full-upgrade</code> - Allows removing old packages if needed`,
+
+            'selinux': `SELinux (Security-Enhanced Linux) is a security module that provides access control security policies.
+
+<strong>Common commands:</strong>
+<div class="code-block"># Check SELinux status
+getenforce
+
+# View SELinux mode
+sestatus
+
+# Temporarily set to permissive
+sudo setenforce 0
+
+# View context of files
+ls -Z</div>
+
+<strong>Modes:</strong>
+• Enforcing - Policy is enforced
+• Permissive - Warnings only
+• Disabled - SELinux is off`,
+
+            'disk space': `To check disk space in Linux:
+
+<div class="code-block"># Human-readable format
+df -h
+
+# Check directory size
+du -sh /path/to/directory
+
+# Find large files
+find / -type f -size +100M -exec ls -lh {} \\;
+
+# Check inodes
+df -i</div>
+
+<strong>Key columns:</strong>
+• Size - Total space
+• Used - Used space
+• Avail - Available space
+• Use% - Percentage used`,
+
+            'bash script': `To create a bash script:
+
+<div class="code-block">#!/bin/bash
+
+# This is a comment
+echo "Hello, World!"
+
+# Variables
+NAME="Linux"
+echo "Welcome to $NAME"
+
+# Conditional
+if [ -f "/etc/os-release" ]; then
+    echo "File exists"
+fi</div>
+
+<strong>Make it executable:</strong>
+<div class="code-block">chmod +x script.sh
+./script.sh</div>`,
+
+            'nginx install': `To install Nginx on Ubuntu/Debian:
+
+<div class="code-block">sudo apt update
+sudo apt install nginx
+
+# Start service
+sudo systemctl start nginx
+
+# Enable on boot
+sudo systemctl enable nginx
+
+# Check status
+sudo systemctl status nginx</div>
+
+<strong>Configuration location:</strong> <code>/etc/nginx/nginx.conf</code>
+<strong>Web root:</strong> <code>/var/www/html</code>`,
+
+            'firewall': `UFW (Uncomplicated Firewall) on Ubuntu:
+
+<div class="code-block"># Enable firewall
+sudo ufw enable
+
+# Allow SSH
+sudo ufw allow ssh
+
+# Allow HTTP/HTTPS
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+# Check status
+sudo ufw status verbose
+
+# Deny specific port
+sudo ufw deny 3306</div>
+
+<strong>For RHEL/CentOS (firewalld):</strong>
+<div class="code-block">sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --reload</div>`,
+
+            'user management': `User management commands:
+
+<div class="code-block"># Add user
+sudo adduser username
+
+# Add to sudo group
+sudo usermod -aG sudo username
+
+# Change password
+sudo passwd username
+
+# Delete user
+sudo deluser username
+
+# Switch user
+su - username
+
+# Check current user
+whoami
+id</div>`,
+
+            'permissions': `Linux file permissions explained:
+
+<div class="code-block"># View permissions
+ls -la
+
+# Change permissions
+chmod 755 file.txt
+chmod u+x script.sh
+
+# Change ownership
+sudo chown user:group file.txt
+
+# Recursive change
+sudo chown -R user:group /path</div>
+
+<strong>Permission numbers:</strong>
+• 7 = rwx (read, write, execute)
+• 6 = rw-
+• 5 = r-x
+• 4 = r--
+
+<strong>Order:</strong> Owner | Group | Others`,
+
+            'process management': `Process management commands:
+
+<div class="code-block"># List processes
+ps aux
+
+# Interactive process viewer
+top
+htop
+
+# Find process by name
+pgrep firefox
+
+# Kill process
+kill 1234
+kill -9 1234  # Force kill
+
+# Kill by name
+killall firefox</div>
+
+<strong>Background processes:</strong>
+<div class="code-block"># Run in background
+./script.sh &
+
+# View background jobs
+jobs
+
+# Bring to foreground
+fg %1</div>`,
+
+            'ssh': `SSH (Secure Shell) usage:
+
+<div class="code-block"># Connect to server
+ssh username@hostname
+
+# Connect with specific port
+ssh -p 2222 username@hostname
+
+# Copy file via SCP
+scp file.txt username@host:/path/
+
+# Generate SSH key
+ssh-keygen -t ed25519
+
+# Copy key to server
+ssh-copy-id username@hostname</div>
+
+<strong>Config file:</strong> <code>~/.ssh/config</code>`,
+
+            'package management': `Package managers by distro:
+
+<strong>Ubuntu/Debian (APT):</strong>
+<div class="code-block">sudo apt update
+sudo apt install package
+sudo apt remove package
+sudo apt search package</div>
+
+<strong>RHEL/CentOS (DNF/YUM):</strong>
+<div class="code-block">sudo dnf update
+sudo dnf install package
+sudo dnf remove package</div>
+
+<strong>Arch (Pacman):</strong>
+<div class="code-block">sudo pacman -Syu
+sudo pacman -S package
+sudo pacman -R package</div>`,
+
+            'systemd': `Systemd service management:
+
+<div class="code-block"># Start service
+sudo systemctl start service
+
+# Stop service
+sudo systemctl stop service
+
+# Restart service
+sudo systemctl restart service
+
+# Enable on boot
+sudo systemctl enable service
+
+# Check status
+sudo systemctl status service
+
+# View logs
+journalctl -u service -f</div>
+
+<strong>Boot targets:</strong>
+<div class="code-block">sudo systemctl isolate multi-user.target  # Text mode
+sudo systemctl isolate graphical.target   # GUI mode</div>`,
+
+            'default': `I can help you with Linux topics like:
+
+• Command line basics
+• Package management (apt, dnf, pacman)
+• System administration
+• Shell scripting
+• User and permission management
+• Networking and SSH
+• Service management (systemd)
+• Firewall configuration
+• And much more!
+
+What would you like to learn about?`
+        };
+
+        function getAIResponse(userMessage) {
+            const lowerMsg = userMessage.toLowerCase();
+            
+            // Check for keywords in the message
+            for (const [key, response] of Object.entries(linuxKnowledge)) {
+                if (lowerMsg.includes(key)) {
+                    return response;
+                }
+            }
+            
+            // Check for partial matches
+            if (lowerMsg.includes('update') || lowerMsg.includes('upgrade')) {
+                return linuxKnowledge['ubuntu update'];
+            }
+            if (lowerMsg.includes('security') || lowerMsg.includes('firewall')) {
+                return linuxKnowledge['firewall'];
+            }
+            if (lowerMsg.includes('install') || lowerMsg.includes('package')) {
+                return linuxKnowledge['package management'];
+            }
+            if (lowerMsg.includes('permission') || lowerMsg.includes('chmod')) {
+                return linuxKnowledge['permissions'];
+            }
+            if (lowerMsg.includes('user') || lowerMsg.includes('adduser')) {
+                return linuxKnowledge['user management'];
+            }
+            if (lowerMsg.includes('process') || lowerMsg.includes('kill') || lowerMsg.includes('top')) {
+                return linuxKnowledge['process management'];
+            }
+            if (lowerMsg.includes('ssh') || lowerMsg.includes('remote')) {
+                return linuxKnowledge['ssh'];
+            }
+            if (lowerMsg.includes('service') || lowerMsg.includes('systemctl')) {
+                return linuxKnowledge['systemd'];
+            }
+            if (lowerMsg.includes('script') || lowerMsg.includes('bash')) {
+                return linuxKnowledge['bash script'];
+            }
+            if (lowerMsg.includes('disk') || lowerMsg.includes('space') || lowerMsg.includes('storage')) {
+                return linuxKnowledge['disk space'];
+            }
+            if (lowerMsg.includes('nginx') || lowerMsg.includes('apache') || lowerMsg.includes('web server')) {
+                return linuxKnowledge['nginx install'];
+            }
+            
+            return linuxKnowledge['default'];
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Simulate AI response delay
+            setTimeout(() => {
+                removeTypingIndicator();
+                const response = getAIResponse(message);
+                addMessage(response, 'ai');
+            }, 1500);
+        }
+
+        function addMessage(content, sender) {
+            const container = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const avatar = sender === 'ai' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const container = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai-message typing';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
     </script>
 </body>
 </html>
