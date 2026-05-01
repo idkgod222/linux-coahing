@@ -3,471 +3,1265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinuxMaster - Professional Linux Coaching & Classes</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>LinuxMaster - Professional Linux Coaching</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-dark: #0d1117;
-            --bg-card: #161b22;
-            --bg-hover: #21262d;
-            --border: #30363d;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --accent: #58a6ff;
-            --accent-green: #3fb950;
-            --accent-purple: #a371f7;
-            --accent-orange: #f0883e;
-            --accent-red: #f85149;
-            --shadow-glow: rgba(88,166,255,0.15);
+            --bg: #080c10;
+            --bg-card: #0f1419;
+            --bg-hover: #161d26;
+            --border: #1e2a38;
+            --border-bright: #2a3f57;
+            --text: #d4e4f0;
+            --text-dim: #5a7a94;
+            --text-mid: #8aa8c0;
+            --green: #00e5a0;
+            --green-dim: rgba(0,229,160,0.12);
+            --blue: #3b9eff;
+            --blue-dim: rgba(59,158,255,0.12);
+            --orange: #ff8c42;
+            --red: #ff4d6d;
+            --purple: #9b6dff;
+            --glow-green: 0 0 30px rgba(0,229,160,0.2);
+            --glow-blue: 0 0 30px rgba(59,158,255,0.2);
         }
-        [data-theme="light"] {
-            --bg-dark: #ffffff;
-            --bg-card: #f6f8fa;
-            --bg-hover: #f3f4f6;
-            --border: #d0d7de;
-            --text-primary: #1f2328;
-            --text-secondary: #656d76;
-            --accent: #0969da;
-            --accent-green: #1a7f37;
-            --accent-purple: #8250df;
-            --accent-orange: #bc4c00;
-            --accent-red: #cf222e;
-            --shadow-glow: rgba(9,105,218,0.1);
-        }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-
+        html { scroll-behavior: smooth; scroll-padding-top: 76px; }
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-            transition: background 0.3s ease, color 0.3s ease;
         }
-
-        .bg-grid {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+ 
+        /* ── CANVAS ── */
+        #particles {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none; z-index: 0;
         }
-
-        .orb {
-            position: fixed; border-radius: 50%; filter: blur(80px);
-            pointer-events: none; z-index: 0; opacity: 0.15;
-            animation: float 20s ease-in-out infinite;
+ 
+        /* ── SCAN LINE OVERLAY ── */
+        body::after {
+            content: '';
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+            pointer-events: none; z-index: 0;
         }
-        .orb-1 { width: 600px; height: 600px; top: -200px; left: -200px; background: var(--accent); }
-        .orb-2 { width: 500px; height: 500px; bottom: -150px; right: -150px; background: var(--accent-green); animation-delay: -5s; }
-        .orb-3 { width: 400px; height: 400px; top: 50%; left: 50%; background: var(--accent-purple); animation-delay: -10s; opacity: 0.08; }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(50px, -50px) scale(1.1); }
-            50% { transform: translate(-30px, 30px) scale(0.9); }
-            75% { transform: translate(20px, 40px) scale(1.05); }
-        }
-
+ 
+        /* ── NAV ── */
         nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(13,17,23,0.8);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(48,54,61,0.5);
-            z-index: 1000; padding: 1rem 0;
-            transition: all 0.3s ease;
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(8,12,16,0.85);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            transition: border-color 0.3s;
         }
-        nav.scrolled {
-            background: rgba(13,17,23,0.95);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        nav.scrolled { border-bottom-color: var(--border-bright); }
+        .nav-inner {
+            max-width: 1300px; margin: 0 auto;
+            display: flex; align-items: center;
+            height: 72px; gap: 2rem;
         }
-
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-
         .logo {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem; font-weight: 700;
-            color: var(--accent); text-decoration: none;
-            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--green); text-decoration: none;
+            display: flex; align-items: center; gap: 0.6rem;
+            letter-spacing: -0.02em; flex-shrink: 0;
         }
-        .logo i { animation: spin 10s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
+        .logo-bracket { color: var(--text-dim); }
+        .nav-links {
+            display: flex; align-items: center; gap: 0.25rem;
+            margin-left: auto;
+        }
+        .nav-links a {
+            color: var(--text-dim); text-decoration: none;
+            font-size: 0.875rem; font-weight: 600;
+            padding: 0.5rem 0.9rem; border-radius: 6px;
+            transition: all 0.2s; letter-spacing: 0.02em;
+        }
+        .nav-links a:hover { color: var(--text); background: var(--bg-hover); }
+        .nav-cta {
+            background: var(--green) !important;
+            color: var(--bg) !important;
+            font-weight: 700 !important;
+            margin-left: 0.5rem;
+        }
+        .nav-cta:hover { opacity: 0.85; }
         .hamburger {
-            display: flex; flex-direction: column; gap: 5px; cursor: pointer;
-            padding: 8px; z-index: 1001;
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; padding: 8px; margin-left: auto;
         }
         .hamburger span {
-            width: 25px; height: 2px; background: var(--text-primary);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border-radius: 2px;
+            width: 22px; height: 2px; background: var(--text);
+            border-radius: 2px; transition: all 0.3s ease;
         }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        .nav-links { display: none; gap: 2rem; align-items: center; }
-        @media (min-width: 769px) { 
-            .nav-links { display: flex; } 
-            .hamburger { display: none; } 
-        }
-
-        .nav-links a {
-            color: var(--text-secondary); text-decoration: none;
-            font-weight: 500; transition: color 0.3s ease;
-        }
-        .nav-links a:hover { color: var(--accent); }
-
-        .nav-cta {
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-            color: white !important; padding: 0.6rem 1.2rem;
-            border-radius: 8px; font-weight: 600;
-        }
-
-        .theme-toggle {
-            background: var(--bg-hover); border: 1px solid var(--border);
-            color: var(--text-primary); width: 40px; height: 40px;
-            border-radius: 10px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s ease; margin-left: 1rem;
-        }
-        .theme-toggle:hover { border-color: var(--accent); transform: scale(1.1); }
-
         .menu-overlay {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); opacity: 0;
-            pointer-events: none; transition: opacity 0.3s ease; z-index: 999;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s; z-index: 999;
         }
         .menu-overlay.active { opacity: 1; pointer-events: all; }
-
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%;
+                width: min(300px, 80vw); height: 100vh;
+                background: var(--bg-card); flex-direction: column;
+                align-items: flex-start;
+                padding: 5rem 1.5rem 2rem;
+                gap: 0.5rem; border-left: 1px solid var(--border);
+                transition: right 0.3s ease; z-index: 1000;
+                margin-left: 0;
+            }
+            .nav-links.open { right: 0; }
+            .nav-links a { width: 100%; padding: 0.75rem 1rem; }
+        }
+ 
+        /* ── SECTION WRAPPER ── */
+        .section { padding: 5rem 2rem; position: relative; z-index: 1; }
+        .container { max-width: 1300px; margin: 0 auto; }
+ 
+        /* ── SECTION HEADER ── */
+        .sec-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; font-weight: 500;
+            color: var(--green); letter-spacing: 0.12em;
+            text-transform: uppercase; margin-bottom: 0.75rem;
+        }
+        .sec-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800; line-height: 1.1;
+            margin-bottom: 1rem; letter-spacing: -0.02em;
+        }
+        .sec-sub { color: var(--text-mid); font-size: 1rem; max-width: 560px; }
+ 
+        /* ── HERO ── */
         .hero {
-            position: relative; min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            padding: 6rem 2rem 4rem; z-index: 1;
+            min-height: 100vh; display: flex;
+            align-items: center; justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative; z-index: 1;
         }
-
-        .hero-badge {
+        .hero-inner { text-align: center; max-width: 860px; }
+        .hero-tag {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            background: var(--bg-hover); border: 1px solid var(--border);
-            padding: 0.5rem 1rem; border-radius: 50px;
-            font-size: 0.9rem; color: var(--accent); margin-bottom: 1.5rem;
-            animation: fadeInDown 0.8s ease;
+            background: var(--green-dim); border: 1px solid rgba(0,229,160,0.3);
+            color: var(--green); padding: 0.4rem 1rem; border-radius: 999px;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease both;
         }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800; margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800; line-height: 1;
+            letter-spacing: -0.04em; margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s ease 0.1s both;
         }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .hero h1 span { color: var(--green); }
+        .hero-sub {
+            color: var(--text-mid); font-size: 1.1rem;
+            max-width: 520px; margin: 0 auto 2.5rem;
+            animation: fadeUp 0.8s ease 0.2s both;
         }
-
-        .hero-buttons {
+        .hero-btns {
             display: flex; gap: 1rem; justify-content: center;
-            margin-top: 2rem; flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.6s both;
+            flex-wrap: wrap; animation: fadeUp 0.8s ease 0.3s both;
         }
-
         .btn {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.9rem 1.8rem; border-radius: 12px;
-            font-weight: 600; text-decoration: none;
-            font-size: 1rem; transition: all 0.3s ease;
-            cursor: pointer;
+            padding: 0.85rem 1.8rem; border-radius: 10px;
+            font-weight: 700; font-size: 0.95rem; font-family: 'Syne', sans-serif;
+            cursor: pointer; border: none; text-decoration: none;
+            transition: all 0.25s ease;
         }
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-            color: white; box-shadow: 0 4px 15px var(--shadow-glow);
+            background: var(--green); color: var(--bg);
+            box-shadow: var(--glow-green);
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(--shadow-glow); }
-
-        .plan-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            height: 100%;
+        .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn-ghost {
+            background: transparent; color: var(--text);
+            border: 1px solid var(--border-bright);
         }
-        .plan-card.popular {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(88,166,255,0.25);
-            transform: scale(1.04);
+        .btn-ghost:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+ 
+        /* Terminal */
+        .terminal {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 14px; max-width: 580px;
+            margin: 3rem auto 0; overflow: hidden;
+            animation: fadeUp 0.8s ease 0.4s both;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-        .plan-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 60px var(--shadow-glow);
-            border-color: var(--accent);
+        .term-bar {
+            background: var(--bg-hover); border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.5rem;
         }
-
-        .plan-badge {
-            position: absolute; top: -12px; right: 24px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-            color: white; padding: 0.4rem 1.2rem;
-            border-radius: 50px; font-size: 0.85rem; font-weight: 700;
-        }
-
-        .plan-price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
+        .term-dot { width: 11px; height: 11px; border-radius: 50%; }
+        .term-dot.r { background: #ff5f57; }
+        .term-dot.y { background: #febc2e; }
+        .term-dot.g { background: #28c840; }
+        .term-file {
             font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; color: var(--text-dim);
+            margin-left: auto;
         }
-
+        .term-body {
+            padding: 1.2rem 1.4rem 1.4rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem; line-height: 1.9; min-height: 80px;
+        }
+        .term-ps { color: var(--green); }
+        .term-cmd { color: var(--text); }
+        .term-out { color: var(--text-dim); }
+        .cursor {
+            display: inline-block; width: 7px; height: 1em;
+            background: var(--green); vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+ 
+        /* ── DISTROS ── */
+        .distros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .distro-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.4rem 1.6rem;
+            cursor: pointer; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+            display: flex; align-items: flex-start; gap: 1rem;
+        }
+        .distro-card::before {
+            content: ''; position: absolute;
+            inset: 0; background: var(--green-dim);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .distro-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: var(--glow-green); }
+        .distro-card:hover::before { opacity: 1; }
+        .distro-ico {
+            width: 38px; height: 38px; border-radius: 9px;
+            background: var(--bg-hover); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; color: var(--green); font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .distro-card:hover .distro-ico { border-color: var(--green); }
+        .distro-info { flex: 1; min-width: 0; position: relative; z-index: 1; }
+        .distro-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+        .distro-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+        .dtag {
+            font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;
+            color: var(--text-dim); background: var(--bg-hover);
+            border: 1px solid var(--border); padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+        }
+        .distro-badge {
+            position: absolute; top: 0.9rem; right: 0.9rem;
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em;
+            padding: 0.2rem 0.5rem; border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .badge-cyber { background: rgba(255,77,109,0.2); color: var(--red); border: 1px solid rgba(255,77,109,0.3); }
+        .badge-gaming { background: rgba(155,109,255,0.2); color: var(--purple); border: 1px solid rgba(155,109,255,0.3); }
+        .badge-server { background: rgba(59,158,255,0.2); color: var(--blue); border: 1px solid rgba(59,158,255,0.3); }
+        .badge-immutable { background: rgba(255,140,66,0.2); color: var(--orange); border: 1px solid rgba(255,140,66,0.3); }
+ 
+        /* filter bar */
+        .filter-bar {
+            display: flex; gap: 0.5rem; flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .filter-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; font-weight: 500;
+            padding: 0.4rem 1rem; border-radius: 6px;
+            border: 1px solid var(--border);
+            background: transparent; color: var(--text-dim);
+            cursor: pointer; transition: all 0.2s;
+            letter-spacing: 0.04em;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--green); color: var(--green);
+            background: var(--green-dim);
+        }
+ 
+        /* ── PRICING ── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem; align-items: start;
+        }
+        .plan {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2rem;
+            transition: all 0.3s ease; position: relative;
+            overflow: hidden;
+        }
+        .plan::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: transparent; transition: background 0.3s;
+        }
+        .plan:hover { border-color: var(--border-bright); transform: translateY(-4px); }
+        .plan.featured { border-color: var(--green); }
+        .plan.featured::before { background: var(--green); }
+        .plan-tag {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; padding: 0.25rem 0.7rem;
+            border-radius: 999px; margin-bottom: 1.2rem;
+        }
+        .tag-server { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(59,158,255,0.25); }
+        .tag-cyber { background: rgba(255,77,109,0.12); color: var(--red); border: 1px solid rgba(255,77,109,0.25); }
+        .plan-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+        .plan-desc { color: var(--text-mid); font-size: 0.875rem; margin-bottom: 1.5rem; line-height: 1.5; }
+        .plan-price-row { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 0.4rem; }
+        .plan-price {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.6rem; font-weight: 700; color: var(--text);
+            letter-spacing: -0.04em;
+        }
+        .plan-period { color: var(--text-dim); font-size: 0.875rem; }
+        .plan-sessions {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem; color: var(--green);
+            margin-bottom: 1.5rem;
+        }
+        .plan-divider { height: 1px; background: var(--border); margin-bottom: 1.5rem; }
+ 
+        /* dynamic features list */
+        .plan-features { list-style: none; margin-bottom: 2rem; }
+        .plan-features li {
+            display: flex; align-items: flex-start; gap: 0.7rem;
+            font-size: 0.875rem; color: var(--text-mid);
+            padding: 0.4rem 0;
+        }
+        .plan-features li i { color: var(--green); font-size: 0.75rem; margin-top: 0.25rem; flex-shrink: 0; }
+        .plan-features li strong { color: var(--text); }
+ 
+        /* topic picker */
+        .topic-section { margin-bottom: 1.5rem; }
+        .topic-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--text-dim);
+            margin-bottom: 0.75rem; font-family: 'JetBrains Mono', monospace;
+        }
+        .topic-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .topic-chip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem; padding: 0.3rem 0.7rem;
+            border: 1px solid var(--border); border-radius: 6px;
+            background: var(--bg-hover); color: var(--text-dim);
+            cursor: pointer; transition: all 0.2s; user-select: none;
+        }
+        .topic-chip:hover { border-color: var(--green); color: var(--green); }
+        .topic-chip.active { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+ 
         .plan-cta {
-            display: block; text-align: center;
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-            color: white; padding: 1rem; border-radius: 12px;
-            font-weight: 600; text-decoration: none; margin-top: 2rem;
-            transition: all 0.3s ease;
+            display: block; width: 100%; text-align: center;
+            padding: 0.9rem; border-radius: 10px;
+            font-weight: 700; font-size: 0.95rem;
+            font-family: 'Syne', sans-serif;
+            cursor: pointer; border: none; text-decoration: none;
+            transition: all 0.25s;
         }
-        .plan-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px var(--shadow-glow);
+        .cta-green { background: var(--green); color: var(--bg); }
+        .cta-green:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: var(--glow-green); }
+        .cta-outline { background: transparent; color: var(--text); border: 1px solid var(--border-bright); }
+        .cta-outline:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
+ 
+        /* ── FAQ ── */
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item {
+            border: 1px solid var(--border); border-radius: 10px;
+            margin-bottom: 0.75rem; overflow: hidden;
+            transition: border-color 0.2s;
         }
-
-        .reveal { 
-            opacity: 0; 
-            transform: translateY(40px); 
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+        .faq-item:hover { border-color: var(--border-bright); }
+        .faq-q {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.1rem 1.4rem; cursor: pointer;
+            background: none; border: none; width: 100%;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95rem; font-weight: 600;
+            color: var(--text); text-align: left;
         }
-        .reveal.active { 
-            opacity: 1; 
-            transform: translateY(0); 
+        .faq-q i { color: var(--text-dim); transition: transform 0.3s, color 0.2s; flex-shrink: 0; margin-left: 1rem; }
+        .faq-q.open i { transform: rotate(180deg); color: var(--green); }
+        .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            color: var(--text-mid); font-size: 0.9rem; line-height: 1.7;
+            padding: 0 1.4rem;
         }
-
-        @media (max-width: 768px) {
+        .faq-a.open { max-height: 400px; padding: 0 1.4rem 1.4rem; }
+ 
+        /* ── ABOUT ── */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: center;
+        }
+        .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2rem; }
+        .stat-box {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.25rem; text-align: center;
+        }
+        .stat-n {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem; font-weight: 700; color: var(--green);
+        }
+        .stat-l { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem; }
+        .feat-list { display: flex; flex-direction: column; gap: 1rem; }
+        .feat-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; padding: 1.1rem 1.3rem;
+            display: flex; gap: 1rem; align-items: flex-start;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .feat-item:hover { border-color: var(--green); transform: translateX(4px); }
+        .feat-icon {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: var(--green-dim); border: 1px solid rgba(0,229,160,0.2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--green); font-size: 0.9rem; flex-shrink: 0;
+        }
+        .feat-text h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .feat-text p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; }
+ 
+        /* ── MODAL ── */
+        .modal-bg {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            z-index: 2000; display: none;
+            align-items: center; justify-content: center;
+            padding: 1rem;
+        }
+        .modal-bg.open { display: flex; }
+        .modal {
+            background: var(--bg-card); border: 1px solid var(--border-bright);
+            border-radius: 18px; padding: 2.5rem;
+            max-width: 500px; width: 100%;
+            max-height: 90vh; overflow-y: auto;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-close {
+            position: absolute; top: 1.2rem; right: 1.2rem;
+            background: var(--bg-hover); border: 1px solid var(--border);
+            color: var(--text-dim); width: 32px; height: 32px;
+            border-radius: 8px; cursor: pointer; font-size: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .modal-close:hover { color: var(--red); border-color: var(--red); }
+        .modal-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem; }
+        .modal-sub { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1.75rem; }
+        .plan-recap {
+            background: var(--bg-hover); border: 1px solid var(--border);
+            border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1.5rem;
+        }
+        .recap-row {
+            display: flex; justify-content: space-between;
+            font-size: 0.85rem; color: var(--text-mid); margin-bottom: 0.4rem;
+        }
+        .recap-row:last-child { margin-bottom: 0; padding-top: 0.6rem; border-top: 1px solid var(--border); font-weight: 700; color: var(--green); font-size: 0.95rem; }
+        .form-group { margin-bottom: 1.1rem; }
+        .form-label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.4rem; font-family: 'JetBrains Mono', monospace; }
+        .form-input {
+            width: 100%; background: var(--bg-hover);
+            border: 1px solid var(--border); border-radius: 9px;
+            padding: 0.75rem 1rem; color: var(--text);
+            font-family: 'Syne', sans-serif; font-size: 0.9rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,229,160,0.1); }
+        .form-input::placeholder { color: var(--text-dim); }
+        .form-err { color: var(--red); font-size: 0.78rem; margin-top: 0.3rem; display: none; }
+        .form-err.show { display: block; }
+        .pay-methods { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; }
+        .pay-method {
+            flex: 1; padding: 0.7rem 0.5rem; border: 1px solid var(--border);
+            border-radius: 9px; background: var(--bg-hover);
+            cursor: pointer; text-align: center;
+            font-size: 0.78rem; font-weight: 700;
+            color: var(--text-dim); transition: all 0.2s;
+        }
+        .pay-method i { display: block; font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .pay-method:hover { border-color: var(--border-bright); color: var(--text); }
+        .pay-method.active { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+        .pay-btn {
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            width: 100%; padding: 1rem; border-radius: 10px;
+            font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+            cursor: pointer; border: none;
+            transition: all 0.25s; text-decoration: none;
+            background: var(--green); color: var(--bg);
+        }
+        .pay-btn:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: var(--glow-green); }
+        .pay-note { text-align: center; font-size: 0.75rem; color: var(--text-dim); margin-top: 0.75rem; }
+        .date-wrap { position: relative; }
+        .date-wrap i { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; }
+ 
+        /* ── TOAST ── */
+        .toast {
+            position: fixed; bottom: 2rem; right: 2rem;
+            background: var(--bg-card); border: 1px solid var(--border-bright);
+            border-radius: 10px; padding: 0.9rem 1.3rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            z-index: 3000; transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            font-size: 0.88rem; font-weight: 600; max-width: 320px;
+        }
+        .toast.show { transform: translateX(0); }
+        .toast.ok i { color: var(--green); }
+        .toast.err i { color: var(--red); }
+        .toast-x { background: none; border: none; color: var(--text-dim); cursor: pointer; margin-left: auto; font-size: 0.9rem; }
+ 
+        /* ── SCROLL REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+ 
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem; text-align: center;
+            position: relative; z-index: 1;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--green); }
+        .socials { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .socials a {
+            width: 38px; height: 38px; border-radius: 9px;
+            border: 1px solid var(--border); background: var(--bg-card);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-dim); text-decoration: none;
+            transition: all 0.2s;
+        }
+        .socials a:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+        .footer-copy { color: var(--text-dim); font-size: 0.8rem; }
+ 
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .stat-row { grid-template-columns: repeat(3,1fr); }
+            .pay-methods { flex-wrap: wrap; }
+        }
+        @media (max-width: 600px) {
             .pricing-grid { grid-template-columns: 1fr; }
-            .plan-card.popular { transform: scale(1); }
-            .hero-buttons { flex-direction: column; align-items: center; }
+            .stat-row { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
         }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            #particles, body::after { display: none; }
+        }
+ 
+        /* color strip on distro hover */
+        .distro-card.cyber:hover { border-color: var(--red); box-shadow: 0 0 24px rgba(255,77,109,0.18); }
+        .distro-card.cyber:hover::before { background: rgba(255,77,109,0.08); }
+        .distro-card.gaming:hover { border-color: var(--purple); box-shadow: 0 0 24px rgba(155,109,255,0.18); }
+        .distro-card.gaming:hover::before { background: rgba(155,109,255,0.08); }
+        .distro-card.server:hover { border-color: var(--blue); box-shadow: 0 0 24px rgba(59,158,255,0.18); }
+        .distro-card.server:hover::before { background: rgba(59,158,255,0.08); }
     </style>
 </head>
 <body>
-    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
-    <canvas id="particles"></canvas>
-    <div class="bg-grid"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-
-    <div class="toast" id="toast">
-        <i class="toast-icon fas fa-check-circle"></i>
-        <span class="toast-content" id="toastContent">Success!</span>
-        <button class="toast-close" onclick="hideToast()">×</button>
+ 
+<canvas id="particles"></canvas>
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+ 
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Done!</span>
+    <button class="toast-x" onclick="hideToast()"><i class="fas fa-times"></i></button>
+</div>
+ 
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#home" class="logo">
+            <span class="logo-bracket">[</span>
+            <i class="fab fa-linux"></i> LinuxMaster
+            <span class="logo-bracket">]</span>
+        </a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#home" onclick="closeMenu()">Home</a>
+            <a href="#distros" onclick="closeMenu()">Distros</a>
+            <a href="#plans" onclick="closeMenu()">Plans</a>
+            <a href="#faq" onclick="closeMenu()">FAQ</a>
+            <a href="#about" onclick="closeMenu()">About</a>
+            <a href="#contact" class="nav-cta" onclick="closeMenu()">Get Started</a>
+        </div>
     </div>
-
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo"><i class="fab fa-linux"></i> LinuxMaster</a>
-            <div style="display:flex;align-items:center;margin-left:auto;">
-                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                    <i class="fas fa-sun" id="themeIcon"></i>
-                </button>
-                <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-                    <span></span><span></span><span></span>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div class="hero-tag"><i class="fas fa-terminal"></i> One-on-One Linux Coaching</div>
+        <h1>Master <span>Linux</span><br>the right way.</h1>
+        <p class="hero-sub">Hands-on sessions over Zoom or Discord. Learn Linux, server admin, and cybersecurity at your own pace — with a real instructor.</p>
+        <div class="hero-btns">
+            <a href="#plans" class="btn btn-primary"><i class="fas fa-rocket"></i> Browse Plans</a>
+            <a href="#distros" class="btn btn-ghost"><i class="fas fa-layer-group"></i> Explore Distros</a>
+        </div>
+        <div class="terminal">
+            <div class="term-bar">
+                <div class="term-dot r"></div>
+                <div class="term-dot y"></div>
+                <div class="term-dot g"></div>
+                <div class="term-file">bash — linuxmaster</div>
+            </div>
+            <div class="term-body">
+                <span class="term-ps">user@linuxmaster:~$ </span><span class="term-cmd" id="typewriter"></span><span class="cursor"></span>
+                <div class="term-out" id="termOut"></div>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+<!-- DISTROS -->
+<section class="section" id="distros">
+    <div class="container">
+        <div class="reveal">
+            <div class="sec-label">// Linux Distributions</div>
+            <h2 class="sec-title">Pick your distro.</h2>
+            <p class="sec-sub">We cover all major distros. Click any card to visit the official site. Use the filters to find what fits your goals.</p>
+        </div>
+        <div class="filter-bar reveal" style="margin-top:2rem;">
+            <button class="filter-btn active" onclick="filterDistros('all', this)">All</button>
+            <button class="filter-btn" onclick="filterDistros('general', this)">General</button>
+            <button class="filter-btn" onclick="filterDistros('server', this)">Server</button>
+            <button class="filter-btn" onclick="filterDistros('gaming', this)">Gaming</button>
+            <button class="filter-btn" onclick="filterDistros('cyber', this)">Cybersecurity</button>
+            <button class="filter-btn" onclick="filterDistros('immutable', this)">Immutable</button>
+            <button class="filter-btn" onclick="filterDistros('minimal', this)">Minimal</button>
+        </div>
+        <div class="distros-grid" id="distroGrid"></div>
+    </div>
+</section>
+ 
+<!-- PLANS -->
+<section class="section" id="plans">
+    <div class="container">
+        <div class="reveal" style="margin-bottom:3rem;">
+            <div class="sec-label">// Training Plans</div>
+            <h2 class="sec-title">Honest pricing.<br>Real results.</h2>
+            <p class="sec-sub">All sessions are 60 min, recorded, and tailored to your level. Pick topics you actually want to learn.</p>
+        </div>
+        <div class="pricing-grid" id="pricingGrid"></div>
+    </div>
+</section>
+ 
+<!-- FAQ -->
+<section class="section" id="faq">
+    <div class="container">
+        <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+            <div class="sec-label">// FAQ</div>
+            <h2 class="sec-title">Common questions.</h2>
+        </div>
+        <div class="faq-list reveal" id="faqList"></div>
+    </div>
+</section>
+ 
+<!-- ABOUT -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="reveal">
+                <div class="sec-label">// About LinuxMaster</div>
+                <h2 class="sec-title">Real coaching.<br>No fluff.</h2>
+                <p style="color:var(--text-mid);font-size:1rem;line-height:1.75;margin-bottom:1.5rem;">
+                    LinuxMaster is a solo coaching service focused on practical, hands-on Linux education.
+                    Sessions are conducted live over Zoom or Discord — you share your screen, we work through real problems together.
+                    No pre-recorded videos. No auto-play courses. Just direct, focused instruction.
+                </p>
+                <p style="color:var(--text-mid);font-size:1rem;line-height:1.75;">
+                    Whether you're new to the terminal or aiming for OSCP certification, sessions are customized to where you are and where you want to go.
+                </p>
+                <div class="stat-row">
+                    <div class="stat-box">
+                        <div class="stat-n">10+</div>
+                        <div class="stat-l">Years Experience</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-n">25+</div>
+                        <div class="stat-l">Distros Covered</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-n">7-day</div>
+                        <div class="stat-l">Refund Policy</div>
+                    </div>
                 </div>
             </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#home" onclick="closeMenu()">Home</a>
-                <a href="#distros" onclick="closeMenu()">Distros</a>
-                <a href="#plans" onclick="closeMenu()">Plans</a>
-                <a href="#testimonials" onclick="closeMenu()">Reviews</a>
-                <a href="#faq" onclick="closeMenu()">FAQ</a>
-                <a href="#about" onclick="closeMenu()">About</a>
-                <a href="#contact" class="nav-cta" onclick="closeMenu()">Get Started</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge"><i class="fas fa-terminal"></i> Expert Linux Coaching</div>
-            <h1>Master the Command Line</h1>
-            <div class="mini-terminal">
-                <div class="terminal-buttons">
-                    <div class="terminal-btn red"></div>
-                    <div class="terminal-btn yellow"></div>
-                    <div class="terminal-btn green"></div>
+            <div class="feat-list reveal">
+                <div class="feat-item">
+                    <div class="feat-icon"><i class="fas fa-video"></i></div>
+                    <div class="feat-text">
+                        <h4>Live Sessions via Zoom / Discord</h4>
+                        <p>Every session is 1-on-1, screen-shared, and recorded so you can review it anytime.</p>
+                    </div>
                 </div>
-                <div class="terminal-title">linuxmaster@terminal ~</div>
-                <div class="terminal-body">
-                    <span class="terminal-prompt">user@linuxmaster:~$</span> 
-                    <span class="terminal-command" id="typewriter"></span>
-                    <span class="terminal-cursor"></span>
-                    <div class="terminal-output" id="terminalOutput"></div>
+                <div class="feat-item">
+                    <div class="feat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="feat-text">
+                        <h4>Flexible Scheduling</h4>
+                        <p>Book morning, evening, or weekends. Timezone-flexible. Coordinate via email or Discord.</p>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <div class="feat-icon"><i class="fas fa-sliders-h"></i></div>
+                    <div class="feat-text">
+                        <h4>Custom Curriculum</h4>
+                        <p>Tell me your goals. We cover exactly what's relevant — no padding, no irrelevant modules.</p>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <div class="feat-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="feat-text">
+                        <h4>7-Day Refund Guarantee</h4>
+                        <p>Not happy after the first session? Full refund, no questions asked.</p>
+                    </div>
                 </div>
             </div>
-            <div class="hero-buttons">
-                <a href="#distros" class="btn btn-primary"><i class="fas fa-rocket"></i> Explore Distros</a>
-                <a href="#plans" class="btn btn-secondary"><i class="fas fa-credit-card"></i> View Plans</a>
+        </div>
+    </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer id="contact">
+    <div class="socials">
+        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#distros">Distros</a>
+        <a href="#plans">Plans</a>
+        <a href="#faq">FAQ</a>
+        <a href="#about">About</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 LinuxMaster Coaching &mdash; Built for the open source community</p>
+</footer>
+ 
+<!-- BOOKING MODAL -->
+<div class="modal-bg" id="modalBg">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        <h2 class="modal-title">Book Your Sessions</h2>
+        <p class="modal-sub">Fill in your details — I'll confirm and send a payment link within 24 hrs.</p>
+        <div class="plan-recap" id="planRecap">
+            <div class="recap-row"><span>Plan</span><span id="rcPlan">—</span></div>
+            <div class="recap-row"><span>Sessions</span><span id="rcSessions">—</span></div>
+            <div class="recap-row"><span>Topics</span><span id="rcTopics">—</span></div>
+            <div class="recap-row"><span>Total</span><span id="rcPrice">—</span></div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" type="text" id="fName" placeholder="Your name">
+            <div class="form-err" id="errName">Please enter your name.</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" id="fEmail" placeholder="you@email.com">
+            <div class="form-err" id="errEmail">Please enter a valid email.</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Preferred Start Date</label>
+            <div class="date-wrap">
+                <input class="form-input" type="date" id="fDate">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="form-err" id="errDate">Please pick a date.</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Payment Method</label>
+            <div class="pay-methods">
+                <div class="pay-method active" onclick="setPay(this,'cashapp')">
+                    <i class="fas fa-dollar-sign"></i>Cash App
+                </div>
+                <div class="pay-method" onclick="setPay(this,'paypal')">
+                    <i class="fab fa-paypal"></i>PayPal
+                </div>
+                <div class="pay-method" onclick="setPay(this,'stripe')">
+                    <i class="fas fa-credit-card"></i>Card
+                </div>
             </div>
         </div>
-        <div class="scroll-indicator" onclick="document.getElementById('distros').scrollIntoView({behavior:'smooth'})">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- Pricing Section - FIXED & REASONABLE PRICES -->
-    <section class="pricing" id="plans" style="padding: 6rem 2rem; position: relative; z-index: 1;">
-        <div class="section-header reveal" style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
-            <h2>Training Plans</h2>
-            <p>Server plans are more affordable. Cybersecurity plans are intensive and career-focused.</p>
-        </div>
-
-        <div class="pricing-grid" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
-            
-            <!-- Server Starter -->
-            <div class="plan-card reveal">
-                <div class="plan-name">Server Starter</div>
-                <div class="plan-price">$99<small>/month</small></div>
-                <ul style="list-style:none;margin:1.5rem 0;">
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>4 sessions/month</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Linux server setup</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Docker basics</li>
-                </ul>
-                <a href="#" class="plan-cta" onclick="openBookingModal('Server Starter', '$99/month', '4 sessions/month', 99); return false;">Buy Server Starter</a>
+        <button class="pay-btn" id="payBtn" onclick="submitBooking()">
+            <i class="fas fa-dollar-sign"></i>
+            <span id="payBtnText">Pay with Cash App</span>
+        </button>
+        <p class="pay-note">You'll be redirected to complete payment after confirming details.</p>
+    </div>
+</div>
+ 
+<script>
+// ── DISTRO DATA ────────────────────────────────────────────────────────────────
+const distros = [
+    // General / Desktop
+    { name:'Ubuntu', cat:'general', icon:'fab fa-ubuntu', tags:['Beginner','Desktop','Server'], url:'https://ubuntu.com/' },
+    { name:'Linux Mint', cat:'general', icon:'fab fa-linux', tags:['Windows Switch','Cinnamon','Stable'], url:'https://www.linuxmint.com/' },
+    { name:'Fedora', cat:'general', icon:'fab fa-fedora', tags:['Cutting Edge','GNOME','Developers'], url:'https://getfedora.org/' },
+    { name:'Debian', cat:'general', icon:'fab fa-linux', tags:['Rock Solid','Servers','Minimal'], url:'https://www.debian.org/' },
+    { name:'openSUSE', cat:'general', icon:'fab fa-linux', tags:['Enterprise','YaST','Tumbleweed'], url:'https://www.opensuse.org/' },
+    { name:'Manjaro', cat:'general', icon:'fab fa-linux', tags:['Arch-based','Easy','Rolling'], url:'https://manjaro.org/' },
+    { name:'EndeavourOS', cat:'general', icon:'fab fa-linux', tags:['Arch','Calamares','DIY'], url:'https://endeavouros.com/' },
+    { name:'Zorin OS', cat:'general', icon:'fab fa-linux', tags:['Windows Look','Beginner','Polish'], url:'https://zorin.com/os/' },
+    { name:'elementary OS', cat:'general', icon:'fab fa-linux', tags:['macOS Feel','Pantheon','Clean'], url:'https://elementary.io/' },
+    { name:'KDE Neon', cat:'general', icon:'fab fa-linux', tags:['Plasma','Ubuntu Base','Bleeding KDE'], url:'https://neon.kde.org/' },
+    { name:'MX Linux', cat:'general', icon:'fab fa-linux', tags:['Debian','Stable','Xfce'], url:'https://mxlinux.org/' },
+    { name:'Solus', cat:'general', icon:'fab fa-linux', tags:['Budgie','Independent','Desktop Focus'], url:'https://getsol.us/' },
+ 
+    // Server
+    { name:'Rocky Linux', cat:'server', icon:'fab fa-linux', tags:['RHEL Compatible','Enterprise','Production'], url:'https://rockylinux.org/', badge:'server' },
+    { name:'AlmaLinux', cat:'server', icon:'fab fa-linux', tags:['RHEL Clone','Community','Free'], url:'https://almalinux.org/', badge:'server' },
+    { name:'Ubuntu Server', cat:'server', icon:'fab fa-ubuntu', tags:['LTS','Cloud','Containers'], url:'https://ubuntu.com/server', badge:'server' },
+    { name:'Debian Stable', cat:'server', icon:'fab fa-linux', tags:['Ultra Stable','Long LTS','Minimal'], url:'https://www.debian.org/', badge:'server' },
+    { name:'Alpine Linux', cat:'minimal', icon:'fab fa-linux', tags:['5MB Base','musl libc','Containers'], url:'https://alpinelinux.org/' },
+    { name:'Void Linux', cat:'minimal', icon:'fab fa-linux', tags:['Runit','Musl/glibc','Advanced'], url:'https://voidlinux.org/' },
+ 
+    // Gaming
+    { name:'Pop!_OS', cat:'gaming', icon:'fas fa-desktop', tags:['NVIDIA','Gaming','System76'], url:'https://pop.system76.com/', badge:'gaming' },
+    { name:'Nobara', cat:'gaming', icon:'fas fa-fire', tags:['Fedora-based','Gaming Tweaks','Streaming'], url:'https://nobaraproject.org/', badge:'gaming' },
+    { name:'Garuda Linux', cat:'gaming', icon:'fas fa-dragon', tags:['Arch','Performance','Beautiful'], url:'https://garudalinux.org/', badge:'gaming' },
+    { name:'CachyOS', cat:'gaming', icon:'fas fa-bolt', tags:['Optimized','Zen Kernel','Speed'], url:'https://cachyos.org/', badge:'gaming' },
+    { name:'ChimeraOS', cat:'gaming', icon:'fas fa-gamepad', tags:['Couch Gaming','SteamOS-like','Living Room'], url:'https://chimeraos.org/', badge:'gaming' },
+ 
+    // Immutable
+    { name:'Bazzite', cat:'immutable', icon:'fas fa-gamepad', tags:['Steam Deck','Immutable','Fedora'], url:'https://bazzite.gg/', badge:'immutable' },
+    { name:'Fedora Silverblue', cat:'immutable', icon:'fab fa-fedora', tags:['OSTree','Flatpak','GNOME'], url:'https://silverblue.fedoraproject.org/', badge:'immutable' },
+    { name:'NixOS', cat:'immutable', icon:'fab fa-linux', tags:['Declarative','Reproducible','Nix'], url:'https://nixos.org/', badge:'immutable' },
+    { name:'VanillaOS', cat:'immutable', icon:'fab fa-linux', tags:['Apx','Immutable','Ubuntu Base'], url:'https://vanillaos.org/', badge:'immutable' },
+ 
+    // Minimal / Advanced
+    { name:'Arch Linux', cat:'minimal', icon:'fab fa-linux', tags:['DIY','Rolling','Minimal Base'], url:'https://archlinux.org/' },
+    { name:'Gentoo', cat:'minimal', icon:'fab fa-linux', tags:['Source Based','Portage','Expert Only'], url:'https://www.gentoo.org/' },
+    { name:'LFS (Linux From Scratch)', cat:'minimal', icon:'fas fa-hammer', tags:['Build It Yourself','Learning','Pure'], url:'https://www.linuxfromscratch.org/' },
+ 
+    // Cyber
+    { name:'Kali Linux', cat:'cyber', icon:'fas fa-skull', tags:['Pentesting','600+ Tools','Industry Standard'], url:'https://www.kali.org/', badge:'cyber' },
+    { name:'Parrot OS', cat:'cyber', icon:'fas fa-crow', tags:['Lightweight','Privacy','DFIR'], url:'https://parrotsec.org/', badge:'cyber' },
+    { name:'BlackArch', cat:'cyber', icon:'fas fa-mask', tags:['2800+ Tools','Arch-based','Expert'], url:'https://blackarch.org/', badge:'cyber' },
+    { name:'Tails', cat:'cyber', icon:'fas fa-user-secret', tags:['Amnesic','Tor','Privacy First'], url:'https://tails.boum.org/', badge:'cyber' },
+    { name:'Whonix', cat:'cyber', icon:'fas fa-eye-slash', tags:['VM-based','Tor Routing','Isolation'], url:'https://www.whonix.org/', badge:'cyber' },
+];
+ 
+const badgeLabels = { cyber:'Cybersec', gaming:'Gaming', server:'Server', immutable:'Immutable' };
+const badgeClass = { cyber:'badge-cyber', gaming:'badge-gaming', server:'badge-server', immutable:'badge-immutable' };
+ 
+function renderDistros(filter) {
+    const grid = document.getElementById('distroGrid');
+    grid.innerHTML = '';
+    const list = filter === 'all' ? distros : distros.filter(d => d.cat === filter);
+    list.forEach(d => {
+        const card = document.createElement('div');
+        card.className = `distro-card${d.cat === 'cyber' ? ' cyber' : d.cat === 'gaming' ? ' gaming' : d.cat === 'server' ? ' server' : ''}`;
+        card.onclick = () => window.open(d.url, '_blank');
+        const badge = d.badge ? `<span class="distro-badge ${badgeClass[d.badge]}">${badgeLabels[d.badge]}</span>` : '';
+        card.innerHTML = `
+            ${badge}
+            <div class="distro-ico"><i class="${d.icon}"></i></div>
+            <div class="distro-info">
+                <div class="distro-name">${d.name}</div>
+                <div class="distro-tags">${d.tags.map(t=>`<span class="dtag">${t}</span>`).join('')}</div>
             </div>
-
-            <!-- Server Pro -->
-            <div class="plan-card popular reveal">
-                <div class="plan-badge">RECOMMENDED</div>
-                <div class="plan-name">Server Pro</div>
-                <div class="plan-price">$179<small>/month</small></div>
-                <ul style="list-style:none;margin:1.5rem 0;">
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>8 sessions/month</li>
-                    <li><i class="fas fa-check" style="color:var(--accent-green);margin-right:8px;"></i>Advanced admin + Monitoring</li>
-                </ul>
-                <a href="#" class="plan-cta" onclick="openBookingModal('Server Pro', '$179/month', '8 sessions/month', 179); return false;">Buy Server Pro</a>
+            <i class="fas fa-arrow-right" style="color:var(--text-dim);font-size:0.75rem;margin-left:auto;align-self:center;transition:transform 0.2s"></i>`;
+        card.addEventListener('mouseenter', () => card.querySelector('.fa-arrow-right').style.transform = 'translateX(4px)');
+        card.addEventListener('mouseleave', () => card.querySelector('.fa-arrow-right').style.transform = '');
+        grid.appendChild(card);
+    });
+}
+function filterDistros(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderDistros(cat);
+}
+renderDistros('all');
+ 
+// ── PLAN DATA ─────────────────────────────────────────────────────────────────
+const plans = [
+    {
+        id: 'starter',
+        tag: 'Server Track',
+        tagClass: 'tag-server',
+        name: 'Linux Starter',
+        desc: 'Perfect for complete beginners transitioning to Linux or managing their first server.',
+        price: 49,
+        sessions: '2 sessions / month',
+        features: [
+            { bold: '2 live sessions', text: ' (60 min each, recorded)' },
+            { bold: 'Core Linux CLI', text: ' — navigation, permissions, users' },
+            { bold: 'Package management', text: ' — apt, dnf, pacman' },
+            { bold: 'Filesystem & text editors', text: ' (vim/nano)' },
+            { bold: 'Email support', text: ' between sessions' },
+        ],
+        topics: ['Ubuntu Basics','File Permissions','SSH Setup','Bash Intro','apt/dnf/pacman','vim/nano','Cron Jobs','Networking Basics'],
+        cta: 'cta-outline',
+        featured: false
+    },
+    {
+        id: 'server-pro',
+        tag: 'Server Track',
+        tagClass: 'tag-server',
+        name: 'Server Pro',
+        desc: 'Hands-on server administration, Docker, and automation for sysadmins and DevOps learners.',
+        price: 89,
+        sessions: '4 sessions / month',
+        features: [
+            { bold: '4 live sessions', text: ' (60 min each, recorded)' },
+            { bold: 'Server hardening', text: ' — UFW, fail2ban, SSH keys' },
+            { bold: 'Docker & Compose', text: ' from scratch' },
+            { bold: 'Nginx / Apache', text: ' + SSL setup' },
+            { bold: 'Ansible basics', text: ' + cron automation' },
+            { bold: 'RHCSA exam prep', text: ' available on request' },
+        ],
+        topics: ['UFW Firewall','Docker','Docker Compose','Nginx/Apache','LVM Storage','SELinux','systemd','Ansible','Prometheus+Grafana','ELK Stack','CI/CD Basics','Terraform Intro','RHCSA Prep'],
+        cta: 'cta-green',
+        featured: true
+    },
+    {
+        id: 'cyber-starter',
+        tag: 'Cyber Track',
+        tagClass: 'tag-cyber',
+        name: 'Cyber Starter',
+        desc: 'Introduction to ethical hacking, Linux pentesting tools, and security fundamentals.',
+        price: 79,
+        sessions: '3 sessions / month',
+        features: [
+            { bold: '3 live sessions', text: ' (60 min each, recorded)' },
+            { bold: 'Kali Linux setup', text: ' and core tools overview' },
+            { bold: 'Networking fundamentals', text: ' — TCP/IP, scanning, recon' },
+            { bold: 'Bash scripting', text: ' for security automation' },
+            { bold: 'Intro to CTF', text: ' challenges (TryHackMe / HTB)' },
+        ],
+        topics: ['Kali Linux','Nmap','Gobuster','Metasploit Basics','Burp Suite Intro','Bash Scripting','WiFi Auditing','OSINT','TryHackMe CTFs','Password Cracking','Privilege Escalation Intro'],
+        cta: 'cta-outline',
+        featured: false
+    },
+    {
+        id: 'cyber-pro',
+        tag: 'Cyber Track',
+        tagClass: 'tag-cyber',
+        name: 'Cyber Pro',
+        desc: 'Advanced pentesting, real lab environments, and cert prep for serious security learners.',
+        price: 149,
+        sessions: '6 sessions / month',
+        features: [
+            { bold: '6 live sessions', text: ' (60 min each, recorded)' },
+            { bold: 'Real vulnerable lab machines', text: ' — HackTheBox / PWNX' },
+            { bold: 'Web app exploitation', text: ' — SQLi, XSS, IDOR, LFI' },
+            { bold: 'Privilege escalation', text: ' Linux & Windows' },
+            { bold: 'Burp Suite Pro workflow', text: '' },
+            { bold: 'Cert prep', text: ' — Security+, CEH, eJPT, OSCP path' },
+        ],
+        topics: ['Metasploit Advanced','Burp Suite Pro','Web App Exploitation','SQLi/XSS/LFI','PrivEsc Linux','PrivEsc Windows','Active Directory Basics','Buffer Overflow Intro','Report Writing','Security+ Prep','CEH Prep','eJPT Prep','OSCP Path'],
+        cta: 'cta-green',
+        featured: true
+    },
+    {
+        id: 'unlimited',
+        tag: 'Elite Track',
+        tagClass: 'tag-cyber',
+        name: 'Elite Mentorship',
+        desc: 'Maximum sessions, red teaming, advanced lab access, and custom exploit development guidance.',
+        price: 219,
+        sessions: '8 sessions / month',
+        features: [
+            { bold: '8 live sessions', text: ' (60 min each, recorded)' },
+            { bold: 'Everything in Cyber Pro', text: '' },
+            { bold: 'Red team ops', text: ' — C2 frameworks, AV evasion, lateral movement' },
+            { bold: 'Bug bounty', text: ' workflow — HackerOne / Bugcrowd' },
+            { bold: 'Custom exploit dev', text: ' guidance (Python / C)' },
+            { bold: 'OSCP / OSWE / OSEP', text: ' prep support' },
+        ],
+        topics: ['Cobalt Strike/Sliver Concepts','AV Evasion','Lateral Movement','Custom Payloads','Bug Bounty HackerOne','Bug Bounty Bugcrowd','Exploit Dev (Python)','Exploit Dev (C)','BlackArch Tools','Forensics/DFIR','OSCP Prep','OSWE Prep','OSEP Prep'],
+        cta: 'cta-green',
+        featured: false
+    },
+];
+ 
+let selectedTopics = {};
+ 
+function renderPlans() {
+    const grid = document.getElementById('pricingGrid');
+    grid.innerHTML = '';
+    plans.forEach(p => {
+        const el = document.createElement('div');
+        el.className = `plan reveal${p.featured ? ' featured' : ''}`;
+        el.innerHTML = `
+            <div class="plan-tag ${p.tagClass}">${p.tag}</div>
+            <div class="plan-name">${p.name}</div>
+            <div class="plan-desc">${p.desc}</div>
+            <div class="plan-price-row">
+                <span class="plan-price">$${p.price}</span>
+                <span class="plan-period">/ month</span>
             </div>
-
-            <!-- Cyber Starter -->
-            <div class="plan-card reveal">
-                <div class="plan-name">Cyber Starter</div>
-                <div class="plan-price">$129<small>/month</small></div>
-                <a href="#" class="plan-cta" onclick="openBookingModal('Cyber Starter', '$129/month', '6 sessions/month', 129); return false;">Buy Cyber Starter</a>
+            <div class="plan-sessions">→ ${p.sessions}</div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+                ${p.features.map(f=>`<li><i class="fas fa-check"></i><span><strong>${f.bold}</strong>${f.text}</span></li>`).join('')}
+            </ul>
+            <div class="topic-section">
+                <div class="topic-label">Pick topics to focus on:</div>
+                <div class="topic-grid">
+                    ${p.topics.map(t=>`<div class="topic-chip" onclick="toggleTopic('${p.id}','${t}',this)">${t}</div>`).join('')}
+                </div>
             </div>
-
-            <!-- Pro Linux + Security - Most Popular -->
-            <div class="plan-card popular reveal">
-                <div class="plan-badge">MOST POPULAR</div>
-                <div class="plan-name">Pro Linux + Security</div>
-                <div class="plan-price">$249<small>/month</small></div>
-                <a href="#" class="plan-cta" onclick="openBookingModal('Pro Linux + Security', '$249/month', '12 sessions/month', 249); return false;">Buy Pro Security</a>
-            </div>
-
-            <!-- Elite Pentester -->
-            <div class="plan-card reveal">
-                <div class="plan-name">Elite Pentester</div>
-                <div class="plan-price">$399<small>/month</small></div>
-                <a href="#" class="plan-cta" onclick="openBookingModal('Elite Pentester', '$399/month', 'Unlimited sessions', 399); return false;">Buy Elite Pentester</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- The rest of your original sections (distros, testimonials, faq, lead-magnet, about, modal, footer) are kept exactly as you provided -->
-    <!-- For space, they are not repeated here, but in your actual file, paste your original sections after this pricing section. -->
-
-    <script>
-        // Theme
-        function initTheme() {
-            const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', saved);
-            updateThemeIcon(saved);
+            <button class="plan-cta ${p.cta}" onclick="openModal('${p.id}')">Get Started — $${p.price}/mo</button>`;
+        grid.appendChild(el);
+    });
+    // re-observe new cards
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+ 
+function toggleTopic(planId, topic, el) {
+    if (!selectedTopics[planId]) selectedTopics[planId] = new Set();
+    if (selectedTopics[planId].has(topic)) {
+        selectedTopics[planId].delete(topic);
+        el.classList.remove('active');
+    } else {
+        selectedTopics[planId].add(topic);
+        el.classList.add('active');
+    }
+}
+ 
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+let currentPlan = null;
+let currentPayMethod = 'cashapp';
+ 
+function openModal(planId) {
+    currentPlan = plans.find(p => p.id === planId);
+    if (!currentPlan) return;
+    const topics = selectedTopics[planId] ? [...selectedTopics[planId]].join(', ') : 'None selected yet';
+    document.getElementById('rcPlan').textContent = currentPlan.name;
+    document.getElementById('rcSessions').textContent = currentPlan.sessions;
+    document.getElementById('rcTopics').textContent = topics || 'None selected yet';
+    document.getElementById('rcPrice').textContent = `$${currentPlan.price} / month`;
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('fDate').min = today;
+    document.querySelectorAll('.form-err').forEach(e => e.classList.remove('show'));
+    document.getElementById('modalBg').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+    document.getElementById('modalBg').classList.remove('open');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.getElementById('modalBg').addEventListener('click', e => { if (e.target === document.getElementById('modalBg')) closeModal(); });
+ 
+function setPay(el, method) {
+    document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('active'));
+    el.classList.add('active');
+    currentPayMethod = method;
+    const btn = document.getElementById('payBtnText');
+    if (method === 'cashapp') btn.textContent = 'Pay with Cash App';
+    else if (method === 'paypal') btn.textContent = 'Pay with PayPal';
+    else btn.textContent = 'Pay with Card';
+}
+ 
+function submitBooking() {
+    const name = document.getElementById('fName').value.trim();
+    const email = document.getElementById('fEmail').value.trim();
+    const date = document.getElementById('fDate').value;
+    let ok = true;
+    document.querySelectorAll('.form-err').forEach(e => e.classList.remove('show'));
+    if (!name) { document.getElementById('errName').classList.add('show'); ok = false; }
+    if (!email || !email.includes('@')) { document.getElementById('errEmail').classList.add('show'); ok = false; }
+    if (!date) { document.getElementById('errDate').classList.add('show'); ok = false; }
+    if (!ok) { showToast('Please fill in all fields.', 'err'); return; }
+    if (!currentPlan) return;
+ 
+    if (currentPayMethod === 'stripe') {
+        showToast('Card payments coming soon — please use Cash App or PayPal.', 'err');
+        return;
+    }
+ 
+    let url = '';
+    const note = encodeURIComponent(`LinuxMaster: ${currentPlan.name} for ${name} starting ${date}`);
+    if (currentPayMethod === 'cashapp') {
+        url = `https://cash.app/$YOURCASHAPP/${currentPlan.price}?note=${note}`;
+    } else {
+        url = `https://paypal.me/YOURPAYPAL/${currentPlan.price}`;
+    }
+    showToast('Redirecting to payment...', 'ok');
+    setTimeout(() => window.open(url, '_blank'), 700);
+}
+ 
+// ── FAQ DATA ──────────────────────────────────────────────────────────────────
+const faqs = [
+    { q: 'How do sessions work?', a: 'All sessions are live, 1-on-1 over Zoom or Discord screen share. Each session is 60 minutes. You\'ll receive a recording link afterward so you can review at any time.' },
+    { q: 'Do I need prior Linux experience?', a: 'Not for the Starter plan. We begin from zero and build up progressively. For the Cyber Pro and Elite plans, basic command line comfort is helpful but not required — we\'ll cover what you need.' },
+    { q: 'What if I\'m not satisfied after the first session?', a: 'You get a full refund within 7 days of your first session. No forms to fill out, no hassle. Just email or DM me.' },
+    { q: 'Can I choose specific topics?', a: 'Yes — that\'s the point. Use the topic chips on each plan to tell me exactly what you want to learn. I\'ll build sessions around your goals, not a rigid syllabus.' },
+    { q: 'Can I change plans after subscribing?', a: 'Yes. Upgrade or downgrade any time. I\'ll prorate the difference. Just message me and it\'ll be sorted within 24 hours.' },
+    { q: 'What payment methods are accepted?', a: 'Cash App and PayPal are currently available. Card payments via Stripe are coming soon.' },
+    { q: 'How flexible is scheduling?', a: 'Very. I work across timezones and offer evenings and weekends. After you book, we\'ll coordinate your first time slot directly over Discord or email.' },
+    { q: 'Do sessions expire if I miss one?', a: 'Sessions roll over to the next month — you won\'t lose them. Just let me know in advance if you need to reschedule.' },
+];
+ 
+function renderFaqs() {
+    const el = document.getElementById('faqList');
+    el.innerHTML = faqs.map((f, i) => `
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>${f.q}</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-a">${f.a}</div>
+        </div>`).join('');
+}
+function toggleFaq(btn) {
+    const ans = btn.nextElementSibling;
+    const wasOpen = btn.classList.contains('open');
+    btn.classList.toggle('open', !wasOpen);
+    ans.classList.toggle('open', !wasOpen);
+}
+renderFaqs();
+ 
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function showToast(msg, type) {
+    const t = document.getElementById('toast');
+    const ico = t.querySelector('i');
+    document.getElementById('toastMsg').textContent = msg;
+    t.className = `toast ${type} show`;
+    ico.className = type === 'ok' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+    clearTimeout(t._timer);
+    t._timer = setTimeout(hideToast, 4500);
+}
+function hideToast() { document.getElementById('toast').classList.remove('show'); }
+ 
+// ── NAV SCROLL ────────────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+ 
+// ── HAMBURGER ────────────────────────────────────────────────────────────────
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('active');
+    document.getElementById('menuOverlay').classList.toggle('active');
+}
+function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('active');
+    document.getElementById('menuOverlay').classList.remove('active');
+}
+ 
+// ── SCROLL REVEAL ─────────────────────────────────────────────────────────────
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+ 
+// ── TYPEWRITER ────────────────────────────────────────────────────────────────
+const cmds = [
+    { cmd: 'uname -r', out: '6.8.12-arch1-1' },
+    { cmd: 'sudo systemctl status nginx', out: '● nginx.service - A high performance web server\n   Active: active (running)' },
+    { cmd: 'docker ps --format "table {{.Names}}\\t{{.Status}}"', out: 'NAMES          STATUS\napp            Up 3 hours\ndb             Up 3 hours' },
+    { cmd: 'nmap -sV 192.168.1.1', out: 'PORT   STATE SERVICE VERSION\n22/tcp open  ssh     OpenSSH 9.3' },
+];
+let ci = 0, ch = 0, typing = true;
+const tw = document.getElementById('typewriter');
+const to = document.getElementById('termOut');
+ 
+function tick() {
+    const cur = cmds[ci];
+    if (typing) {
+        if (ch < cur.cmd.length) {
+            tw.textContent += cur.cmd[ch++];
+            setTimeout(tick, 40 + Math.random() * 40);
+        } else {
+            typing = false;
+            setTimeout(() => {
+                to.innerHTML = cur.out.replace(/\n/g, '<br>');
+                setTimeout(() => {
+                    to.innerHTML = ''; tw.textContent = '';
+                    ch = 0; typing = true;
+                    ci = (ci + 1) % cmds.length;
+                    tick();
+                }, 3200);
+            }, 400);
         }
-        function toggleTheme() {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-            updateThemeIcon(next);
+    }
+}
+setTimeout(tick, 1200);
+ 
+// ── PARTICLES ────────────────────────────────────────────────────────────────
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let pts = [];
+function resizeCanvas() { canvas.width = innerWidth; canvas.height = innerHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+class Pt {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - .5) * .4;
+        this.vy = (Math.random() - .5) * .4;
+        this.r = Math.random() * 1.5 + .4;
+        this.a = Math.random() * .4 + .05;
+    }
+    step() {
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+    }
+    draw() {
+        ctx.fillStyle = `rgba(0,229,160,${this.a})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+for (let i = 0; i < Math.min(innerWidth / 12, 80); i++) pts.push(new Pt());
+(function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < pts.length; i++) {
+        pts[i].step(); pts[i].draw();
+        for (let j = i + 1; j < pts.length; j++) {
+            const dx = pts[j].x - pts[i].x, dy = pts[j].y - pts[i].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 90) {
+                ctx.strokeStyle = `rgba(0,229,160,${.06 * (1 - d / 90)})`;
+                ctx.lineWidth = .5;
+                ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+            }
         }
-        function updateThemeIcon(theme) {
-            const icon = document.getElementById('themeIcon');
-            icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-        }
-
-        // Menu
-        function toggleMenu() {
-            const menu = document.getElementById('navLinks');
-            const hamburger = document.getElementById('hamburger');
-            const overlay = document.getElementById('menuOverlay');
-            menu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-        function closeMenu() {
-            const menu = document.getElementById('navLinks');
-            const hamburger = document.getElementById('hamburger');
-            const overlay = document.getElementById('menuOverlay');
-            menu.classList.remove('active');
-            hamburger.classList.remove('active');
-            overlay.classList.remove('active');
-        }
-
-        // Navbar scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
-        });
-
-        // Reveal Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Booking Modal
-        let currentPlan = {};
-        function openBookingModal(planName, price, sessions, amount) {
-            currentPlan = { name: planName, price, sessions, amount };
-            // You can expand this to update modal content if needed
-            document.getElementById('bookingModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeBookingModal() {
-            document.getElementById('bookingModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastContent').textContent = message;
-            toast.className = `toast toast-${type} show`;
-            setTimeout(() => toast.classList.remove('show'), 4000);
-        }
-
-        // Initialize everything
-        window.onload = function() {
-            initTheme();
-            // Add your original typewriter, particles, dropdown, etc. functions here
-            console.log("LinuxMaster site loaded with all animations preserved.");
-        };
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeBookingModal();
-        });
-    </script>
+    }
+    requestAnimationFrame(loop);
+})();
+ 
+// render plans after DOM is ready
+renderPlans();
+</script>
 </body>
 </html>
